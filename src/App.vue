@@ -3,9 +3,11 @@
     <router-view />
   </template>
   <div v-show="!['login','signup'].includes($route.name)">
+    {{authenticated}}
     <AppTopBar @menu-toggle="onMenuToggle" @logout="logout" />
 
     <Home />
+   
     <mackdock />
   </div>
 </template>
@@ -16,46 +18,21 @@ import mackdock from "../src/components/MacDock.vue";
 
 export default {
   components: { Home, AppTopBar, mackdock },
-  // AppTopBar, mackdock
+ 
   data() {
     return {
+      authenticated:false,
       user: false,
     };
   },
 
   methods: {
-    onWrapperClick() {
-      if (!this.menuClick) {
-        this.overlayMenuActive = false;
-        this.mobileMenuActive = false;
-      }
-
-      this.menuClick = false;
-    },
+ 
     logout() {
       alert("logout");
       this.$router.push("/login");
     },
-    onMenuToggle() {
-      this.menuClick = true;
 
-      if (this.isDesktop()) {
-        if (this.layoutMode === "overlay") {
-          if (this.mobileMenuActive === true) {
-            this.overlayMenuActive = true;
-          }
-
-          this.overlayMenuActive = !this.overlayMenuActive;
-          this.mobileMenuActive = false;
-        } else if (this.layoutMode === "static") {
-          this.staticMenuInactive = !this.staticMenuInactive;
-        }
-      } else {
-        this.mobileMenuActive = !this.mobileMenuActive;
-      }
-
-      event.preventDefault();
-    },
   },
 };
 </script>

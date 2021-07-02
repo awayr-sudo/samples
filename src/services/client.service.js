@@ -15,12 +15,7 @@ export default class ClientService extends ApiService {
         super();
     }
 
-    // tempalet() {
-    //     return this.temaplate
-    // }
-    // tempalet2() {
-    //     return this.temaplate2
-    // }
+
 
 
 }
