@@ -14,9 +14,9 @@
         <span class="pi pi-times"></span>
       </button>
     </template>
-    
-    {{clientList}}
-    <gemForm :data="data" />
+    {{data}}
+   
+    <GemTemplate :data="data" :template="clientList"/>
   </Panel>
   <Dialog
     header="Add Client"
@@ -117,10 +117,10 @@
 
 <script>
 import clientGemServicevice from "../services/client.service";
-import gemForm from "./Gem.template.vue";
+import GemTemplate from "./Gem.template.vue";
 export default {
   props: ["data"],
-  components: { gemForm },
+  components: { GemTemplate },
   data() {
     return {
       clientList: [],

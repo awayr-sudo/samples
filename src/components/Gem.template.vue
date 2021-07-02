@@ -4,7 +4,9 @@
       <!-- <img src="../assets/image/imageletter.png" alt class="email-image" /> -->
       <GemIcon :data="data" />
     </div>
-    <!-- {{data}} -->
+    {{template.title}}
+    {{template.icon}}
+
     <div class="p-col-12 p-md-6 p-lg-9">
       <ul class="no-bullets">
         <li
@@ -94,7 +96,7 @@
 import GemIcon from "../components/GemIcon.vue";
 
 export default {
-  props: ["data"],
+  props: ["data","template"],
   components: {
     GemIcon,
   },
