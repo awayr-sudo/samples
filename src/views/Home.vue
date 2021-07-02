@@ -76,6 +76,8 @@
       </span>
     </div>
   </div>
+  
+  <GeneralInfo  />
 </template>
 
 <script>
@@ -83,12 +85,14 @@ import Gem from "@/components/Gem.vue";
 import draggable from "vuedraggable";
 import GemsService from "../services/gems.service";
 import Dialogss from "../views/Dialogs.vue";
+import GeneralInfo from './pages/employees/Employee.vue'
 
 export default {
   components: {
     draggable,
     Gem,
     Dialogss,
+    GeneralInfo
   },
   data() {
     return {

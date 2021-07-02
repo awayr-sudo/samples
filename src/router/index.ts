@@ -37,6 +37,14 @@ const routes: Array<RouteRecordRaw> = [
 
   },
 
+  {
+    path: '/ginfo',
+    name: 'ginfo',
+    component: () => import(/* webpackChunkName: "logout" */ '../views/pages/employees/GeneralInfo.vue'),
+   
+   
+  },
+
 ]
 
 const router = createRouter({
