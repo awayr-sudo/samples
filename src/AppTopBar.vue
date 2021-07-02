@@ -19,7 +19,7 @@
         <span class="layout-topbar-icon pi pi-cog"></span>
       </button>
       <button class="p-link" @click="logout">
-        <span class="layout-topbar-item-text">User</span>
+        <span class="layout-topbar-item-text">Users</span>
         <span class="layout-topbar-icon  pi pi-sign-out"></span>
       </button>
     </div>
