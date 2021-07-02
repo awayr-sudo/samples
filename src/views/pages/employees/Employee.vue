@@ -10,37 +10,43 @@
     <Splitter class="spliter">
       <SplitterPanel :size="20" :minSize="10">
         <img src="../../../assets/logs/users.png" style="height: 152px" />
-        
+      {{empType}}
         <div class="p-d-flex p-flex-column p-mx-4">
           <Button
             label="General Info"
             icon="pi pi-info-circle"  
             class="p-mb-4 p-button-secondary p-button-sm"
+            @click="showInfo(type='g-info')"
           />
            <Button
             label="Tasks"
             icon="pi pi-book"  
             class="p-mb-4 p-button-secondary p-button-sm"
+            @click="showInfo(type='tasks')"
           />
            <Button
             label="Addresses"
             icon="pi pi-user"  
             class="p-mb-4 p-button-secondary p-button-sm"
+            @click="showInfo(type='address')"
           />
            <Button
             label="Contacts"
             icon="pi pi-credit-card"  
             class="p-mb-4 p-button-secondary p-button-sm"
+            @click="showInfo(type='contact')"
           />
            <Button
             label="Important Dates"
             icon="pi pi-calendar"  
             class="p-mb-4 p-button-secondary p-button-sm"
+            @click="showInfo(type='impDate')"
           />
            <Button
             label="Additional Info"
             icon="pi pi-user"  
             class="p-mb-4 p-button-secondary p-button-sm"
+            @click="showInfo(type='addInfo')"
           />
            <Button
             label="Attachments"
@@ -51,11 +57,13 @@
             label="Links"
             icon="pi pi-link"  
             class="p-mb-4 p-button-secondary p-button-sm"
+            @click="showInfo(type='attach')"
           />
            <Button
             label="Notepads"
             icon="pi pi-user"  
             class="p-mb-4 p-button-secondary p-button-sm"
+            @click="showInfo(type='notepad')"
           />
           <Button
             label="Save"
@@ -73,7 +81,7 @@
         </div>
       </SplitterPanel>
       <SplitterPanel :size="80" :minSize="20">
-        <GInfo @add-new-type="openType" />
+        <GInfo @add-new-type="openType" v-if="empType == 'g-info'"/>
         <Address
           @add-address="addAddress"
           v-for="address in newAddress"
@@ -96,8 +104,10 @@ export default {
     return {
       displayBasic: false,
       address: [],
+      empType: 'g-info',
     };
   },
+  
   methods: {
     openBasic() {
       this.displayBasic = true;
@@ -113,7 +123,12 @@ export default {
       console.log("event", newAddress);
       this.address.push(newAddress);
     },
+   showInfo(type){
+        console.log("gems",type)
+        return this.empType = type
+      } 
   },
+  
 };
 </script>
 

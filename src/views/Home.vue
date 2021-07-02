@@ -76,6 +76,7 @@
       </span>
     </div>
   </div>
+  
   <GeneralInfo  />
 </template>
 
