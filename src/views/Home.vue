@@ -36,10 +36,7 @@
       </template>
     </draggable>
   </div>
-  <!-- <input type="checkbox" @click="changeColor()" />
-  change theme red
-  <input type="checkbox" @click="changeColor1()" />
-  change theme yellow-->
+  
   <div id="nav">
     <Panel header="All gems" :toggleable="true" v-if="dialogs.length > 0">
       <template v-for="dialog in dialogs" :key="dialog">
