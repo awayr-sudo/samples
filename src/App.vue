@@ -3,7 +3,6 @@
     <router-view />
   </template>
   <div v-show="!['login', 'signup'].includes($route.name)">
-    {{ authenticated }}
     <AppTopBar @menu-toggle="onMenuToggle" @logout="logout" />
 
     <Home />
