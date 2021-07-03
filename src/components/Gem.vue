@@ -45,7 +45,16 @@ export default {
     //   console.log(module);
     // });
     this.service = SERVICES[0];
+    this.service.gemItems.forEach((element) => {
+      element.command = (event) => {
+        this.emitter.emit("open-gem", event);
+        // event.originalEvent: Browser event
+        // event.item: Menuitem instance
+        console.log(event);
+      };
+    });
     this.service.context = this;
+
     console.log("items", this.service.gemItems);
   },
   // mounted() {},

@@ -9,12 +9,6 @@ export default class CustomersService extends ApiService {
       key: "customer.add",
       label: "Add Customer",
       icon: PrimeIcons.PLUS_CIRCLE,
-      command: (event) => {
-        this.context.emitter.emit("open-gem", event);
-        // event.originalEvent: Browser event
-        // event.item: Menuitem instance
-        console.log(event);
-      },
     },
     {
       separator: true,
@@ -23,12 +17,6 @@ export default class CustomersService extends ApiService {
       key: "customer.listing",
       label: "View All Customers",
       icon: PrimeIcons.LIST,
-      command: (event) => {
-        this.context.emitter.emit("open-gem", event);
-        // event.originalEvent: Browser event
-        // event.item: Menuitem instance
-        console.log(event);
-      },
     },
   ];
   constructor() {
