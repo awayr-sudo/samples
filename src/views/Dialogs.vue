@@ -44,9 +44,9 @@ export default {
     return {
       comps: {
         dashboard: true,
-        accounts: "comp2Vue",
-        payroll: "comp2Vue",
-        payable: "comp1Vue",
+        accounts: "accounting",
+        payroll: "payroll",
+        payable: "payable",
       },
       gemData: null,
       showModel: this.modelValue.isVisible,
