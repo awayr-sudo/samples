@@ -1,6 +1,6 @@
 body {
   overflow-x: hidden;
-  background-image: url('../../assets/image/loginbg.jpg');
+  background-image: url("../../assets/image/loginbg.jpg");
 }
 @mixin sub-heading-bg {
   border: 1px solid #b6b6b6;
@@ -11,6 +11,9 @@ body {
 }
 @mixin model-body-bg {
   background: $gemsBgColor;
+}
+.p-menu {
+  width: 100%;
 }
 .dormer {
   .p-dialog-header {
@@ -148,7 +151,6 @@ body {
         font-size: 13pt;
         line-height: 1.3em;
         text-align: center;
-        color: #333;
       }
     }
     .p-panel-content {
@@ -367,6 +369,6 @@ body {
   }
 }
 
-.width-100{
+.width-100 {
   width: 100%;
 }

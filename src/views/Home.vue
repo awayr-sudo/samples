@@ -36,13 +36,15 @@
       </template>
     </draggable>
   </div>
-  
+
   <div id="nav">
     <Panel header="All gems" :toggleable="true" v-if="dialogs.length > 0">
       <template v-for="dialog in dialogs" :key="dialog">
-        <Button @click="toggleWindow(dialog)"
-          >{{ dialog.data.title }} window</Button
-        >
+        <Button
+          @click="toggleWindow(dialog)"
+          :label="dialog.data.label"
+          :icon="dialog.data.icon"
+        />
         <span>
           <Button
             icon="pi pi-times"
@@ -62,22 +64,8 @@
     />
     {{ dialog }}
   </div>
-  <div class="navbar p-grid" v-if="dialogs.length > 0">
-    <div v-for="dialog in dialogs" :key="dialog">
-      <Button @click="toggleWindow(dialog)"
-        >{{ dialog.data.title }} window</Button
-      >
-      <span>
-        <Button
-          icon="pi pi-times"
-          class="p-button-rounded p-button-danger p-button-text"
-          @click="closeWindow(dialog)"
-        />
-      </span>
-    </div>
-  </div>
-  
-  <GeneralInfo  />
+
+  <GeneralInfo />
 </template>
 
 <script>
@@ -85,14 +73,14 @@ import Gem from "@/components/Gem.vue";
 import draggable from "vuedraggable";
 import GemsService from "../services/gems.service";
 import Dialogss from "../views/Dialogs.vue";
-import GeneralInfo from './pages/employees/Employee.vue'
+import GeneralInfo from "./pages/employees/Employee.vue";
 
 export default {
   components: {
     draggable,
     Gem,
     Dialogss,
-    GeneralInfo
+    GeneralInfo,
   },
   data() {
     return {
@@ -113,6 +101,10 @@ export default {
 
   mounted() {
     this.gemData();
+    this.emitter.on("open-gem", (event) => {
+      console.log("my-event", event);
+      this.openWindow(event.item);
+    });
   },
 
   methods: {

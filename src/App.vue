@@ -1,13 +1,13 @@
 <template>
-  <template v-if="['login','signup'].includes($route.name)">
+  <template v-if="['login', 'signup'].includes($route.name)">
     <router-view />
   </template>
-  <div v-show="!['login','signup'].includes($route.name)">
-    {{authenticated}}
+  <div v-show="!['login', 'signup'].includes($route.name)">
+    {{ authenticated }}
     <AppTopBar @menu-toggle="onMenuToggle" @logout="logout" />
 
     <Home />
-   
+
     <mackdock />
   </div>
 </template>
@@ -18,21 +18,19 @@ import mackdock from "../src/components/MacDock.vue";
 
 export default {
   components: { Home, AppTopBar, mackdock },
- 
+
   data() {
     return {
-      authenticated:false,
+      authenticated: false,
       user: false,
     };
   },
 
   methods: {
- 
     logout() {
       alert("logout");
       this.$router.push("/login");
     },
-
   },
 };
 </script>

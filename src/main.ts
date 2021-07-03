@@ -80,7 +80,7 @@ import CascadeSelect from 'primevue/cascadeselect';
 import Skeleton from 'primevue/skeleton';
 import Splitter from 'primevue/splitter';
 import SplitterPanel from 'primevue/splitterpanel';
-import 'primevue/resources/themes/nova/theme.css';
+import 'primevue/resources/themes/vela-purple/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
@@ -256,6 +256,9 @@ const payroll = defineAsyncComponent(
 );
 
 
+import mitt from 'mitt';
+const emitter = mitt();
+app.config.globalProperties.emitter = emitter;
 app.component('comp2Vue', comp2Vue)
 app.component('comp1Vue', comp1Vue)
 app.component('accounting', accounting)
@@ -263,6 +266,9 @@ app.component('payables', payables)
 app.component('dashboard', dashboard)
 app.component('payroll', payroll)
 
+
+
+app.use(ConfirmationService);
 //custom elements
 app.component('BaseInput', BaseInput)
 

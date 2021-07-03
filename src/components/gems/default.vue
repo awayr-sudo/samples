@@ -4,34 +4,9 @@
       <!-- <img src="../assets/image/imageletter.png" alt class="email-image" /> -->
       <GemIcon :data="data" />
     </div>
-    {{template.title}}
-    {{template.icon}}
-
-    <div class="p-col-12 p-md-6 p-lg-9">
-      <ul class="no-bullets">
-        <li
-          class="panel-list"
-          @click="openExp(data)"
-          v-bind:class="[{ active: isActive }, { active1: isActive1 }]"
-        >
-          <span class="pi pi-list"></span>
-          {{ data.title }}
-        </li>
-
-        <li class="panel-list" @click="openFire">
-          <span class="pi pi-book"></span>
-          {{ data.icon }}
-        </li>
-
-        <li class="panel-list" @click="openChrome">
-          <span class="pi pi-pencil"></span>
-          {{ data.topic }}
-        </li>
-        <li class="panel-list" @click="openSkype">
-          <span class="pi pi-pencil"></span>
-          File
-        </li>
-      </ul>
+    <div v-if="service" class="p-col-12 p-md-6 p-lg-9">
+      <Menu :model="service.gemItems" />
+      <PanelMenu :model="service.gemItems" />
     </div>
   </div>
 
@@ -93,10 +68,11 @@
   </div> -->
 </template>
 <script>
-import GemIcon from "../components/GemIcon.vue";
+import GemIcon from "../GemIcon.vue";
 
 export default {
-  props: ["data","template"],
+  inject: ["service"],
+  props: ["data", "template"],
   components: {
     GemIcon,
   },

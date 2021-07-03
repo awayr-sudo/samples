@@ -3,9 +3,9 @@
   <Splitter>
     <div class="p-grid">
       <SplitterPanel :size="20" :minSize="10">
-        {{gemData.title}}
-        {{gemData.description}}
-        {{gemData.topic}}
+        {{ gemData.title || "n/a" }}
+        {{ gemData.description || "n/a" }}
+        {{ gemData.topic || "n/a" }}
         <div>
           <SidePanel v-if="gemData.dashboard" />
         </div>
@@ -35,9 +35,14 @@
             <template #header>
               <div class="p-d-flex p-jc-between">
                 <span class="p-inputgroup" style="width: 30% !important">
-                  <span class="p-as-center p-mr-2 tabel-search-label">Search:</span>
+                  <span class="p-as-center p-mr-2 tabel-search-label"
+                    >Search:</span
+                  >
 
-                  <InputText v-model="filters1['global'].value" placeholder="Keyword Search" />
+                  <InputText
+                    v-model="filters1['global'].value"
+                    placeholder="Keyword Search"
+                  />
                   <span class="p-inputgroup-addon">
                     <i class="pi pi-search"></i>
                   </span>
@@ -71,7 +76,12 @@
                     aria-haspopup="true"
                     aria-controls="overlay_menu"
                   />
-                  <Menu id="overlay_menu" ref="menu" :model="items" :popup="true" />
+                  <Menu
+                    id="overlay_menu"
+                    ref="menu"
+                    :model="items"
+                    :popup="true"
+                  />
                 </div>
               </template>
             </Column>
@@ -143,7 +153,7 @@
           </Column>
           <Column header="Title" style="width: 3rem">
             <template #body="">
-            
+
             </template>
           </Column>
         </DataTable>-->
@@ -151,10 +161,19 @@
     </div>
   </Splitter>
 
-  <Dialog header="Header" v-model:visible="displayDescription" :style="{width: '50vw'}">
+  <Dialog
+    header="Header"
+    v-model:visible="displayDescription"
+    :style="{ width: '50vw' }"
+  >
     <NameDescription />
     <template #footer>
-      <Button label="No" icon="pi pi-times" @click="closeDesc" class="p-button-text" />
+      <Button
+        label="No"
+        icon="pi pi-times"
+        @click="closeDesc"
+        class="p-button-text"
+      />
       <Button label="Yes" icon="pi pi-check" @click="closeDesc" autofocus />
     </template>
   </Dialog>

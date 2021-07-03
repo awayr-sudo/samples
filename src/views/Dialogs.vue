@@ -1,14 +1,14 @@
 <template>
   <Dialog
     v-model:visible="showModel"
-    :style="{ width: '70vw',height:'23vw' }"
+    :style="{ width: '70vw', height: '23vw' }"
     :maximizable="true"
     :showHeader="true"
     class="dormer"
   >
     <template #header>
       <label class="gem-main-hiding">
-        <i class="pi pi-file p-mr-2" style="fontSize: 1rem" ></i>
+        <i class="pi pi-file p-mr-2" style="fontSize: 1rem"></i>
 
         <span class="dormer-heading ">{{ modelValue.title }}</span>
       </label>
@@ -18,9 +18,10 @@
         @click="closeBasic"
       />
     </template>
-
-    <Comp :modelValue="modelValue" ref="comp2" />
-
+    {{ currentTabComponent }}dddd
+    <keep-alive>
+      <component :is="currentTabComponent"> </component>
+    </keep-alive>
     <!-- <template #footer>
       <Button
         label="No"
@@ -35,13 +36,18 @@
 
 <script>
 import { ref } from "vue";
-import Comp from "./comp2.vue";
 
 export default {
   props: ["modelValue", "gems"],
-  components: { Comp },
+
   data() {
     return {
+      comps: {
+        dashboard: true,
+        accounts: "comp2Vue",
+        payroll: "comp2Vue",
+        payable: "comp1Vue",
+      },
       gemData: null,
       showModel: this.modelValue.isVisible,
       type: null,
@@ -60,7 +66,14 @@ export default {
       ],
     };
   },
-
+  computed: {
+    currentTabComponent() {
+      return this.modelValue.key == "customer.add"
+        ? this.comps.payable
+        : this.comps.payroll;
+      // return this.gems[this.$route.query.dialog]
+    },
+  },
   watch: {
     showModel(newVal) {
       console.log("newVal", newVal);
@@ -91,8 +104,4 @@ export default {
   },
 };
 </script>
-<style  lang="scss">
-</style>
-
-
-
+<style lang="scss"></style>
