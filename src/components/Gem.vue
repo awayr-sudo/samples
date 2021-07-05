@@ -1,6 +1,6 @@
 <template>
   <Panel class :toggleable="true" :expandedKeys="expandedKeys">
-  
+    
     <template #header class="draggable">
       <div>
         <button class="p-panel-header-icon p-link p-mr-2" @click="toggle">
@@ -31,7 +31,6 @@ export default {
   provide() {
     return {
       service: this.service, //import("../services/customers.service"),
-   
     };
   },
 
@@ -48,7 +47,7 @@ export default {
     //   console.log(m.toString());
     //   console.log(module);
     // });
-    this.service = SERVICES[1];
+    this.service = SERVICES[0];
     this.service.gemItems.forEach((element) => {
       element.command = (event) => {
         this.emitter.emit("open-gem", event);
@@ -57,9 +56,10 @@ export default {
         console.log("gem event",event);
       };
     });
-     
     this.service.context = this;
 
+    console.log("items", this.service.gemItems);
+  
   },
   // mounted() {},
     
