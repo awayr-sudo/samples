@@ -3,13 +3,13 @@
   <Splitter>
     <div class="p-grid">
       <SplitterPanel :size="20" :minSize="10">
-        {{ gemData.title || "n/a" }}
+        <!-- {{ gemData.label || "n/a" }}
         {{ gemData.description || "n/a" }}
-        {{ gemData.topic || "n/a" }}
+        {{ gemData.topic || "n/a" }} -->
         <div>
-          <SidePanel v-if="gemData.dashboard" />
+          <SidePanel  />
         </div>
-        <div v-if="gemData.file">
+        <div >
           <FileSidePanel />
         </div>
       </SplitterPanel>

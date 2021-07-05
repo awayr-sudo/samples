@@ -10,7 +10,18 @@
       <label class="gem-main-hiding">
         <i class="pi pi-file p-mr-2" style="fontSize: 1rem"></i>
 
-        <span class="dormer-heading ">{{ modelValue.title }}</span>
+        <span class="dormer-heading " style="color:black">{{
+          modelValue.label
+        }}</span>
+        <router-link
+          :to="{ path: '/about', query: { dialog: 'signature' } }"
+          target="_blank"
+        >
+          <Button
+            icon="pi pi-clone"
+            class="p-button-outlined p-button-sm p-button-secondary p-mr-2"
+          />
+        </router-link>
       </label>
       <Button
         icon="pi pi-minus"
@@ -19,6 +30,7 @@
       />
     </template>
     {{ currentTabComponent }}dddd
+
     <keep-alive>
       <component :is="currentTabComponent"> </component>
     </keep-alive>
@@ -36,6 +48,7 @@
 
 <script>
 import { ref } from "vue";
+import modelComponent from "./comp2.vue";
 
 export default {
   props: ["modelValue", "gems"],
@@ -51,19 +64,8 @@ export default {
       gemData: null,
       showModel: this.modelValue.isVisible,
       type: null,
-      fname: "",
-      lname: "",
-      address: "",
-      city: "",
-      zip: "",
+
       selectedCity: null,
-      cities: [
-        { name: "New York", code: "NY" },
-        { name: "Rome", code: "RM" },
-        { name: "London", code: "LDN" },
-        { name: "Istanbul", code: "IST" },
-        { name: "Paris", code: "PRS" },
-      ],
     };
   },
   computed: {
@@ -94,6 +96,11 @@ export default {
     },
   },
   methods: {
+    //     newTab() {
+    //       alert("new tab");
+    //       let routeData = this.$router.resolve({ path: '/about', query: { dialog: 'signature' } });
+    // window.open(routeData.href, '_blank');
+    //     },
     closeBasic() {
       this.showModel = false;
       console.log("closing");

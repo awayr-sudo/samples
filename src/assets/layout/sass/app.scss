@@ -3,28 +3,28 @@ body {
   background-image: url("../../assets/image/loginbg.jpg");
 }
 @mixin sub-heading-bg {
-  border: 1px solid #b6b6b6;
-  background: #ece0cc -webkit-gradient(linear, left top, left bottom, from(#ece0cc), to(#dec9a5)) !important;
+  border: 1px solid $subHeadingBorderColor;
+  background: $subHeadingBg -webkit-gradient(linear, left top, left bottom, from($subHeadingGradientfrom), to($subHeadingGradientto)) !important;
 }
 @mixin table-header-bg {
-  background: #a6a6a6 -webkit-gradient(linear, left top, left bottom, from(#c7c7c7), to(#9d9d9d)) !important;
+  background: $tableBgHeader -webkit-gradient(linear, left top, left bottom, from($tableHeaderBgFrom), to($tableHeaderBgTo)) !important;
 }
 @mixin model-body-bg {
   background: $gemsBgColor;
 }
-.p-menu {
+.p-menu-list{
   width: 100%;
 }
 .dormer {
   .p-dialog-header {
-    border-bottom: 1px solid #c8c8c8;
-    background: #ddd !important;
-    color: #495057 !important;
+    border-bottom: 1px solid $dialogHeaderbBorderBottom;
+    background: $dialogHeaderBg !important;
+    color: $dialogHeaderColor !important;
     padding: 5px !important;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
     .gem-main-hiding {
-      color: white;
+      color: $gemMainHeadingColor;
       font-size: 13px;
       font-weight: bold;
     }
@@ -32,27 +32,27 @@ body {
       position: fixed !important;
       right: 50px !important;
     }
-    .p-dialog-header-icon {
-      width: 2rem;
-      height: 2rem;
-      color: white !important;
-      border: 0 none;
-      background: #db2b2b00;
-      border-radius: 50%;
-      transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
-      margin-right: 0.5rem;
-    }
+    // .p-dialog-header-icon {
+    //   width: 2rem;
+    //   height: 2rem;
+    //   color: white !important;
+    //   border: 0 none;
+    //   background: #db2b2b00;
+    //   border-radius: 50%;
+    //   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    //   margin-right: 0.5rem;
+    // }
   }
 
   .p-dialog-content {
     padding: 0px !important;
     height: 100%;
     .p-splitter {
-      border: 1px solid #c8c8c8;
+      border: 1px solid $splitterBoder;
       @include model-body-bg();
       height: 100%;
       border-radius: 3px;
-      color: #333333;
+      color: $splitterColor;
     }
     .p-splitter-gutter {
       width: 8px !important;
@@ -90,7 +90,7 @@ body {
     .p-datatable {
       .p-datatable-header {
         @include table-header-bg();
-        border: 1px solid #9c9b9b;
+        border: 1px solid $tableHeaderBorder;
         border-width: 1px 1px 0 1px;
         padding: 0.857rem 1rem;
         font-weight: 700;
@@ -104,9 +104,8 @@ body {
         text-align: left;
         padding: 0.571rem 0.857rem;
 
-        color: #333333;
         border-width: 1px 1px 1px 1px;
-        color: #333333;
+        color: $splitterColor;
         @include sub-heading-bg();
 
         transition: background-color 0.2s, box-shadow 0.2s;
@@ -123,8 +122,8 @@ body {
     }
     .p-paginator {
       @include model-body-bg();
-      color: #333333;
-      border: solid #c8c8c8;
+      color: $splitterColor;
+      border: solid $splitterBoder;
       border-width: 1px;
       padding: 0;
       border-radius: 3px;
@@ -133,9 +132,9 @@ body {
         margin-right: unset;
       }
       .p-paginator-pages .p-paginator-page.p-highlight {
-        background: #d1b055 !important;
-        border-color: #d1b055;
-        color: #ffffff;
+        background: $paginatorBg !important;
+        border-color: $paginatorBorderColor;
+        color: $paginatorColor;
       }
     }
   }
@@ -145,6 +144,7 @@ body {
     padding: 15px;
     .p-panel-header {
       cursor: move; /* fallback: no `url()` support or images disabled */
+      
 
       .list-panel-heading {
         font-family: Century Gothic, Arial;
@@ -214,7 +214,7 @@ body {
     }
     .active {
       font-weight: bold;
-      color: #fff !important;
+      color: $mackDockColor !important;
     }
   }
   .right {
@@ -233,7 +233,7 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
+      color: $mackDockColor;
     }
     .menu-ico {
       height: 100%;
@@ -255,7 +255,7 @@ body {
       i {
         display: contents;
         font-size: 16px;
-        color: #fff;
+        color: $mackDockColor;
       }
     }
   }

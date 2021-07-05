@@ -106,7 +106,7 @@ export default {
         (response) => {
           console.log("res", response);
           emit("authenticated", true);
-          router.push("/home");
+          router.push("/");
         },
         (error) => {
           console.log("ddddd", error, error.response);

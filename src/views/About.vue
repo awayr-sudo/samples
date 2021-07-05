@@ -37,8 +37,8 @@ data(){
 ,
     computed:{
       currentTabComponent(){
-       return this.$route.query.dialog;
-        // return this.gems[this.$route.query.dialog]
+      //  return this.$route.query.dialog;
+        return this.gems[this.$route.query.dialog]
       
       }
     }

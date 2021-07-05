@@ -121,7 +121,7 @@
       </span> 
       
 </div>
- <ConfirmDialog></ConfirmDialog>
+
 </template>
 
 <script>

@@ -5,7 +5,12 @@
         <button class="p-panel-header-icon p-link p-mr-2" @click="toggle">
           <span class="pi pi-ellipsis-v"></span>
         </button>
-        <Menu id="config_menu" ref="menu" :model="items" :popup="true" />
+        <Menu
+          id="config_menu"
+          ref="menu"
+          :model="service.gemItems"
+          :popup="true"
+        />
         <span class="list-panel-heading">{{ data.title }}</span>
       </div>
     </template>
@@ -45,12 +50,13 @@ export default {
     //   console.log(module);
     // });
     this.service = SERVICES[0];
+    console.log("service", this.service);
     this.service.gemItems.forEach((element) => {
       element.command = (event) => {
         this.emitter.emit("open-gem", event);
         // event.originalEvent: Browser event
         // event.item: Menuitem instance
-        console.log(event);
+        console.log("open event", event);
       };
     });
     this.service.context = this;
@@ -58,7 +64,15 @@ export default {
     console.log("items", this.service.gemItems);
   },
   // mounted() {},
-  methods: {},
+  methods: {
+    hideGem() {
+      this.$emit("hide-gems", this.data);
+    },
+    toggle(event) {
+      console.log("event", event);
+      this.$refs.menu.toggle(event);
+    },
+  },
 };
 </script>
 

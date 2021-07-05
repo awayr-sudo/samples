@@ -29,7 +29,7 @@
           <gem
             :data="element"
             @open-window="openWindow"
-            @delete-gem="deleteProduct"
+            @hide-gems="removeGems"
             class="drag-panel"
           ></gem>
         </div>
@@ -64,7 +64,7 @@
     />
     {{ dialog }}
   </div>
-
+  <ConfirmDialog></ConfirmDialog>
   <GeneralInfo />
 </template>
 
@@ -84,14 +84,11 @@ export default {
   },
   data() {
     return {
-      exampleList: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"],
       active: false,
-      deleteProductDialog: false,
+      removeGemsDialog: false,
       gems: null,
       gem: {},
       toggle: true,
-      isActive: false,
-      isActive1: false,
       gemService: null,
       Service: null,
       title: null,
@@ -143,7 +140,7 @@ export default {
       this.active = false;
     },
 
-    deleteProduct(gem) {
+    removeGems(gem) {
       this.$confirm.require({
         message: "Are you sure you want to proceed?",
         header: "Confirmation",
