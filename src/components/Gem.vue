@@ -1,5 +1,6 @@
 <template>
-  <Panel class :toggleable="true">
+  <Panel class :toggleable="true" :expandedKeys="expandedKeys">
+  
     <template #header class="draggable">
       <div>
         <button class="p-panel-header-icon p-link p-mr-2" @click="toggle">
@@ -35,11 +36,14 @@ export default {
   provide() {
     return {
       service: this.service, //import("../services/customers.service"),
+   
     };
   },
 
   data() {
-    return {};
+    return {
+       
+    };
   },
   beforeCreate() {
     // console.log(s, s.toString());
@@ -59,9 +63,9 @@ export default {
         console.log("open event", event);
       };
     });
+     
     this.service.context = this;
 
-    console.log("items", this.service.gemItems);
   },
   // mounted() {},
   methods: {

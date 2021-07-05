@@ -5,7 +5,7 @@
   <div v-show="!['login', 'signup'].includes($route.name)">
     <AppTopBar @menu-toggle="onMenuToggle" @logout="logout" />
 
-  <router-view />
+    <router-view />
 
     <mackdock />
   </div>
@@ -14,9 +14,9 @@
 import Home from "./views/Home";
 import AppTopBar from "./AppTopBar.vue";
 import mackdock from "../src/components/MacDock.vue";
-
+import { provide } from "vue";
 export default {
-  components: {  AppTopBar, mackdock },
+  components: { AppTopBar, mackdock },
 
   data() {
     return {

@@ -60,6 +60,7 @@ export default {
         accounts: "accounting",
         payroll: "payroll",
         payable: "payable",
+        prospects: "prospects"
       },
       gemData: null,
       showModel: this.modelValue.isVisible,
@@ -70,10 +71,11 @@ export default {
   },
   computed: {
     currentTabComponent() {
-      return this.modelValue.key == "customer.add"
-        ? this.comps.payable
+      return this.modelValue.key == "employee.add"
+        ? this.comps.prospects
         : this.comps.payroll;
       // return this.gems[this.$route.query.dialog]
+      
     },
   },
   watch: {
@@ -84,7 +86,7 @@ export default {
       if (newVal != this.modelValue.isVisible) {
         this.$emit("update:modelValue", tmpValue);
         console.log("showModel updated", newVal);
-      }
+      } 
     },
 
     modelValue: {

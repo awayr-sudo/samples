@@ -1,16 +1,11 @@
 <template>
-  <Button label="Show" icon="pi pi-external-link" @click="openBasic" />
+ 
 
-  <Dialog v-model:visible="displayBasic" :style="{ width: '50vw' }">
-    <template #header>
-      <span class="p-text-bold"
-        ><i class="pi pi-wallet p-mr-2"></i>Adding a Prospect</span
-      >
-    </template>
+ 
     <Splitter class="spliter">
       <SplitterPanel :size="20" :minSize="10">
         <img src="../../../assets/logs/users.png" style="height: 152px" />
-      {{empType}}
+      {{empType}} ------{{userName}}
         <div class="p-d-flex p-flex-column p-mx-4">
           <Button
             label="General Info"
@@ -89,7 +84,7 @@
         />
       </SplitterPanel>
     </Splitter>
-  </Dialog>
+ 
   <AddNewType ref="typeDialog" />
 </template>
 
@@ -100,9 +95,10 @@ import AddNewType from "../../../components/customComponents/dialogs/AddNewType.
 
 export default {
   components: { GInfo, Address, AddNewType },
+  inject:['userName'],
   data() {
     return {
-      displayBasic: false,
+      displayBasic: true,
       address: [],
       empType: 'g-info',
     };
