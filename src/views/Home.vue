@@ -1,5 +1,6 @@
 <template>
   <div class="home-view">
+  {{geolocation}}
     <Toolbar class="p-mb-3">
       <template #left>
         <span class="dashboard-text">Dashboard</span>
@@ -65,7 +66,7 @@
     {{ dialog }}
   </div>
 
-  <GeneralInfo />
+
 </template>
 
 <script>
@@ -73,15 +74,16 @@ import Gem from "@/components/Gem.vue";
 import draggable from "vuedraggable";
 import GemsService from "../services/gems.service";
 import Dialogss from "../views/Dialogs.vue";
-import GeneralInfo from "./pages/employees/Employee.vue";
+import { inject } from 'vue'
 
 export default {
   components: {
     draggable,
     Gem,
     Dialogss,
-    GeneralInfo,
+    
   },
+  inject: ['location', 'geolocation'],
   data() {
     return {
       exampleList: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"],
@@ -96,6 +98,7 @@ export default {
       Service: null,
       title: null,
       dialogs: [],
+       gInfos: [],
     };
   },
 
@@ -171,8 +174,7 @@ export default {
     },
     addGems(gem) {
       this.$emit("open-window", {
-        type: "Add",
-        title: "Add Gems",
+      
       });
     },
   },

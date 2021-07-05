@@ -14,10 +14,13 @@
 import Home from "./views/Home";
 import AppTopBar from "./AppTopBar.vue";
 import mackdock from "../src/components/MacDock.vue";
-
+import { provide } from 'vue'
 export default {
   components: { Home, AppTopBar, mackdock },
-
+//provide 
+ provide: {
+userName: 'epicai'
+ },
   data() {
     return {
       authenticated: false,
@@ -31,6 +34,11 @@ export default {
       this.$router.push("/login");
     },
   },
+
+ 
+   
+  
+
 };
 </script>
 <style>

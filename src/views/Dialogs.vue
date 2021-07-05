@@ -10,7 +10,7 @@
       <label class="gem-main-hiding">
         <i class="pi pi-file p-mr-2" style="fontSize: 1rem"></i>
 
-        <span class="dormer-heading ">{{ modelValue.title }}</span>
+        <span class="dormer-heading ">{{ currentTabComponent }}</span>
       </label>
       <Button
         icon="pi pi-minus"
@@ -47,6 +47,7 @@ export default {
         accounts: "accounting",
         payroll: "payroll",
         payable: "payable",
+        prospects: "prospects"
       },
       gemData: null,
       showModel: this.modelValue.isVisible,
@@ -68,10 +69,11 @@ export default {
   },
   computed: {
     currentTabComponent() {
-      return this.modelValue.key == "customer.add"
-        ? this.comps.payable
+      return this.modelValue.key == "employee.add"
+        ? this.comps.prospects
         : this.comps.payroll;
       // return this.gems[this.$route.query.dialog]
+      
     },
   },
   watch: {
@@ -82,7 +84,7 @@ export default {
       if (newVal != this.modelValue.isVisible) {
         this.$emit("update:modelValue", tmpValue);
         console.log("showModel updated", newVal);
-      }
+      } 
     },
 
     modelValue: {

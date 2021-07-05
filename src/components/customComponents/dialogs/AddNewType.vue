@@ -1,4 +1,5 @@
 <template>
+  <Form @submit="submit" :validation-schema="schema">
   <Dialog
     
     v-model:visible="showModal"
@@ -28,14 +29,14 @@
         <label class="p-ml-2 p-text-bold">Unique Display Name</label>
       </span>
       <span class="p-col-6">
-          <BaseInput name="Customer[DisplayName]"/>
+          <BaseInput name="displayName"/>
       </span>
       <span class="p-col-6">
         <i class="pi pi-bell"></i>
         <label class="p-ml-2 p-text-bold">Number</label>
       </span>
       <span class="p-col-3">
-          <BaseInput name="Customer[NotificationEmail]"/>
+          <BaseInput name="notificationEmail"/>
       </span>
      
     </div>
@@ -46,15 +47,29 @@
       </SplitterPanel>
     </Splitter>
   </Dialog>
+  </Form>
 </template>
 
 <script>
+import { Form } from "vee-validate";
+import * as Yup from "yup";
 export default {
+  components: {Form},
   data() {
+    const schema = Yup.object().shape({
+          displayName: Yup.string().required("Please enter Name"),
+           notificationEmail: Yup.string().required("Please select Email Notification"),  
+    });
     return {
       showModal: false,
+      schema: schema,
     };
   },
+  methods: {
+    closeBasic(){
+      this.showModal = false
+    }
+  }
 };
 </script>
 

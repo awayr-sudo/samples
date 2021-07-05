@@ -25,7 +25,7 @@
     v-if="data.id == 4"
   />
   <img
-    src="../assets/image/theft.jpg"
+    src="../assets/image/man.png"
     alt
     class="email-image"
     v-if="data.id == 5"
