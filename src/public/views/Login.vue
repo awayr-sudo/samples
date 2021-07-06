@@ -88,6 +88,7 @@ export default {
 
   setup(props: unknown, { emit }: { emit: any }) {
     const router = useRouter();
+   
     const payload = reactive<LoginPayload>({
       employee: "",
       password: "",
@@ -103,16 +104,14 @@ export default {
     });
     const submit = (payload: any, action: any) => {
       axios.post("http://api.epicai.com/site/login", payload).then(
-        (response: any) => {
-          // if (response.status === 200) {
-           
-          //   if(response.user_type=="wm"){
-          //     alert("wm")
-
-          //   }
-          // }
-         
+        (response) => {
+          console.log("res", response);
+          emit("authenticated", true);
+         if(response.data.user_type == 'ow'){
           router.push("/");
+         }else
+          router.push("/dialog");
+         
         },
         (error) => {
           console.log("ddddd", error, error.response);

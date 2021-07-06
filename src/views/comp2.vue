@@ -55,7 +55,7 @@
                     class="p-mr-2 p-button-sm p-button-success"
                   />
                   <router-link
-                    :to="{ path: '/about', query: { dialog: 'signature' } }"
+                    :to="{ path: '/about', query: { dialog: 'signature'  } }"
                     target="_blank"
                   >
                     <Button

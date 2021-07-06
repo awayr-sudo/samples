@@ -25,10 +25,10 @@ data(){
   
   return{
       gems: {
-    dashboard: true,
-    accounts: 'comp2Vue',
-    payroll: 'comp2Vue',
-    payable: 'comp1Vue',
+  
+    payroll: 'payroll',
+    signature: 'comp2Vue',
+   
   },  
       // scurrentTabComponent: gems[this.$route.query.domain]
     

@@ -1,6 +1,8 @@
 body {
   overflow-x: hidden;
   background-image: url("../../assets/image/loginbg.jpg");
+  background-size: cover;
+  height: 100%;
 }
 @mixin sub-heading-bg {
   border: 1px solid $subHeadingBorderColor;
