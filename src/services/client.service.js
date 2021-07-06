@@ -7,7 +7,7 @@ export default class ClientService extends ApiService {
   gemItem = [
 
     {
-      key: "customer.add",
+      key: "client.add",
       label: "Add Client",
       icon: PrimeIcons.PLUS_CIRCLE,
     },
@@ -15,14 +15,14 @@ export default class ClientService extends ApiService {
       separator: true,
     },
     {
-      key: "customer.listing",
+      key: "client.listing",
       label: "View All Client",
       icon: PrimeIcons.LIST,
     },
     {
-      key: "customer.listing",
-      label: "View BookMart Client",
-      icon: PrimeIcons.LIST,
+      key: "client.bookmark",
+      label: "View Bookmark Client",
+      icon: PrimeIcons.TIMES,
     },
 
   ];

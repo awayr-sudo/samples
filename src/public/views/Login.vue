@@ -103,9 +103,15 @@ export default {
     });
     const submit = (payload: any, action: any) => {
       axios.post("http://api.epicai.com/site/login", payload).then(
-        (response) => {
-          console.log("res", response);
-          emit("authenticated", true);
+        (response: any) => {
+          // if (response.status === 200) {
+           
+          //   if(response.user_type=="wm"){
+          //     alert("wm")
+
+          //   }
+          // }
+         
           router.push("/");
         },
         (error) => {

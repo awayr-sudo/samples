@@ -1,6 +1,5 @@
 <template>
   <Panel class :toggleable="true" :expandedKeys="expandedKeys">
-    
     <template #header class="draggable">
       <div>
         <button class="p-panel-header-icon p-link p-mr-2" @click="toggle">
@@ -40,9 +39,7 @@ export default {
   },
 
   data() {
-    return {
-       
-    };
+    return {};
   },
   beforeCreate() {
     // console.log(s, s.toString());
@@ -65,9 +62,8 @@ export default {
     this.service.context = this;
 
     console.log("items", this.service.gemItems);
-  
   },
-  // mounted() {},
+
   methods: {
     hideGem() {
       this.$emit("hide-gems", this.data);

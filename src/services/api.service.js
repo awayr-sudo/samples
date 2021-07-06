@@ -37,24 +37,5 @@ export class ApiService {
     return axios.put(`${this.endpoint}`, payload);
   }
 
-  // auth services
-  // logout() {
-  //     return axios.get("/auth/logout");
-  // }
-  // register(payload) {
-  //     return axios.post("/auth/register", payload);
-  // }
-  // login(email, password) {
-  //     return axios.post("/auth/login", { email, password });
-  // }
-  // resetPassword(password, passwordConfirmation, resetToken) {
-  //     return axios.post("/auth/password/reset", {
-  //         password: password,
-  //         password_confirmation: passwordConfirmation,
-  //         token: resetToken
-  //     });
-  // }
-  // forgotPassword(email) {
-  //     return axios.post("/auth/password/forgot", { email });
-  //     }
+ 
 }

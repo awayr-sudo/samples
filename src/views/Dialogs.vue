@@ -2,7 +2,6 @@
   <Dialog
     v-model:visible="showModel"
     :style="{ width: '70vw', height: '23vw' }"
-    :maximizable="true"
     :showHeader="true"
     class="dormer"
   >
@@ -10,25 +9,28 @@
       <label class="gem-main-hiding">
         <i class="pi pi-file p-mr-2" style="fontSize: 1rem"></i>
 
-        <span class="dormer-heading " style="color:black">{{
+        <span class="dormer-heading " v-if="modelValue">{{
           modelValue.label
         }}</span>
-        <router-link
-          :to="{ path: '/about', query: { dialog: 'signature' } }"
-          target="_blank"
-        >
-          <Button
-            icon="pi pi-clone"
-            class="p-button-outlined p-button-sm p-button-secondary p-mr-2"
-          />
-        </router-link>
+        <span v-else>Add Gem</span>
       </label>
+
       <Button
         icon="pi pi-minus"
         class="p-button-rounded p-button-text p-dialog-header-icon hide-icon-header"
         @click="closeBasic"
       />
+      <router-link
+        :to="{ path: '/about', query: { dialog: 'signature' } }"
+        target="_blank"
+      >
+        <Button
+          icon="pi pi-window-maximize"
+          class="p-button-rounded p-button-text p-dialog-header-icon new-tab "
+        />
+      </router-link>
     </template>
+
     {{ currentTabComponent }}dddd
 
     <keep-alive>
@@ -50,8 +52,10 @@
 import { ref } from "vue";
 import modelComponent from "./comp2.vue";
 
+
 export default {
   props: ["modelValue", "gems"],
+
 
   data() {
     return {
@@ -60,7 +64,7 @@ export default {
         accounts: "accounting",
         payroll: "payroll",
         payable: "payable",
-        prospects: "prospects"
+        prospects: "prospects",
       },
       gemData: null,
       showModel: this.modelValue.isVisible,
@@ -75,7 +79,6 @@ export default {
         ? this.comps.prospects
         : this.comps.payroll;
       // return this.gems[this.$route.query.dialog]
-      
     },
   },
   watch: {
@@ -86,23 +89,19 @@ export default {
       if (newVal != this.modelValue.isVisible) {
         this.$emit("update:modelValue", tmpValue);
         console.log("showModel updated", newVal);
-      } 
+      }
     },
 
     modelValue: {
       handler(latest, old) {
         console.log("props", latest, old);
+        alert("handler");
         this.showModel = latest.isVisible;
       },
       deep: true,
     },
   },
   methods: {
-    //     newTab() {
-    //       alert("new tab");
-    //       let routeData = this.$router.resolve({ path: '/about', query: { dialog: 'signature' } });
-    // window.open(routeData.href, '_blank');
-    //     },
     closeBasic() {
       this.showModel = false;
       console.log("closing");
@@ -113,4 +112,19 @@ export default {
   },
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.dormer {
+  .p-dialog-content {
+    height: 100%;
+  }
+}
+.hide-icon-header {
+  position: fixed !important;
+  right: 60px !important;
+}
+.new-tab {
+  position: fixed !important;
+  right: 40px !important;
+  top: 15px;
+}
+</style>
