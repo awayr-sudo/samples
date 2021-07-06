@@ -88,6 +88,7 @@ export default {
 
   setup(props: unknown, { emit }: { emit: any }) {
     const router = useRouter();
+   
     const payload = reactive<LoginPayload>({
       employee: "",
       password: "",
@@ -106,7 +107,11 @@ export default {
         (response) => {
           console.log("res", response);
           emit("authenticated", true);
+         if(response.data.user_type == 'ow'){
           router.push("/");
+         }else
+          router.push("/dialog");
+         
         },
         (error) => {
           console.log("ddddd", error, error.response);
