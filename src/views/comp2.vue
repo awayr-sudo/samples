@@ -318,10 +318,7 @@ ul.no-bullets {
   flex-basis: 0;
   padding: 0px !important;
 }
-.p-col-fixed {
-  flex: 0 0 auto;
-  padding: 0px !important;
-}
+
 .t-a-c {
   text-align: center;
 }

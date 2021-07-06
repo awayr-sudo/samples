@@ -86,6 +86,7 @@ import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import Divider from 'primevue/divider';
 import BaseInput from './components/customComponents/BaseInput.vue'
+import BaseCheckBox from '@/components/customComponents/BaseCheckBox.vue';
 import './assets/layout/layout.scss';
 import './assets/layout/flags/flags.css';
 
@@ -232,7 +233,9 @@ app.component('TriStateCheckbox', TriStateCheckbox)
 app.component('Splitter', Splitter)
 app.component('SplitterPanel', SplitterPanel)
 app.component('Divider', Divider)
-// custom elements
+
+
+
 
 
 const comp1Vue = defineAsyncComponent(
@@ -272,7 +275,8 @@ app.component('prospects', prospects)
 
 
 app.use(ConfirmationService);
-//custom elements
+
 app.component('BaseInput', BaseInput)
+app.component('BaseCheckBox', BaseCheckBox)
 
   .mount('#app')
