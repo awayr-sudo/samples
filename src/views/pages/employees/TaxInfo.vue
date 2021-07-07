@@ -3,7 +3,7 @@
     <div class="p-fluid">
       <div class="p-field p-grid">
         <label for="firstname4" class="p-col-12 p-mb-2 p-md-6 p-mb-md-0"
-          >Federal Exempt</label
+          >Federal Exempt </label
         >
         <div class="p-col-12 p-md-6">
           <div class="check-box">
