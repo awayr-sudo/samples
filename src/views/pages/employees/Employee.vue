@@ -195,7 +195,7 @@
 <script>
 import generalInfo from "./GeneralInfo.vue";
 import Address from "./Address.vue";
-import TaxInfo from "./TaxInfo.vue";
+import TaxInfo from "./TaxInformation.vue";
 import BillingRates from "./BillingRates.vue";
 import Security from "./Security.vue";
 import Contact from "./Contact.vue";
