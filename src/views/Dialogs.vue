@@ -30,21 +30,10 @@
         />
       </router-link>
     </template>
-
-    {{ currentTabComponent }}dddd
-
+    {{ currentTabComponent }}
     <keep-alive>
       <component :is="currentTabComponent"> </component>
     </keep-alive>
-    <!-- <template #footer>
-      <Button
-        label="No"
-        icon="pi pi-times"
-        @click="closeBasic"
-        class="p-button-text"
-      />
-      <Button label="Yes" icon="pi pi-check"   autofocus />
-    </template>-->
   </Dialog>
 </template>
 
@@ -52,10 +41,8 @@
 import { ref } from "vue";
 import modelComponent from "./comp2.vue";
 
-
 export default {
   props: ["modelValue", "gems"],
-
 
   data() {
     return {

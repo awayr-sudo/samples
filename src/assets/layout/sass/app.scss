@@ -242,3 +242,11 @@ body {
 .p-button-width{
   width: 65px;
 }
+.check-box {
+  display: flex;
+  align-items: center;
+  label {
+    margin-left: 0.5rem;
+    line-height: 1;
+  }
+}
