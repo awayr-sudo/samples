@@ -88,7 +88,8 @@ import Divider from 'primevue/divider';
 import BaseInput from './components/customComponents/BaseInput.vue'
 import './assets/layout/layout.scss';
 import './assets/layout/flags/flags.css';
-
+import TreeSelect from 'primevue/treeselect';
+import Editor from 'primevue/editor';
 // import '@fullcalendar/core/main.min.css';
 // import '@fullcalendar/daygrid/main.min.css';
 // import '@fullcalendar/timegrid/main.min.css';
@@ -158,6 +159,7 @@ app.use(PrimeVue, {
 app.directive('tooltip', Tooltip);
 
 app.directive('ripple', Ripple);
+app.component('Editor', Editor);
 app.component('ConfirmDialog', ConfirmDialog);
 app.component('CascadeSelect', CascadeSelect);
 app.component('Accordion', Accordion);
@@ -165,6 +167,7 @@ app.component('AccordionTab', AccordionTab);
 app.component('AutoComplete', AutoComplete);
 app.component('Avatar', Avatar);
 app.component('avatargroup', AvatarGroup);
+app.component('TreeSelect', TreeSelect);
 
 app.component('Breadcrumb', Breadcrumb);
 app.component('Button', Button);
@@ -256,6 +259,9 @@ const payroll = defineAsyncComponent(
 );
 const prospects = defineAsyncComponent(
   () => import("@/views/pages/employees/Employee.vue")
+);
+const calendar = defineAsyncComponent(
+  () => import ("@/views/pages/calendar/Calendar.vue")
 )
 
 import mitt from 'mitt';
@@ -268,6 +274,7 @@ app.component('payables', payables)
 app.component('dashboard', dashboard)
 app.component('payroll', payroll)
 app.component('prospects', prospects)
+app.component('calendar', calendar)
 
 
 

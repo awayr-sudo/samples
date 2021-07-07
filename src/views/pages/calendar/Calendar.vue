@@ -3,8 +3,8 @@
 
  
     <Splitter class="spliter">
-      <SplitterPanel :size="20" :minSize="10">
-        <img src="../../../assets/logs/users.png" style="height: 152px" />
+      <SplitterPanel :size="15" :minSize="10">
+        <img src="../../../assets/logs/calendar2.png" style="height: 152px" class="p-ml-3" />
       {{empType}} ------{{userName}}
         <div class="p-d-flex p-flex-column p-mx-4">
           <Button
@@ -14,53 +14,36 @@
             @click="showInfo(type='g-info')"
           />
            <Button
-            label="Tasks"
+            label="People"
             icon="pi pi-book"  
+            class="p-mb-4 p-button-secondary p-button-sm"
+            @click="showInfo(type='people')"
+          />
+           <Button
+            label="Updates"
+            icon="pi pi-user"  
+            class="p-mb-4 p-button-secondary p-button-sm"
+            @click="showInfo(type='updates')"
+          />
+           <Button
+            label="Tasks"
+            icon="pi pi-credit-card"  
             class="p-mb-4 p-button-secondary p-button-sm"
             @click="showInfo(type='tasks')"
           />
            <Button
-            label="Addresses"
-            icon="pi pi-user"  
-            class="p-mb-4 p-button-secondary p-button-sm"
-            @click="showInfo(type='address')"
-          />
-           <Button
-            label="Contacts"
-            icon="pi pi-credit-card"  
-            class="p-mb-4 p-button-secondary p-button-sm"
-            @click="showInfo(type='contact')"
-          />
-           <Button
-            label="Important Dates"
+            label="Attachments"
             icon="pi pi-calendar"  
             class="p-mb-4 p-button-secondary p-button-sm"
-            @click="showInfo(type='impDate')"
+            @click="showInfo(type='attachments')"
           />
            <Button
-            label="Additional Info"
+            label="Reoccurence"
             icon="pi pi-user"  
             class="p-mb-4 p-button-secondary p-button-sm"
-            @click="showInfo(type='addInfo')"
+            @click="showInfo(type='reoccurence')"
           />
            <Button
-            label="Attachments"
-            icon="pi pi-paperclip"  
-            class="p-mb-4 p-button-secondary p-button-sm"
-          />
-           <Button
-            label="Links"
-            icon="pi pi-link"  
-            class="p-mb-4 p-button-secondary p-button-sm"
-            @click="showInfo(type='attach')"
-          />
-           <Button
-            label="Notepads"
-            icon="pi pi-user"  
-            class="p-mb-4 p-button-secondary p-button-sm"
-            @click="showInfo(type='notepad')"
-          />
-          <Button
             label="Save"
             icon="pi pi-check"
             @click="closeBasic"
@@ -75,38 +58,30 @@
           />
         </div>
       </SplitterPanel>
-      <SplitterPanel :size="80" :minSize="20">
-        <GInfo @add-new-type="openType" v-if="empType == 'g-info'"/>
-        <Address
-          @add-address="addAddress"
-          v-for="address in newAddress"
-          :key="address"
-        />
+      <SplitterPanel :size="85" :minSize="20">
+    <CalendarEvent v-if="empType == 'g-info'"/>
       </SplitterPanel>
     </Splitter>
  
-  <AddNewType ref="typeDialog" />
+
 </template>
 
 <script>
-import GInfo from "./GeneralInfo.vue";
-import Address from "./Address.vue";
-import AddNewType from "../../../components/customComponents/dialogs/AddNewType.vue";
+import CalendarEvent from "./Calendar.GeneralInfo.vue"
 
 export default {
-  components: { GInfo, Address, AddNewType },
+components: {CalendarEvent},
   inject:['userName'],
   data() {
     return {
-   
+      displayBasic: true,
       address: [],
-      empType: 'g-info',
+    empType: 'g-info',
     };
   },
   
   methods: {
    
-    
     openType() { 
       this.$refs.typeDialog.showModal = true; 
     },
@@ -128,5 +103,7 @@ export default {
 .p-splitter {
   border: none !important ;
 }
-
+.p-button-width{
+  width: 65px;
+}
 </style>

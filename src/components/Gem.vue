@@ -61,7 +61,9 @@ export default {
     });
     this.service.context = this;
 
-    console.log("items", this.service.gemItems);
+    console.log("items", this.service.gemItems); 
+    
+      
   },
 
   methods: {

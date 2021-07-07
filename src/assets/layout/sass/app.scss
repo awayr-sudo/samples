@@ -3,7 +3,11 @@ body {
   background-image: url("../../assets/image/loginbg.jpg");
   background-size: cover;
   height: 100%;
+  position: sticky;
+  top: 0;
 }
+
+
 @mixin sub-heading-bg {
   border: 1px solid $subHeadingBorderColor;
   background: $subHeadingBg -webkit-gradient(linear, left top, left bottom, from($subHeadingGradientfrom), to($subHeadingGradientto)) !important;
@@ -229,4 +233,12 @@ body {
 
 .width-100 {
   width: 100%;
+}
+::placeholder {
+  color: rgb(109, 105, 105);
+  opacity: 1; /* Firefox */
+}
+
+.p-button-width{
+  width: 65px;
 }
