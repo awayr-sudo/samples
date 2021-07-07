@@ -29,7 +29,7 @@
           <Dropdown name="type" v-model="selectedType" :options="type" optionLabel="name" optionValue="code" class=""/>
          
                      <span class="p-inputgroup-addon help">
-                        <i class="pi pi-info-circle" @click="help"></i>
+                        <i class="pi pi-question" @click="help"></i>
             </span>
         </div>
       </span>

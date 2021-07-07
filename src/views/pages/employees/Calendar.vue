@@ -52,11 +52,11 @@
             label="Save"
             icon="pi pi-check"
             @click="closeBasic"
-            class="p-mb-4 p-button-success p-button-sm p-button-width"
+            class="p-mb-4 p-button-success p-button-sm "
           />
           <Button
             label="Cancel"
-            class="p-button-danger p-mb-4 p-button-sm p-button-width"
+            class="p-button-danger p-mb-4 p-button-sm"
             icon="pi pi-times"
             @click="closeBasic"
            
@@ -100,7 +100,5 @@ components: {CalendarEvent},
 .p-splitter {
   border: none !important ;
 }
-.p-button-width{
-  width: 65px;
-}
+
 </style>
