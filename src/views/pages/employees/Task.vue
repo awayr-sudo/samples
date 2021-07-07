@@ -46,7 +46,8 @@ export default {
       alert("expandAll");
     },
     addNewTask(){
-        alert("addNewTask")
+    
+        this.$emit("add-new-task")
     }
   },
 };

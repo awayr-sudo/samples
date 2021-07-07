@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     addNotepad() {
-      alert("addNotepad")
+      this.$emit("add-notepad")
     },
   },
 };

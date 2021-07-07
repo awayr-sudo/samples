@@ -264,9 +264,7 @@ const payroll = defineAsyncComponent(
 const prospects = defineAsyncComponent(
   () => import("@/views/pages/employees/Employee.vue")
 );
-const calendar = defineAsyncComponent(
-  () => import ("@/views/pages/calendar/Calendar.vue")
-)
+
 
 import mitt from 'mitt';
 const emitter = mitt();
@@ -278,7 +276,7 @@ app.component('payables', payables)
 app.component('dashboard', dashboard)
 app.component('payroll', payroll)
 app.component('prospects', prospects)
-app.component('calendar', calendar)
+
 
 
 

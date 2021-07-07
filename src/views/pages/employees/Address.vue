@@ -99,10 +99,13 @@
     v-for="address in newAddress"
     :key="address"
   />
+  <AddCalendar  ref="calendar"/>
 </template>
 
 <script>
+import AddCalendar from './Calendar.vue'
 export default {
+  components: {AddCalendar},
   data() {
     return {
       newAddress: null,
@@ -150,9 +153,9 @@ export default {
       this.$refs.menu.toggle(event);
     },
     addNewAdress() {
-      this.addresses.push({
-        test: "",
-      });
+      
+     this.$emit("add-new-address");
+      
     },
     collapseAll() {
       this.toggleable = false;

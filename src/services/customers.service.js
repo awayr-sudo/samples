@@ -24,11 +24,7 @@ export default class CustomersService extends ApiService {
       label: "Add New Employee",
       icon: PrimeIcons.LIST,
     },
-   {
-      key: "calendar.add",
-      label: "Adding a Calendar Event",
-      icon: PrimeIcons.LIST,
-    },
+   
   ];
   constructor() {
     super();

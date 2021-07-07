@@ -2,7 +2,7 @@
   <Splitter class="spliter">
     <SplitterPanel :size="15" :minSize="10">
       <img src="../../../assets/logs/users.png" style="height: 152px" />
-      {{ empType }} ------{{ userName }}
+     
       <div class="p-d-flex p-flex-column p-mx-4">
         <Button
           label="General Info"
@@ -107,7 +107,7 @@
     <SplitterPanel :size="80" :minSize="20">
       <generalInfo @add-new-type="openType" v-if="empType == 'g-info'" />
       <TaxInfo v-if="empType == 'tax-info'" />
-      <Address v-if="empType == 'address'" />
+      <Address v-if="empType == 'address'" @add-new-address="openCalendar"/>
       <BillingRates v-if="empType == 'billing-rates'" />
       <div v-if="empType == 'direct-deposit'">
         <div class="p-fluid p-p-3">
@@ -151,9 +151,9 @@
       <Security v-if="empType == 'security'" />
       <Contact v-if="empType == 'contact'" />
       <Importantdates v-if="empType == 'imp-dates'" />
-      <Task v-if="empType == 'tasks'" />
+      <Task v-if="empType == 'tasks'" @add-new-task="addNewTask"/>
       <Attachments v-if="empType == 'attachment'" />
-      <Notepads v-if="empType == 'notepad'" />
+      <Notepads v-if="empType == 'notepad'" @add-notepad="addNotepad"/>
       <div v-if="empType == 'payroll'" class="p-p-3">
         <div class="p-grid">
           <div class="p-col ">
@@ -190,9 +190,15 @@
   </Splitter>
 
   <AddNewType ref="typeDialog" />
+  <AddCalendar ref="showCalendar"/>
+  <AddNotepad  ref="showNotepad"/>
+  <AddTask ref="showTask"/>
 </template>
 
 <script>
+import AddNotepad from "../../../components/customComponents/dialogs/AddNotePad.vue"
+import AddTask from "../../../components/customComponents/dialogs/AddTask.vue"
+import AddCalendar from "./Calendar.vue"
 import generalInfo from "./GeneralInfo.vue";
 import Address from "./Address.vue";
 import TaxInfo from "./TaxInfo.vue";
@@ -221,24 +227,22 @@ export default {
     Attachments,
     Notepads,
     PayrollRates,
+   AddCalendar,
+   AddNotepad,
+   AddTask,
   },
   inject: ["userName"],
   data() {
     return {
-      displayBasic: true,
+    
 
       empType: "g-info",
     };
   },
 
   methods: {
-    openBasic() {
-      this.displayBasic = true;
-    },
-    closeBasic() {
-      this.displayBasic = false;
-    },
-
+    
+    
     openType() {
       this.$refs.typeDialog.showModal = true;
     },
@@ -246,6 +250,15 @@ export default {
       console.log("gems", type);
       return (this.empType = type);
     },
+    openCalendar() {
+      this.$refs.showCalendar.showModal = true;
+    },
+    addNotepad() {
+      this.$refs.showNotepad.showModal = true;
+    },
+    addNewTask(){
+      this.$refs.showTask.showModal = true;
+    }
   },
 };
 </script>

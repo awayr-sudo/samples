@@ -1,7 +1,12 @@
 <template>
  
-
- 
+ <Dialog  v-model:visible="showModal" :style="{width: '50vw'}">
+  <template #header>
+      <label class="gem-main-hiding">
+        <i class="pi pi-calendar p-mr-2" style="fontSize: 1rem"></i>
+        <span class="dormer-heading " >Adding a Calendar Event</span>  
+      </label>
+      </template>
     <Splitter class="spliter">
       <SplitterPanel :size="15" :minSize="10">
         <img src="../../../assets/logs/calendar2.png" style="height: 152px" class="p-ml-3" />
@@ -62,7 +67,7 @@
     <CalendarEvent v-if="empType == 'g-info'"/>
       </SplitterPanel>
     </Splitter>
- 
+ </Dialog>
 
 </template>
 
@@ -74,22 +79,14 @@ components: {CalendarEvent},
   inject:['userName'],
   data() {
     return {
-      displayBasic: true,
+     showModal: false,
       address: [],
     empType: 'g-info',
     };
   },
   
   methods: {
-   
-    openType() { 
-      this.$refs.typeDialog.showModal = true; 
-    },
-    addAddress(newAddress) {
-      alert("ok");
-      console.log("event", newAddress);
-      this.address.push(newAddress);
-    },
+    
    showInfo(type){
         console.log("gems",type)
         return this.empType = type
