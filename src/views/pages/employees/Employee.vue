@@ -6,49 +6,31 @@
       <div class="p-d-flex p-flex-column p-mx-4">
         <Button
           label="General Info"
-          icon="pi pi-info-circle"
+          icon="pi pi-user"
           class="p-mb-4 p-button-secondary p-button-sm"
           @click="showInfo((type = 'g-info'))"
         />
         <Button
-          label="Tax Info"
-          icon="pi pi-book"
+          label="Additional Info"
+          icon="pi pi-id-card"
           class="p-mb-4 p-button-secondary p-button-sm"
-          @click="showInfo((type = 'tax-info'))"
+          @click="showInfo((type = 'additional'))"
         />
         <Button
           label="Addresses"
-          icon="pi pi-user"
+          icon="pi pi-home"
           class="p-mb-4 p-button-secondary p-button-sm"
           @click="showInfo((type = 'address'))"
         />
         <Button
-          label="Billing Rates"
-          icon="pi pi-credit-card"
-          class="p-mb-4 p-button-secondary p-button-sm"
-          @click="showInfo((type = 'billing-rates'))"
-        />
-        <Button
-          label="Direct Deposit"
-          icon="pi pi-calendar"
-          class="p-mb-4 p-button-secondary p-button-sm"
-          @click="showInfo((type = 'direct-deposit'))"
-        />
-        <Button
-          label="Security"
-          icon="pi pi-user"
-          class="p-mb-4 p-button-secondary p-button-sm"
-          @click="showInfo((type = 'security'))"
-        />
-        <Button
           label="Contacts"
-          icon="pi pi-paperclip"
+          icon="pi pi-phone"
           class="p-mb-4 p-button-secondary p-button-sm"
           @click="showInfo((type = 'contact'))"
         />
         <Button
           label="Important Dates"
-          icon="pi pi-link"
+          icon="pi pi-calendar"
           class="p-mb-4 p-button-secondary p-button-sm"
           @click="showInfo((type = 'imp-dates'))"
         />
@@ -65,6 +47,12 @@
           @click="showInfo((type = 'attachment'))"
         />
         <Button
+          label="Link"
+          icon="pi pi-user"
+          class="p-mb-4 p-button-secondary p-button-sm"
+          @click="showInfo((type = 'link'))"
+        />
+        <Button
           label="Notepads"
           icon="pi pi-user"
           class="p-mb-4 p-button-secondary p-button-sm"
@@ -76,6 +64,32 @@
           class="p-mb-4 p-button-secondary p-button-sm"
           @click="showInfo((type = 'payroll'))"
         />
+        <Button
+          label="Billing Rates"
+          icon="pi pi-credit-card"
+          class="p-mb-4 p-button-secondary p-button-sm"
+          @click="showInfo((type = 'billing-rates'))"
+        />
+        <Button
+          label="Tax Info"
+          icon="pi i-info-circle"
+          class="p-mb-4 p-button-secondary p-button-sm"
+          @click="showInfo((type = 'tax-info'))"
+        />
+        <Button
+          label="Direct Deposit"
+          icon="pi pi-calendar"
+          class="p-mb-4 p-button-secondary p-button-sm"
+          @click="showInfo((type = 'direct-deposit'))"
+        />
+
+        <Button
+          label="Security"
+          icon="pi pi-lock"
+          class="p-mb-4 p-button-secondary p-button-sm"
+          @click="showInfo((type = 'security'))"
+        />
+
         <Button
           label="Save"
           icon="pi pi-check"
