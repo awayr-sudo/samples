@@ -88,6 +88,8 @@ import Divider from 'primevue/divider';
 import BaseInput from './components/customComponents/BaseInput.vue'
 import BaseCheckBox from '@/components/customComponents/BaseCheckBox.vue';
 import BaseTextArea from '@/components/customComponents/BaseTextArea.vue';
+import BaseDropdown from '@/components/customComponents/BaseDropdown.vue';
+
 import './assets/layout/layout.scss';
 import './assets/layout/flags/flags.css';
 import TreeSelect from 'primevue/treeselect';
@@ -285,6 +287,9 @@ app.component('calendar', calendar)
 app.use(ConfirmationService);
 app.component('BaseTextArea', BaseTextArea);
 app.component('BaseInput', BaseInput)
+
 app.component('BaseCheckBox', BaseCheckBox)
+app.component('BaseDropdown', BaseDropdown)
+
 
   .mount('#app')

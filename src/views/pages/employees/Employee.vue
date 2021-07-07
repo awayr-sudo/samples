@@ -2,7 +2,7 @@
   <Splitter class="spliter">
     <SplitterPanel :size="15" :minSize="10">
       <img src="../../../assets/logs/users.png" style="height: 152px" />
-      {{ empType }} ------{{ userName }}
+      <!-- {{ empType }} ------{{ userName }} -->
       <div class="p-d-flex p-flex-column p-mx-4">
         <Button
           label="General Info"
