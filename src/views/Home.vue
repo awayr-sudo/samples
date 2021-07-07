@@ -1,5 +1,6 @@
 <template>
   <div class="home-view">
+
     <Toolbar class="p-mb-3">
       <template #left>
         <span class="dashboard-text">Dashboard</span>
@@ -64,6 +65,8 @@
     />
     {{ dialog }}
   </div>
+
+
 </template>
 
 <script>
@@ -71,14 +74,16 @@ import Gem from "@/components/Gem.vue";
 import draggable from "vuedraggable";
 import GemsService from "../services/gems.service";
 import Dialogss from "../views/Dialogs.vue";
+import { inject } from 'vue'
 
 export default {
   components: {
     draggable,
     Gem,
     Dialogss,
+    
   },
-
+  inject: ['location', 'geolocation'],
   data() {
     return {
       active: false,
@@ -90,6 +95,7 @@ export default {
       Service: null,
       title: null,
       dialogs: [],
+       gInfos: [],
     };
   },
 
@@ -125,11 +131,16 @@ export default {
     },
     closeWindow(dialog) {
       const windowIndex = this.dialogs.findIndex((p) => p.id === dialog.type);
-      console.log("dialogs",windowIndex)
       this.dialogs.splice(windowIndex, 1);
     },
     toggleWindow(data) {
       data.data.isVisible = !data.data.isVisible;
+    },
+    mouseover: function() {
+      this.active = false;
+    },
+    mouseleaves: function() {
+      this.active = false;
     },
 
     removeGems(gem) {
@@ -152,14 +163,28 @@ export default {
       });
     },
 
+    changeColor() {
+      this.isActive = !this.isActive;
+    },
+    changeColor1() {
+      this.isActive1 = !this.isActive1;
+    },
     addGems(gem) {
-      this.$emit("open-window", {});
+      this.$emit("open-window", {
+      
+      });
     },
   },
 };
 </script>
 
 <style lang="scss">
+.active {
+  background-color: red !important;
+}
+.active1 {
+  background-color: yellow !important;
+}
 .mr-4 {
   margin-right: 6px;
 }

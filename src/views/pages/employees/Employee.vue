@@ -254,7 +254,4 @@ export default {
 .p-splitter {
   border: none !important ;
 }
-.p-button-width {
-  width: 65px;
-}
 </style>

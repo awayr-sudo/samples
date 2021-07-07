@@ -1,7 +1,7 @@
 <template>
   <Dialog
     v-model:visible="showModel"
-    :style="{ width: '70vw', height: '50vw' }"
+    :style="{ width: '70vw', height: '75vh' }"
     :showHeader="true"
     class="dormer"
   >
@@ -52,6 +52,7 @@ export default {
         payroll: "payroll",
         payable: "payable",
         prospects: "prospects",
+        calendar: "calendar"
       },
       gemData: null,
       showModel: this.modelValue.isVisible,
@@ -62,9 +63,12 @@ export default {
   },
   computed: {
     currentTabComponent() {
-      return this.modelValue.key == "employee.add"
-        ? this.comps.prospects
-        : this.comps.payroll;
+       if(this.modelValue.key == "employee.add"){
+      return   this.comps.prospects
+      }else if(this.modelValue.key == "calendar.add"){
+        return this.comps.calendar
+      }else
+        return this.comps.payroll;
       // return this.gems[this.$route.query.dialog]
     },
   },
@@ -82,7 +86,7 @@ export default {
     modelValue: {
       handler(latest, old) {
         console.log("props", latest, old);
-        alert("handler");
+       
         this.showModel = latest.isVisible;
       },
       deep: true,
