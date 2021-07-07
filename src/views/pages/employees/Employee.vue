@@ -240,5 +240,4 @@ export default {
 .p-splitter {
   border: none !important ;
 }
-
 </style>
