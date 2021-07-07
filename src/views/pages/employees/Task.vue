@@ -14,7 +14,7 @@
           >
 
           <label for="" class="pi pi-arrow-down" @click="expandAll"
-            >Expand All</label
+            >Expand All </label
           >
         </div>
       </div>
