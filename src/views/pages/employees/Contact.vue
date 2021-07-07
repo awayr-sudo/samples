@@ -24,7 +24,7 @@
     <div>
       <Panel
         :toggleable="true"
-        v-for="(stop, index) in addresses"
+        v-for="(stop, index) in contacts"
         :key="index"
         class="adress-panel"
       >
@@ -117,6 +117,16 @@
           >Address</label
         >
         <div class="p-col-12 p-md-7">
+          <!-- <BaseDropdown
+              v-model="description"
+              :options="descriptions"
+              optionLabel="display_name"
+              optionValue="id"
+              placeholder="Select Description"
+              name="description"
+              :icon="true"
+              :addon="true"
+            /> -->
           <Dropdown
             v-model="selectedCity1"
             :options="cities"
@@ -138,6 +148,8 @@
                   v-model="alert"
                   :value="alert"
                   checked="true"
+                  :icon="false"
+                  :adon="false"
                 />
                 <label>Yes</label>
               </div>
@@ -174,7 +186,7 @@ export default {
     return {
       newAddress: null,
       toggleable: true,
-      addresses: [{ test: "" }],
+      contacts: [{ test: "" }],
       items: [
         {
           label: "Options",
@@ -217,7 +229,7 @@ export default {
       this.$refs.menu.toggle(event);
     },
     addNewContact() {
-      this.addresses.push({
+      this.contacts.push({
         test: "",
       });
     },

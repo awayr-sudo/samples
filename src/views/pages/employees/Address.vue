@@ -54,7 +54,7 @@
               <BaseTextArea
                 name="description"
                 type="text"
-                v-model="data"
+                v-model="description"
                 :autoResize="true"
                 className="width-100"
                 rows="5"
@@ -67,11 +67,11 @@
             <div class="p-col-1">
               <div class="check-box">
                 <base-check-box
-                  :modelValue="alert"
+                  :modelValue="address"
                   id="alert"
                   name="alert"
-                  v-model="alert"
-                  :value="alert"
+                  v-model="address"
+                  :value="address"
                   checked="true"
                 />
                 <label>Yes</label>
