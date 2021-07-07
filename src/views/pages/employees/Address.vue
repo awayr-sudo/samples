@@ -90,7 +90,7 @@
         label="Add an address..."
         icon="pi pi-plus"
         iconPos="left"
-        class="p-text-right p-button-raised p-button-text"
+        class="p-button-link"
       />
     </div>
   </div>

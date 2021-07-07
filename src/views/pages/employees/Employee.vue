@@ -1,91 +1,91 @@
 <template>
   <Splitter class="spliter">
-    <SplitterPanel :size="20" :minSize="10">
+    <SplitterPanel :size="15" :minSize="10">
       <img src="../../../assets/logs/users.png" style="height: 152px" />
       {{ empType }} ------{{ userName }}
       <div class="p-d-flex p-flex-column p-mx-4">
         <Button
           label="General Info"
           icon="pi pi-user"
-          class="p-mb-4 p-button-secondary p-button-sm"
+          class="p-mb-2 p-button-secondary p-button-sm"
           @click="showInfo((type = 'g-info'))"
         />
         <Button
           label="Additional Info"
           icon="pi pi-id-card"
-          class="p-mb-4 p-button-secondary p-button-sm"
+          class="p-mb-2 p-button-secondary p-button-sm"
           @click="showInfo((type = 'additional'))"
         />
         <Button
           label="Addresses"
           icon="pi pi-home"
-          class="p-mb-4 p-button-secondary p-button-sm"
+          class="p-mb-2 p-button-secondary p-button-sm"
           @click="showInfo((type = 'address'))"
         />
         <Button
           label="Contacts"
           icon="pi pi-phone"
-          class="p-mb-4 p-button-secondary p-button-sm"
+          class="p-mb-2 p-button-secondary p-button-sm"
           @click="showInfo((type = 'contact'))"
         />
         <Button
           label="Important Dates"
           icon="pi pi-calendar"
-          class="p-mb-4 p-button-secondary p-button-sm"
+          class="p-mb-2 p-button-secondary p-button-sm"
           @click="showInfo((type = 'imp-dates'))"
         />
         <Button
           label="Tasks"
-          icon="pi pi-user"
-          class="p-mb-4 p-button-secondary p-button-sm"
+          icon="pi pi-table"
+          class="p-mb-2 p-button-secondary p-button-sm"
           @click="showInfo((type = 'tasks'))"
         />
         <Button
           label="Attachments"
-          icon="pi pi-user"
-          class="p-mb-4 p-button-secondary p-button-sm"
+          icon="pi pi-paperclip"
+          class="p-mb-2 p-button-secondary p-button-sm"
           @click="showInfo((type = 'attachment'))"
         />
         <Button
           label="Link"
-          icon="pi pi-user"
-          class="p-mb-4 p-button-secondary p-button-sm"
+          icon="pi pi-link"
+          class="p-mb-2 p-button-secondary p-button-sm"
           @click="showInfo((type = 'link'))"
         />
         <Button
           label="Notepads"
-          icon="pi pi-user"
-          class="p-mb-4 p-button-secondary p-button-sm"
+          icon="pi pi-file"
+          class="p-mb-2 p-button-secondary p-button-sm"
           @click="showInfo((type = 'notepad'))"
         />
         <Button
           label="Payroll Rates"
-          icon="pi pi-user"
-          class="p-mb-4 p-button-secondary p-button-sm"
+          icon="pi pi-money-bill"
+          class="p-mb-2 p-button-secondary p-button-sm"
           @click="showInfo((type = 'payroll'))"
         />
         <Button
           label="Billing Rates"
           icon="pi pi-credit-card"
-          class="p-mb-4 p-button-secondary p-button-sm"
+          class="p-mb-2 p-button-secondary p-button-sm"
           @click="showInfo((type = 'billing-rates'))"
         />
         <Button
           label="Tax Info"
-          icon="pi i-info-circle"
-          class="p-mb-4 p-button-secondary p-button-sm"
+          icon="pi pi-info-circle"
+          class="p-mb-2 p-button-secondary p-button-sm"
           @click="showInfo((type = 'tax-info'))"
         />
         <Button
           label="Direct Deposit"
-          icon="pi pi-calendar"
-          class="p-mb-4 p-button-secondary p-button-sm"
+          icon="pi pi-ticket"
+          class="p-mb-2 p-button-secondary p-button-sm"
           @click="showInfo((type = 'direct-deposit'))"
         />
 
         <Button
           label="Security"
-          icon="pi pi-lock"
+          icon="pi pi-key"
           class="p-mb-4 p-button-secondary p-button-sm"
           @click="showInfo((type = 'security'))"
         />
@@ -94,11 +94,11 @@
           label="Save"
           icon="pi pi-check"
           @click="closeBasic"
-          class="p-mb-4 p-button-success p-button-sm p-button-width"
+          class="p-mb-4 p-button-success p-button-sm "
         />
         <Button
           label="Cancel"
-          class="p-button-danger p-mb-4 p-button-sm p-button-width"
+          class="p-button-danger p-mb-4 p-button-sm "
           icon="pi pi-times"
           @click="closeBasic"
         />
