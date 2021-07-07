@@ -176,12 +176,5 @@
 .tax-info {
   padding: 10px;
 }
-.check-box {
-  display: flex;
-  align-items: center;
-  label {
-    margin-left: 0.5rem;
-    line-height: 1;
-  }
-}
+
 </style>

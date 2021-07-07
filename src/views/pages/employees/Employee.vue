@@ -23,39 +23,58 @@
           @click="showInfo((type = 'address'))"
         />
         <Button
-          label="Contacts"
+          label="Billing Rates"
           icon="pi pi-credit-card"
+          class="p-mb-4 p-button-secondary p-button-sm"
+          @click="showInfo((type = 'billing-rates'))"
+        />
+        <Button
+          label="Direct Deposit"
+          icon="pi pi-calendar"
+          class="p-mb-4 p-button-secondary p-button-sm"
+          @click="showInfo((type = 'direct-deposit'))"
+        />
+        <Button
+          label="Security"
+          icon="pi pi-user"
+          class="p-mb-4 p-button-secondary p-button-sm"
+          @click="showInfo((type = 'security'))"
+        />
+        <Button
+          label="Contacts"
+          icon="pi pi-paperclip"
           class="p-mb-4 p-button-secondary p-button-sm"
           @click="showInfo((type = 'contact'))"
         />
         <Button
           label="Important Dates"
-          icon="pi pi-calendar"
+          icon="pi pi-link"
           class="p-mb-4 p-button-secondary p-button-sm"
-          @click="showInfo((type = 'impDate'))"
+          @click="showInfo((type = 'imp-dates'))"
         />
         <Button
-          label="Additional Info"
+          label="Tasks"
           icon="pi pi-user"
           class="p-mb-4 p-button-secondary p-button-sm"
-          @click="showInfo((type = 'addInfo'))"
+          @click="showInfo((type = 'tasks'))"
         />
         <Button
           label="Attachments"
-          icon="pi pi-paperclip"
+          icon="pi pi-user"
           class="p-mb-4 p-button-secondary p-button-sm"
-        />
-        <Button
-          label="Links"
-          icon="pi pi-link"
-          class="p-mb-4 p-button-secondary p-button-sm"
-          @click="showInfo((type = 'attach'))"
+          @click="showInfo((type = 'attachment'))"
         />
         <Button
           label="Notepads"
           icon="pi pi-user"
           class="p-mb-4 p-button-secondary p-button-sm"
           @click="showInfo((type = 'notepad'))"
+        />
+        <Button
+          label="Payroll Rates"
+          icon="pi pi-user"
+          class="p-mb-4 p-button-secondary p-button-sm"
+          @click="showInfo((type = 'payroll'))"
         />
         <Button
           label="Save"
@@ -74,57 +93,85 @@
     <SplitterPanel :size="80" :minSize="20">
       <generalInfo @add-new-type="openType" v-if="empType == 'g-info'" />
       <TaxInfo v-if="empType == 'tax-info'" />
-      <div v-if="empType == 'address'" class="employee-adress">
-        <div class="p-fluid">
+      <Address v-if="empType == 'address'" />
+      <BillingRates v-if="empType == 'billing-rates'" />
+      <div v-if="empType == 'direct-deposit'">
+        <div class="p-fluid p-p-3">
           <div class="p-field p-grid">
-            <label for="firstname4" class="p-col-12 p-mb-2 p-md-8 p-mb-md-0 "
-              >Employee Addresses:</label
+            <label for="firstname4" class="p-col-12 p-mb-2 p-md-6 p-mb-md-0"
+              >Uses Direct Deposit?</label
             >
-            <div class="p-col-12 p-md-2">
-              <label for="" class="pi pi-arrow-up">Collapse All</label>
+            <div class="p-col-12 p-md-6">
+              <div class="check-box">
+                <base-check-box
+                  :modelValue="alert"
+                  id="alert"
+                  name="alert"
+                  v-model="alert"
+                  :value="alert"
+                  checked="true"
+                />
+                <label class="check-box-text">Yes</label>
+              </div>
             </div>
-            <div class="p-col-12 p-md-2">
-              <label for="" class="pi pi-arrow-down">Expand All</label>
+          </div>
+
+          <div class="p-field p-grid">
+            <div class="p-col-12 p-mb-2 p-md-6 p-pt-2">
+              <i class="pi pi-discord p-mr-2"></i>
+              <label>Primary Account Type</label>
+            </div>
+
+            <div class="p-col-12 p-md-4">
+              <Dropdown
+                v-model="selectedCity1"
+                :options="cities"
+                optionLabel="name"
+                optionValue="code"
+                placeholder="Select "
+              />
             </div>
           </div>
         </div>
-        <Panel :toggleable="true">
-          <template #header>
-             <div class=" p-grid">
-               <i class="pi pi-bars" style="fontSize: 2
-               
-               
-               
-               rem"></i>
-                <label for="firstname3" class="p-col-fixed" style="width:100px">Display Name:</label>
-                <div class="p-col">
-                    <InputText id="firstname3" type="text" />
-                </div>
-            </div>
-           
-          </template>
-          <template #icons>
-            <button class="p-panel-header-icon p-link p-mr-2" @click="toggle">
-              <span class="pi pi-cog"></span>
-            </button>
-            <Menu id="config_menu" ref="menu" :model="items" :popup="true" />
-          </template>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </Panel>
       </div>
-      <Address
-        @add-address="addAddress"
-        v-for="address in newAddress"
-        :key="address"
-      />
+      <Security v-if="empType == 'security'" />
+      <Contact v-if="empType == 'contact'" />
+      <Importantdates v-if="empType == 'imp-dates'" />
+      <Task v-if="empType == 'tasks'" />
+      <Attachments v-if="empType == 'attachment'" />
+      <Notepads v-if="empType == 'notepad'" />
+      <div v-if="empType == 'payroll'" class="p-p-3">
+        <div class="p-grid">
+          <div class="p-col ">
+            <i class="pi pi-clock"></i>
+            <span class="p-ml-2">Hourly Rates</span>
+          </div>
+        </div>
+
+        <PayrollRates />
+        <div class="p-grid">
+          <div class="p-col ">
+            <i class="pi pi-wallet"></i>
+            <span class="p-ml-2">Flat Rates</span>
+          </div>
+        </div>
+        <PayrollRates />
+
+        <div class="p-grid">
+          <div class="p-col ">
+            <i class="pi pi-plus"></i>
+            <span class="p-ml-2">Additions/Reibursements</span>
+          </div>
+        </div>
+        <PayrollRates />
+        <div class="p-grid">
+          <div class="p-col ">
+            <i class="pi pi-minus"></i>
+            <span class="p-ml-2">Deductions</span>
+          </div>
+        </div>
+        <PayrollRates />
+      </div>
     </SplitterPanel>
   </Splitter>
 
@@ -134,18 +181,38 @@
 <script>
 import generalInfo from "./GeneralInfo.vue";
 import Address from "./Address.vue";
-import TaxInfo from "./taxinfo.vue";
+import TaxInfo from "./TaxInfo.vue";
+import BillingRates from "./BillingRates.vue";
+import Security from "./Security.vue";
+import Contact from "./Contact.vue";
+import Importantdates from "./Importantdates.vue";
+import Task from "./Task.vue";
+import Attachments from "./Files.vue";
+import Notepads from "./NotePad.vue";
+import PayrollRates from "./PayrollRates.vue";
 
 import AddNewType from "../../../components/customComponents/dialogs/AddNewType.vue";
-import BaseInput from '@/components/customComponents/BaseInput.vue';
 
 export default {
-  components: { generalInfo, Address, AddNewType, TaxInfo },
+  components: {
+    generalInfo,
+    Address,
+    AddNewType,
+    TaxInfo,
+    BillingRates,
+    Security,
+    Contact,
+    Importantdates,
+    Task,
+    Attachments,
+    Notepads,
+    PayrollRates,
+  },
   inject: ["userName"],
   data() {
     return {
       displayBasic: true,
-      address: [],
+
       empType: "g-info",
     };
   },
@@ -157,13 +224,9 @@ export default {
     closeBasic() {
       this.displayBasic = false;
     },
+
     openType() {
       this.$refs.typeDialog.showModal = true;
-    },
-    addAddress(newAddress) {
-      alert("ok");
-      console.log("event", newAddress);
-      this.address.push(newAddress);
     },
     showInfo(type) {
       console.log("gems", type);
@@ -179,8 +242,5 @@ export default {
 }
 .p-button-width {
   width: 65px;
-}
-.employee-adress {
-  padding: 10px;
 }
 </style>

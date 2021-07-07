@@ -87,6 +87,7 @@ import 'primeicons/primeicons.css';
 import Divider from 'primevue/divider';
 import BaseInput from './components/customComponents/BaseInput.vue'
 import BaseCheckBox from '@/components/customComponents/BaseCheckBox.vue';
+import BaseTextArea from '@/components/customComponents/BaseTextArea.vue';
 import './assets/layout/layout.scss';
 import './assets/layout/flags/flags.css';
 
@@ -275,7 +276,7 @@ app.component('prospects', prospects)
 
 
 app.use(ConfirmationService);
-
+app.component('BaseTextArea', BaseTextArea);
 app.component('BaseInput', BaseInput)
 app.component('BaseCheckBox', BaseCheckBox)
 

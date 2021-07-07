@@ -313,11 +313,7 @@ ul.no-bullets {
   margin: 0;
   padding: 0;
 }
-.p-col {
-  flex-grow: 1;
-  flex-basis: 0;
-  padding: 0px !important;
-}
+
 
 .t-a-c {
   text-align: center;

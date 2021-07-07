@@ -230,3 +230,11 @@ body {
 .width-100 {
   width: 100%;
 }
+.check-box {
+  display: flex;
+  align-items: center;
+  label {
+    margin-left: 0.5rem;
+    line-height: 1;
+  }
+}
