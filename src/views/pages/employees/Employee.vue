@@ -1,4 +1,5 @@
 <template>
+   <Form @submit="submit" :validation-schema="schema">
   <Splitter class="spliter">
     <SplitterPanel :size="15" :minSize="10">
       <img src="../../../assets/logs/users.png" style="height: 152px" />
@@ -188,7 +189,7 @@
       </div>
     </SplitterPanel>
   </Splitter>
-
+ </Form>
   <AddNewType ref="typeDialog" />
   <AddCalendar ref="showCalendar"/>
   <AddNotepad  ref="showNotepad"/>
@@ -210,7 +211,8 @@ import Task from "./Task.vue";
 import Attachments from "./Files.vue";
 import Notepads from "./NotePad.vue";
 import PayrollRates from "./PayrollRates.vue";
-
+import * as Yup from "yup";
+import axios from "axios";
 import AddNewType from "../../../components/customComponents/dialogs/AddNewType.vue";
 
 export default {
@@ -233,6 +235,13 @@ export default {
   },
   inject: ["userName"],
   data() {
+    const schema = Yup.object().shape({
+      display_name: Yup.string().min(1).required("Name is a required field."),
+      notification_email: Yup.string().min(1).required("Name is a required field."),
+      fore_name: Yup.string().min(1).required("Name is a required field."),
+      sur_name: Yup.string().min(1).required("Name is a required field."),
+      
+    });
     return {
     
 
@@ -258,7 +267,20 @@ export default {
     },
     addNewTask(){
       this.$refs.showTask.showModal = true;
-    }
+    },
+
+    submit(payload) {
+      
+      axios
+        .post(`http://api.adidas.epicai.com/employees`, payload, {
+          headers: {
+            Authorization: `Bearer GaSHN9lhDmG-0-1IieVmCP-eIo-3wXLt`,
+            'Content-Type': 'application/json'
+          },
+        })
+        .then((response) => console.log("res", response));
+      console.log("payload", payload);
+    },
   },
 };
 </script>
