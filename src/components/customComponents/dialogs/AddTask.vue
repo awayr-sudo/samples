@@ -1,4 +1,5 @@
 <template>
+<Form @submit="submit" :validation-schema="schema">
    <Dialog v-model:visible="showModal" :style="{width: '30vw'}">
      <template #header>
       <label class="gem-main-hiding">
@@ -15,7 +16,7 @@
            <Button
             label="Save"
             icon="pi pi-check"
-          
+          type="submit"
             class="p-mb-4 p-button-success p-button-sm"
           />
           <Button
@@ -35,7 +36,7 @@
         <label class="p-ml-2 p-text-bold">Task List Name</label>
       </span>
       <span class="p-col-4">
-          <BaseInput name="title" v-model="title"/>
+          <BaseInput name="task_title" v-model="title"/>
       </span>
     </div>
 
@@ -52,14 +53,43 @@
       </SplitterPanel>
     </Splitter>
         </Dialog>
+</Form>
 </template>
 
 <script>
+import { Form } from "vee-validate";
+import * as Yup from "yup";
+import axios from "axios";
 export default {
+  components: {Form},
     data() {
+      const schema = Yup.object().shape({
+          task_title: Yup.string().min(1).required("Please enter Name"),
+            
+    });
         return{
-            showModal: false
+            showModal: false,
+            schema: schema
         }
+    },
+    methods: {
+      submit(payload) {
+    
+      axios.post(`http://api.epicai.com/employee`, payload), {
+        headers: {
+            Authorization: `Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV`,
+            // 'Content-Type': 'application/json'
+          },
+      }.then(
+        (response) => {
+          console.log("res", response);
+          
+        },
+        (error) => {
+          console.log("errors", error, error.response);
+        }
+      );
+    },
     }
 
 }

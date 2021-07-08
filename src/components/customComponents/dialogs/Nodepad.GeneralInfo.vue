@@ -10,7 +10,7 @@
       </span>
     </div>
   </div>
-   <Editor v-model="value1" editorStyle="height: 220px" class="p-mb-3"/>
+   <Editor v-model="value1" editorStyle="height: 220px" class="p-mb-3 p-ml-3"/>
 <div class="p-fluid p-mx-2 p-ml-3">
     <div class="p-grid">
       <span class="p-col-6">

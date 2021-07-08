@@ -1,4 +1,5 @@
 <template>
+
   <div class="p-fluid p-mx-2 p-ml-3">
     <div class="p-grid">
       <span class="p-col-6">
@@ -6,21 +7,21 @@
         <label class="p-ml-2 p-text-bold">Unique Display Name</label>
       </span>
       <span class="p-col-4">
-          <BaseInput name="Customer[DisplayName]" v-model="displayName"/>
+          <BaseInput name="display_name" v-model="displayName"/>
       </span>
       <span class="p-col-6">
         <i class="pi pi-bell"></i>
         <label class="p-ml-2 p-text-bold">Notification Email</label>
       </span>
       <span class="p-col-4">
-          <BaseInput name="Customer[NotificationEmail] " v-model="notificationEmail"/>
+          <BaseInput name="notification_email " v-model="notificationEmail"/>
       </span>
       <span class="p-col-6">
         <i class="pi pi-folder"></i>
         <label class="p-ml-2 p-text-bold">Folder</label>
       </span>
       <span class="p-col-4">
-          <BaseInput name="Customer[Folder]" v-model="folder"/>
+          <BaseInput name="folder" v-model="folder"/>
       </span>
       <span class="p-col-6">
         <i class="pi pi-sitemap"></i>
@@ -29,7 +30,7 @@
       <span class="p-col-6">
         <div class="p-inputgroup">
                    
-          <Dropdown name="Customer[Type]" class="width-75" v-model="type"/>
+          <Dropdown name="type" class="width-75" v-model="type"/>
            <span class="p-inputgroup-addon">
                         <i class="pi pi-pencil" @click="addNewType"></i>
                     </span>
@@ -45,7 +46,7 @@
       </span>
       <span class="p-col-6">
            <div class="p-inputgroup">
-          <Dropdown name="Customer[Category]" v-model="category" class="width-75"/>
+          <Dropdown name="category" v-model="category" class="width-75"/>
           <span class="p-inputgroup-addon">
                         <i class="pi pi-pencil" ></i>
                     </span>
@@ -65,62 +66,96 @@
         <label class="p-ml-2 p-text-bold">Company Name</label>
       </span>
       <span class="p-col-4">
-          <BaseInput name="Customer[CompanyName]" v-model="companyName"/>
+          <BaseInput name="company_name" v-model="companyName"/>
       </span>
        <span class="p-col-5 ml-6">    
         <label class="p-ml-2 p-text-bold">Title(Mr, Mrs,...)</label>
       </span>
       <span class="p-col-4">
-          <BaseInput name="Customer[Prenominal]" v-model="prenominal"/>
+          <BaseInput name="title" v-model="prenominal"/>
       </span>
        <span class="p-col-5 ml-6">    
-        <label class="p-ml-2 p-text-bold">First Name</label>
+        <label class="p-ml-2 p-text-bold ">First Name</label>
       </span>
       <span class="p-col-4">
-          <BaseInput name="Customer[Forename]" v-model="forename"/>
+          <BaseInput name="first_name" v-model="forename"/>
       </span>
        <span class="p-col-5 ml-6">    
-        <label class="p-ml-2 p-text-bold">Middle Name</label>
+        <label class="p-ml-2 p-text-bold ">Middle Name</label>
       </span>
       <span class="p-col-4">
-          <BaseInput name="Customer[MiddleName]" v-model="middlename"/>
+          <BaseInput name="middle_name" v-model="middlename"/>
       </span>
        <span class="p-col-5 ml-6">    
-        <label class="p-ml-2 p-text-bold">Last Name</label>
+        <label class="p-ml-2 p-text-bold ">Last Name</label>
       </span>
       <span class="p-col-4">
-          <BaseInput name="Customer[Surname]" v-model="surname"/>
+          <BaseInput name="last_name" v-model="surname"/>
       </span>
-      <span class="p-col-5 ml-6">    
+      <span class="p-col-5 ml-6 p-d-flex p-ai-center">    
         <label class="p-ml-2 p-text-bold">Suffix(Jr, Sr, ...)</label>
       </span>
       <span class="p-col-4">
-          <BaseInput name="Customer[Postnominal]" v-model="postnominal"/>
+          <BaseInput name="suffix" v-model="postnominal"/>
+      </span>
+       <span class="p-col-5 ml-6 p-d-flex p-ai-center">
+         <i class="pi pi-print"></i>    
+        <label class="p-ml-2 p-text-bold">Print on as Checks..</label>
+      </span>
+      <span class="p-col-4">
+          <BaseInput name="print_check" v-model="postnominal"/>
+      </span>
+        <span class="p-col-5 ml-6 p-d-flex p-ai-center">   
+           
+        <label class="p-ml-2 p-text-bold">Social Security Number</label>
+      </span>
+      <span class="p-col-2">
+          <BaseInput name="ss_number" v-model="postnominal"/>
+      </span>
+        <span class="p-col-5 ml-6 p-d-flex p-ai-center"> 
+          <i class="pi pi-id-card"></i>     
+        <label class="p-ml-2 p-text-bold">State ID/Driver's Licence</label>
+      </span>
+      <span class="p-col-4">
+          <BaseInput name="licence_number" v-model="postnominal"/>
+      </span>
+        <span class="p-col-5 ml-6 p-d-flex p-ai-center">    
+        <label class="p-ml-2 p-text-bold">State</label>
+      </span>
+      <span class="p-col-3">
+          <Dropdown name="state" v-model="postnominal"/>
+      </span>
+        <span class="p-col-5 ml-6 p-d-flex p-ai-center">    
+        <label class="p-ml-2 p-text-bold">Date of Expiration</label>
+      </span>
+      <span class="p-col-2">
+          <BaseInput name="exp_date" v-model="postnominal"/>
+      </span>
+        <span class="p-col-5 ml-6 p-d-flex p-ai-center"> 
+          <i class="pi pi-calendar"></i>     
+        <label class="p-ml-2 p-text-bold">Date of Hire</label>
+      </span>
+      <span class="p-col-2">
+          <BaseInput name="hire_date" v-model="postnominal"/>
+      </span>
+        <span class="p-col-5 ml-6 p-d-flex p-ai-center">  
+          <i class="pi pi-calendar"></i>    
+        <label class="p-ml-2 p-text-bold">Date of Last Review</label>
+      </span>
+      <span class="p-col-2">
+          <BaseInput name="Last_date" v-model="postnominal"/>
+      </span>
+        <span class="p-col-5 ml-6 p-d-flex p-ai-center">  
+          <i class="pi pi-calendar"></i>    
+        <label class="p-ml-2 p-text-bold">Birthdate</label>
+      </span>
+      <span class="p-col-2">
+          <BaseInput name="birth_date" v-model="postnominal"/>
       </span>
     </div>
   </div>
-<div class="p-ml-3">
-   <span > 
-       <i class="pi pi-user"></i>   
-        <label class="p-ml-2 p-text-bold">Referral  : &nbsp;</label>
-      </span>
-      <span>
-          <Dropdown name="Customer[ReferralType]"  v-model="referralType"
-              />
-      </span> 
-      
-</div>
-<div class="p-mt-3 p-ml-3">
-   <span> 
-       <i class="pi pi-user"></i>   
-        <label class="p-ml-2 p-text-bold">Sales Rep  : &nbsp;</label>
-      </span>
-      <span>
-          <Dropdown name="Customer[SalesRepType]" v-model="salesRep"
-             />
-      </span> 
-      
-</div>
+
+
 
 
    
