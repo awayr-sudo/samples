@@ -17,7 +17,7 @@
     </Toolbar>
     <div class="p-col-12 p-md-6 p-lg-6">
       <Panel header="Client In Progress">
-          <!-- <Timeline :value="clients">
+        <!-- <Timeline :value="clients">
                 <template #opposite="slotProps">
                     <small class="p-text-secondary">{{slotProps.item.display_name}}</small>
                 </template>
@@ -33,14 +33,21 @@
               <span :class="'customer-badge status-' + slotProps.data.status">{{
                 slotProps.data.status
               }}</span>
-            
+              <span v-if="slotProps.data.status == 11"
+                class="p-ml-2">Waiting For Approval</span
+              >
+              <span v-if="slotProps.data.status == 10"
+                class="p-ml-2">Reject</span
+              >
             </template>
           </Column>
           <Column header="">
             <template #body="">
-              
               <Button label="Accept" class="p-button-raised" />
-              <Button label="Reject" class="p-button-raised p-button-danger p-ml-2" />
+              <Button
+                label="Reject"
+                class="p-button-raised p-button-danger p-ml-2"
+              />
             </template>
           </Column>
         </DataTable>
