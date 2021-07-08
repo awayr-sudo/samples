@@ -1,6 +1,5 @@
 <template>
   <div class="home-view">
-
     <Toolbar class="p-mb-3">
       <template #left>
         <span class="dashboard-text">Dashboard</span>
@@ -16,6 +15,37 @@
         />
       </template>
     </Toolbar>
+    <div class="p-col-12 p-md-6 p-lg-6">
+      <Panel header="Client In Progress">
+          <!-- <Timeline :value="clients">
+                <template #opposite="slotProps">
+                    <small class="p-text-secondary">{{slotProps.item.display_name}}</small>
+                </template>
+                <template #content="slotProps">
+                    {{slotProps.item.status}}
+                </template>
+            </Timeline> -->
+        <DataTable :value="clients" responsiveLayout="scroll">
+          <Column field="display_name" header="Name"></Column>
+
+          <Column header="Status">
+            <template #body="slotProps">
+              <span :class="'customer-badge status-' + slotProps.data.status">{{
+                slotProps.data.status
+              }}</span>
+            
+            </template>
+          </Column>
+          <Column header="">
+            <template #body="">
+              
+              <Button label="Accept" class="p-button-raised" />
+              <Button label="Reject" class="p-button-raised p-button-danger p-ml-2" />
+            </template>
+          </Column>
+        </DataTable>
+      </Panel>
+    </div>
 
     <draggable
       :list="gems"
@@ -65,8 +95,6 @@
     />
     {{ dialog }}
   </div>
-
-
 </template>
 
 <script>
@@ -74,16 +102,16 @@ import Gem from "@/components/Gem.vue";
 import draggable from "vuedraggable";
 import GemsService from "../services/gems.service";
 import Dialogss from "../views/Dialogs.vue";
-import { inject } from 'vue'
+import { inject } from "vue";
+import axios from "axios";
 
 export default {
   components: {
     draggable,
     Gem,
     Dialogss,
-    
   },
-  inject: ['location', 'geolocation'],
+  inject: ["location", "geolocation"],
   data() {
     return {
       active: false,
@@ -95,11 +123,13 @@ export default {
       Service: null,
       title: null,
       dialogs: [],
-       gInfos: [],
+      gInfos: [],
+      clients: null,
     };
   },
 
   mounted() {
+    this.getclients();
     this.gemData();
     this.emitter.on("open-gem", (event) => {
       console.log("my-event", event);
@@ -108,6 +138,15 @@ export default {
   },
 
   methods: {
+    getclients() {
+      axios
+        .get(`http://api.epicai.com/clients`, {
+          headers: {
+            Authorization: `Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV`,
+          },
+        })
+        .then((response) => (this.clients = response.data.items));
+    },
     gemData() {
       this.gemService = new GemsService();
       this.gemService
@@ -170,9 +209,7 @@ export default {
       this.isActive1 = !this.isActive1;
     },
     addGems(gem) {
-      this.$emit("open-window", {
-      
-      });
+      this.$emit("open-window", {});
     },
   },
 };
@@ -218,5 +255,11 @@ export default {
       width: 86px !important;
     }
   }
+}
+.customer-badge.status-10 {
+  color: red;
+}
+.customer-badge.status-11 {
+  color: yellow;
 }
 </style>
