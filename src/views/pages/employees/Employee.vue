@@ -1,5 +1,4 @@
 <template>
-   <Form @submit="submit" :validation-schema="schema">
   <Splitter class="spliter">
     <SplitterPanel :size="15" :minSize="10">
       <img src="../../../assets/logs/users.png" style="height: 152px" />
@@ -107,10 +106,11 @@
     </SplitterPanel>
 
     <SplitterPanel :size="80" :minSize="20">
-   
+      <Form @submit="submit" :validation-schema="schema">
         <GeneralInfo @add-new-type="openType" v-if="empType == 'g-info'" />
-       
-     
+        <Button type="submit" label="submit" />
+      </Form>
+
       <TaxInfo v-if="empType == 'tax-info'" />
       <Address v-if="empType == 'address'" @add-new-address="openCalendar" />
       <BillingRates v-if="empType == 'billing-rates'" />
@@ -193,7 +193,7 @@
       </div>
     </SplitterPanel>
   </Splitter>
- </Form>
+
   <AddNewType ref="typeDialog" />
   <AddCalendar ref="showCalendar" />
   <AddNotepad ref="showNotepad" />
@@ -244,17 +244,10 @@ export default {
 
   data() {
     const schema = Yup.object().shape({
-      display_name: Yup.string().min(1).required("Name is a required field."),
-      notification_email: Yup.string()
+      display_name: Yup.string()
         .min(1)
-        .required("Email Notification is a required field."),
-      first_name: Yup.string()
-        .min(1)
-        .required("First Name is a required field."),
-      last_name: Yup.string().min(1).required("Last Name is a required field."),
-      ss_number: Yup.string()
-        .min(1)
-        .required("Social Security Number is a required field."),
+        .required("Name is a required field."),
+     
     });
     return {
       schema: schema,
