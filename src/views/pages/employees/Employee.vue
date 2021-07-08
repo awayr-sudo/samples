@@ -1,4 +1,5 @@
 <template>
+   <Form @submit="submit" :validation-schema="schema">
   <Splitter class="spliter">
     <SplitterPanel :size="15" :minSize="10">
       <img src="../../../assets/logs/users.png" style="height: 152px" />
@@ -106,11 +107,10 @@
     </SplitterPanel>
 
     <SplitterPanel :size="80" :minSize="20">
-      <Form @submit="submit" :validation-schema="schema">
+   
         <GeneralInfo @add-new-type="openType" v-if="empType == 'g-info'" />
-        <Button type="submit" label="submit" />
-      </Form>
-
+       
+     
       <TaxInfo v-if="empType == 'tax-info'" />
       <Address v-if="empType == 'address'" @add-new-address="openCalendar" />
       <BillingRates v-if="empType == 'billing-rates'" />
@@ -193,7 +193,7 @@
       </div>
     </SplitterPanel>
   </Splitter>
-
+ </Form>
   <AddNewType ref="typeDialog" />
   <AddCalendar ref="showCalendar" />
   <AddNotepad ref="showNotepad" />
@@ -244,10 +244,11 @@ export default {
 
   data() {
     const schema = Yup.object().shape({
-      display_name: Yup.string()
-        .min(1)
-        .required("Name is a required field."),
-     
+      display_name: Yup.string().min(1).required("Name is a required field."),
+      notification_email: Yup.string().min(1).required("Name is a required field."),
+      fore_name: Yup.string().min(1).required("Name is a required field."),
+      sur_name: Yup.string().min(1).required("Name is a required field."),
+      
     });
     return {
       schema: schema,
@@ -275,22 +276,16 @@ export default {
     },
 
     submit(payload) {
-      alert("ok");
-
-      axios.post(`http://api.epicai.com/employee`, payload),
-        {
+      
+      axios
+        .post(`http://api.adidas.epicai.com/employees`, payload, {
           headers: {
-            Authorization: `Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV`,
-            // 'Content-Type': 'application/json'
+            Authorization: `Bearer GaSHN9lhDmG-0-1IieVmCP-eIo-3wXLt`,
+            'Content-Type': 'application/json'
           },
-        }.then(
-          (response) => {
-            console.log("res", response);
-          },
-          (error) => {
-            console.log("errors", error, error.response);
-          }
-        );
+        })
+        .then((response) => console.log("res", response));
+      console.log("payload", payload);
     },
   },
 };
