@@ -10,7 +10,7 @@
             <base-check-box
               :modelValue="alert"
               id="alert"
-              name="alert"
+              name="federal_exempt"
               v-model="alert"
               :value="alert"
               checked="true"
@@ -29,6 +29,7 @@
             :options="cities"
             optionLabel="name"
             optionValue="code"
+            name="federal_status"
             placeholder="Select a City"
           />
         </div>
@@ -38,7 +39,7 @@
           >Federal Allowances</label
         >
         <div class="p-col-12 p-md-2">
-          <base-input type="number" name="tax_fedral_allowances"/>
+          <base-input type="number" name="federal_allowances"/>
         </div>
       </div>
       <div class="p-field p-grid">
@@ -46,7 +47,7 @@
           >Additional Witholdings</label
         >
         <div class="p-col-12 p-md-2">
-          <base-input type="number" name="tax_additional_withholding"/>
+          <base-input type="number" name="federal_additional"/>
         </div>
       </div>
       <div class="p-field p-grid">

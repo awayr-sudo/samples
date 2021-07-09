@@ -28,7 +28,7 @@
       </span>
       <span class="p-col-6">
         <div class="p-inputgroup">
-          <Dropdown name="type" class="width-75" v-model="type" :options="items" optionLabel="label" optionValue="value"/>
+          <BaseDropdown name="type" class="width-75" v-model="type" :options="items" optionLabel="label" optionValue="value"/>
           <span class="p-inputgroup-addon cursor-pointer">
             <i class="pi pi-pencil" @click="addNewType"></i>
           </span>
@@ -68,7 +68,7 @@
         <label class="p-ml-2 p-text-bold">Title(Mr, Mrs,...)</label>
       </span>
       <span class="p-col-4">
-        <BaseInput name="title" v-model="prenominal" />
+        <BaseInput name="prenominal" v-model="prenominal" />
       </span>
       <span class="p-col-5 ml-6">
         <label class="p-ml-2 p-text-bold">First Name</label>
@@ -92,14 +92,14 @@
         <label class="p-ml-2 p-text-bold">Suffix(Jr, Sr, ...)</label>
       </span>
       <span class="p-col-4">
-        <BaseInput name="suffix" v-model="postnominal" />
+        <BaseInput name="postnominal" v-model="postnominal" />
       </span>
       <span class="p-col-5 ml-6 p-d-flex p-ai-center">
         <i class="pi pi-print"></i>
         <label class="p-ml-2 p-text-bold">Print on as Checks..</label>
       </span>
       <span class="p-col-4">
-        <BaseInput name="print_check" v-model="postnominal" />
+        <BaseInput name="print_on_checks" v-model="postnominal" />
       </span>
       <span class="p-col-5 ml-6 p-d-flex p-ai-center">
         <label class="p-ml-2 p-text-bold">Social Security Number</label>
@@ -138,14 +138,14 @@
         <label class="p-ml-2 p-text-bold">Date of Last Review</label>
       </span>
       <span class="p-col-2">
-        <BaseInput name="Last_date" type="date" v-model="Last_date" />
+        <BaseInput name="review_date" type="date" v-model="Last_date" />
       </span>
       <span class="p-col-5 ml-6 p-d-flex p-ai-center">
         <i class="pi pi-calendar"></i>
         <label class="p-ml-2 p-text-bold">Birthdate</label>
       </span>
       <span class="p-col-2">
-        <BaseInput name="birth_date" type="date" v-model="birth_date" />
+        <BaseInput name="dob" type="date" v-model="birth_date" />
       </span>
     </div>
   </div>
@@ -177,10 +177,10 @@ export default {
       displayNotepad: false,
 
       items: [
-        { label: "Berlin", value: "Berlin" },
-        { label: "Frankfurt", value: "Frankfurt" },
-        { label: "Hamburg", value: "Hamburg" },
-        { label: "Munich", value: "Munich" },
+        { label: "Berlin", value: 1 },
+        { label: "Frankfurt", value: 2 },
+        { label: "Hamburg", value: 3 },
+        { label: "Munich", value: 4 },
       ],
     };
   },

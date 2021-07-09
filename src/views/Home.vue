@@ -15,8 +15,9 @@
         />
       </template>
     </Toolbar>
-    <div class="p-col-12 p-md-6 p-lg-6">
-      <Panel header="Client In Progress">
+    <div class="p-d-grid">
+      <div class="p-col-6 p-md-6 p-lg-6">
+        <Panel header="Client In Progress">
           <!-- <Timeline :value="clients">
                 <template #opposite="slotProps">
                     <small class="p-text-secondary">{{slotProps.item.display_name}}</small>
@@ -25,28 +26,44 @@
                     {{slotProps.item.status}}
                 </template>
             </Timeline> -->
-        <DataTable :value="clients" responsiveLayout="scroll">
-          <Column field="display_name" header="Name"></Column>
+          <DataTable :value="clients" responsiveLayout="scroll">
+            <Column field="display_name" header="Name"></Column>
 
-          <Column header="Status">
-            <template #body="slotProps">
-              <span :class="'customer-badge status-' + slotProps.data.status">{{
-                slotProps.data.status
-              }}</span>
-            
-            </template>
-          </Column>
-          <Column header="">
-            <template #body="">
-              
-              <Button label="Accept" class="p-button-raised" />
-              <Button label="Reject" class="p-button-raised p-button-danger p-ml-2" />
-            </template>
-          </Column>
-        </DataTable>
-      </Panel>
+            <Column header="Status">
+              <template #body="slotProps">
+                <span
+                  :class="'customer-badge status-' + slotProps.data.status"
+                  >{{ slotProps.data.status }}</span
+                >
+              </template>
+            </Column>
+            <Column header="">
+              <template #body="">
+                <Button label="Accept" class="p-button-raised" />
+                <Button
+                  label="Reject"
+                  class="p-button-raised p-button-danger p-ml-2"
+                />
+              </template>
+            </Column>
+          </DataTable>
+        </Panel>
+      </div>
+      <div class="p-col-6 p-md-6 p-lg-6">
+        <Panel header="New Employees">
+          <DataTable :value="employees" responsiveLayout="scroll">
+            <Column field="display_name" header="Employee Name"></Column>
+            <Column field="fore_name" header="First Name"></Column>
+            <Column field="middle_name" header="Middle Name"></Column>
+            <Column field="sur_name" header="Last Name"></Column>
+            <Column
+              field="notification_email"
+              header="Notification Email"
+            ></Column>
+          </DataTable>
+        </Panel>
+      </div>
     </div>
-
     <draggable
       :list="gems"
       item-key="id"
@@ -125,11 +142,13 @@ export default {
       dialogs: [],
       gInfos: [],
       clients: null,
+      employees: null,
     };
   },
 
   mounted() {
     this.getclients();
+    this.getEmployees();
     this.gemData();
     this.emitter.on("open-gem", (event) => {
       console.log("my-event", event);
@@ -146,6 +165,17 @@ export default {
           },
         })
         .then((response) => (this.clients = response.data.items));
+    },
+
+    getEmployees() {
+      axios
+        .get(`http://api.adidas.epicai.com/employees`, {
+          headers: {
+            Authorization: `Bearer GaSHN9lhDmG-0-1IieVmCP-eIo-3wXLt`,
+          },
+        })
+
+        .then((response) => (this.employees = response.data.items));
     },
     gemData() {
       this.gemService = new GemsService();
@@ -175,10 +205,10 @@ export default {
     toggleWindow(data) {
       data.data.isVisible = !data.data.isVisible;
     },
-    mouseover: function() {
+    mouseover: function () {
       this.active = false;
     },
-    mouseleaves: function() {
+    mouseleaves: function () {
       this.active = false;
     },
 

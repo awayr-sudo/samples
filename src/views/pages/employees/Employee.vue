@@ -245,15 +245,15 @@ export default {
   data() {
     const schema = Yup.object().shape({
       display_name: Yup.string().min(1).required("Name is a required field."),
-      notification_email: Yup.string().min(1).required("Name is a required field."),
-      fore_name: Yup.string().min(1).required("Name is a required field."),
-      sur_name: Yup.string().min(1).required("Name is a required field."),
-      
+      notification_email: Yup.string().min(1).required("Notification is a required field."),
+      fore_name: Yup.string().min(1).required("First Name is a required field."),
+      sur_name: Yup.string().min(1).required("Last Name is a required field."),  
+   
     });
     return {
       schema: schema,
       empType: "g-info",
-      current_tab: "",
+     
     };
   },
 
