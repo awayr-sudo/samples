@@ -3,13 +3,12 @@
   <Splitter class="spliter">
     <SplitterPanel :size="15" :minSize="10">
       <img src="../../../assets/logs/users.png" style="height: 152px" />
-
+     
       <div class="p-d-flex p-flex-column p-mx-4">
         <Button
           label="General Info"
           icon="pi pi-user"
           class="p-mb-2 p-button-secondary p-button-sm"
-          :class="currnt_tab"
           @click="showInfo((type = 'g-info'))"
         />
         <Button
@@ -95,24 +94,21 @@
         <Button
           label="Save"
           icon="pi pi-check"
-          type="submit"
-          class="p-mb-4 p-button-success p-button-sm"
+          @click="closeBasic"
+          class="p-mb-4 p-button-success p-button-sm "
         />
         <Button
           label="Cancel"
-          class="p-button-danger p-mb-4 p-button-sm"
+          class="p-button-danger p-mb-4 p-button-sm "
           icon="pi pi-times"
+          @click="closeBasic"
         />
       </div>
     </SplitterPanel>
-
     <SplitterPanel :size="80" :minSize="20">
-   
-        <GeneralInfo @add-new-type="openType" v-if="empType == 'g-info'" />
-       
-     
+      <generalInfo @add-new-type="openType" v-if="empType == 'g-info'" />
       <TaxInfo v-if="empType == 'tax-info'" />
-      <Address v-if="empType == 'address'" @add-new-address="openCalendar" />
+      <Address v-if="empType == 'address'" @add-new-address="openCalendar"/>
       <BillingRates v-if="empType == 'billing-rates'" />
       <div v-if="empType == 'direct-deposit'">
         <div class="p-fluid p-p-3">
@@ -156,12 +152,12 @@
       <Security v-if="empType == 'security'" />
       <Contact v-if="empType == 'contact'" />
       <Importantdates v-if="empType == 'imp-dates'" />
-      <Task v-if="empType == 'tasks'" @add-new-task="addNewTask" />
+      <Task v-if="empType == 'tasks'" @add-new-task="addNewTask"/>
       <Attachments v-if="empType == 'attachment'" />
-      <Notepads v-if="empType == 'notepad'" @add-notepad="addNotepad" />
+      <Notepads v-if="empType == 'notepad'" @add-notepad="addNotepad"/>
       <div v-if="empType == 'payroll'" class="p-p-3">
         <div class="p-grid">
-          <div class="p-col">
+          <div class="p-col ">
             <i class="pi pi-clock"></i>
             <span class="p-ml-2">Hourly Rates</span>
           </div>
@@ -169,7 +165,7 @@
 
         <PayrollRates />
         <div class="p-grid">
-          <div class="p-col">
+          <div class="p-col ">
             <i class="pi pi-wallet"></i>
             <span class="p-ml-2">Flat Rates</span>
           </div>
@@ -177,14 +173,14 @@
         <PayrollRates />
 
         <div class="p-grid">
-          <div class="p-col">
+          <div class="p-col ">
             <i class="pi pi-plus"></i>
             <span class="p-ml-2">Additions/Reibursements</span>
           </div>
         </div>
         <PayrollRates />
         <div class="p-grid">
-          <div class="p-col">
+          <div class="p-col ">
             <i class="pi pi-minus"></i>
             <span class="p-ml-2">Deductions</span>
           </div>
@@ -195,19 +191,16 @@
   </Splitter>
  </Form>
   <AddNewType ref="typeDialog" />
-  <AddCalendar ref="showCalendar" />
-  <AddNotepad ref="showNotepad" />
-  <AddTask ref="showTask" />
+  <AddCalendar ref="showCalendar"/>
+  <AddNotepad  ref="showNotepad"/>
+  <AddTask ref="showTask"/>
 </template>
 
 <script>
-import { Form } from "vee-validate";
-import * as Yup from "yup";
-
-import AddNotepad from "../../../components/customComponents/dialogs/AddNotePad.vue";
-import AddTask from "../../../components/customComponents/dialogs/AddTask.vue";
-import AddCalendar from "./Calendar.vue";
-import GeneralInfo from "./GeneralInfo.vue";
+import AddNotepad from "../../../components/customComponents/dialogs/AddNotePad.vue"
+import AddTask from "../../../components/customComponents/dialogs/AddTask.vue"
+import AddCalendar from "./Calendar.vue"
+import generalInfo from "./GeneralInfo.vue";
 import Address from "./Address.vue";
 import TaxInfo from "./TaxInformation.vue";
 import BillingRates from "./BillingRates.vue";
@@ -218,12 +211,13 @@ import Task from "./Task.vue";
 import Attachments from "./Files.vue";
 import Notepads from "./NotePad.vue";
 import PayrollRates from "./PayrollRates.vue";
-
-import AddNewType from "../../../components/customComponents/dialogs/AddNewType.vue";
+import * as Yup from "yup";
 import axios from "axios";
+import AddNewType from "../../../components/customComponents/dialogs/AddNewType.vue";
+
 export default {
   components: {
-    GeneralInfo,
+    generalInfo,
     Address,
     AddNewType,
     TaxInfo,
@@ -235,13 +229,11 @@ export default {
     Attachments,
     Notepads,
     PayrollRates,
-    AddCalendar,
-    AddNotepad,
-    AddTask,
-    Form,
+   AddCalendar,
+   AddNotepad,
+   AddTask,
   },
   inject: ["userName"],
-
   data() {
     const schema = Yup.object().shape({
       display_name: Yup.string().min(1).required("Name is a required field."),
@@ -251,13 +243,16 @@ export default {
    
     });
     return {
-      schema: schema,
+    
+
       empType: "g-info",
      
     };
   },
 
   methods: {
+    
+    
     openType() {
       this.$refs.typeDialog.showModal = true;
     },
@@ -271,7 +266,7 @@ export default {
     addNotepad() {
       this.$refs.showNotepad.showModal = true;
     },
-    addNewTask() {
+    addNewTask(){
       this.$refs.showTask.showModal = true;
     },
 

@@ -48,16 +48,16 @@
 
       <div class="p-field p-col-4">
         <label for="address">Month Fiscal Year Begins</label>
-        <BaseInput name="fiscal_year" type="date" v-model="fiscal_year" />
+        <BaseInput name="fiscal_year" type="number" v-model.number="fiscal_year" />
       </div>
 
       <div class="p-field p-col-12 p-md-4">
         <label for="city">Closing Date</label>
         <BaseInput name="closing_date" type="date" v-model="closing_date" />
       </div>
-      <!-- <div class="p-field p-col-12 p-md-4">
+      <div class="p-field p-col-12 p-md-4">
         <label for="state">Entity Type</label>
-        <base-dropdown
+        <!-- <base-dropdown
           name="entity_type"
           label="entity_type"
           v-model="entity_type"
@@ -67,9 +67,9 @@
           optionValue="id"
           placeholder="Select Series"
           :btnCreate="false"
-        />
+        /> -->
         
-      </div> -->
+      </div>
       <div class="p-field p-col-12 p-md-4">
         <label for="zip">Is not for profit?</label>
         <base-check-box
@@ -81,9 +81,9 @@
           checked="true"
         />
       </div>
-      <!-- <div class="p-field p-col-12 p-md-4">
+      <div class="p-field p-col-12 p-md-4">
         <label for="zip">Folder</label>
-        <base-dropdown
+        <!-- <base-dropdown
           name="series"
           label="Series"
           v-model="series"
@@ -93,11 +93,11 @@
           optionValue="id"
           placeholder="Select Series"
           :btnCreate="false"
-        />
-      </div> -->
-      <!-- <div class="p-field p-col-12 p-md-4">
+        /> -->
+      </div>
+      <div class="p-field p-col-12 p-md-4">
         <label for="zip">File Space</label>
-        <base-dropdown
+        <!-- <base-dropdown
           name="series"
           label="Series"
           v-model="series"
@@ -107,11 +107,11 @@
           optionValue="id"
           placeholder="Select Series"
           :btnCreate="false"
-        />
-      </div> -->
-      <!-- <div class="p-field p-col-12 p-md-4">
+        /> -->
+      </div>
+      <div class="p-field p-col-12 p-md-4">
       <label for="zip">Upload Imge</label>
-     <base-dropdown
+     <!-- <base-dropdown
           name="series"
           label="Series"
           v-model="series"
@@ -121,8 +121,8 @@
           optionValue="id"
           placeholder="Select Series"
           :btnCreate="false"
-        />
-    </div> -->
+        /> -->
+    </div>
     </div>
     <Button
       type="submit"
@@ -160,13 +160,18 @@ export default {
   methods: {
     submit(payload) {
       payload["npo"] = payload.npo ? 1 : 0;
+      
       alert("create");
       axios
-        .post(`http://api.epicai.com/clients/create`, payload)
+        .post(`http://api.epicai.com/clients`, payload, {
+          headers: {
+            Authorization: `Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV`,
+            "Content-Type": "application/json",
+          },
+        })
         .then((response) => console.log("res", response));
       console.log("payload", payload);
     },
-    
   },
 };
 </script>
