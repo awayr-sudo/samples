@@ -21,7 +21,7 @@
         @click="closeBasic"
       />
       <router-link
-        :to="{ path: '/about', query: { dialog: 'signature' } }"
+        :to="{ path: '/about', query: { dialog: currentTabComponent } }"
         target="_blank"
       >
         <Button
@@ -52,7 +52,7 @@ export default {
         payroll: "payroll",
         payable: "payable",
         prospects: "prospects",
-        calendar: "calendar"
+        calendar: "calendar",
       },
       gemData: null,
       showModel: this.modelValue.isVisible,
@@ -63,12 +63,11 @@ export default {
   },
   computed: {
     currentTabComponent() {
-       if(this.modelValue.key == "employee.add"){
-      return   this.comps.prospects
-      }else if(this.modelValue.key == "calendar.add"){
-        return this.comps.calendar
-      }else
-        return this.comps.payroll;
+      if (this.modelValue.key == "employee.add") {
+        return this.comps.prospects;
+      } else if (this.modelValue.key == "calendar.add") {
+        return this.comps.calendar;
+      } else return this.comps.payroll;
       // return this.gems[this.$route.query.dialog]
     },
   },
@@ -86,7 +85,7 @@ export default {
     modelValue: {
       handler(latest, old) {
         console.log("props", latest, old);
-       
+
         this.showModel = latest.isVisible;
       },
       deep: true,
