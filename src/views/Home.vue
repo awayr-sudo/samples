@@ -16,73 +16,76 @@
       </template>
     </Toolbar>
     <div class="p-col-12 p-md-6 p-lg-6">
-      <Panel header="Client In Progress">
-        <DataTable :value="clients" responsiveLayout="scroll">
-          <Column field="display_name" header="Name"></Column>
+      <Form :validation-schema="schema">
+        <Panel header="Client In Progress">
+          <DataTable :value="clients" responsiveLayout="scroll">
+            <Column field="display_name" header="Name"></Column>
 
-          <Column header="Status">
-            <template #body="slotProps">
-              <span :class="'customer-badge status-' + slotProps.data.status">{{
-                slotProps.data.status
-              }}</span>
-              <span v-if="slotProps.data.status == 11" class="p-ml-2"
-                >Waiting For Approval</span
-              >
-              <span v-if="slotProps.data.status == 10" class="p-ml-2"
-                >Reject</span
-              >
-              <span v-if="slotProps.data.status == 12" class="p-ml-2"
-                >Approved</span
-              >
-              <div
-                class="p-field p-grid p-mt-2"
-                v-if="slotProps.data.status == 11 || slotProps.data.status == 8"
-              >
-                <label>Leave a comment</label>
-                <div class="p-col">
-                  <BaseTextArea
-                    name="address_description"
-                    type="text"
-                    v-model="description"
-                    :autoResize="true"
-                    className="width-100"
-                    rows="2"
-                    cols="20"
-                  />
+            <Column header="Status">
+              <template #body="slotProps">
+                <span
+                  :class="'customer-badge status-' + slotProps.data.status"
+                  >{{ slotProps.data.status }}</span
+                >
+                <span v-if="slotProps.data.status == 11" class="p-ml-2"
+                  >Waiting For Approval</span
+                >
+                <span v-if="slotProps.data.status == 10" class="p-ml-2"
+                  >Reject</span
+                >
+                <span v-if="slotProps.data.status == 12" class="p-ml-2"
+                  >Approved</span
+                >
+                <div v-if="slotProps.data.reason != null">
+                  <!-- {{ slotProps.data.reason.reason }} -->
                 </div>
-              </div>
-            </template>
-          </Column>
-          <Column header="">
-            <template #body="slotProps">
-              <Button
-                v-if="slotProps.data.status == 11"
-                label="Accept"
-                class="p-button-raised"
-                @click="reject(slotProps.data)"
-              />
-              <Button
-                v-if="slotProps.data.status == 11"
-                label="Reject"
-                class="p-button-raised p-button-danger p-ml-2"
-                @click="reject1(slotProps.data)"
-              />
-              <Button
-                v-if="slotProps.data.status == 8"
-                label="Resubmit"
-                class="p-button-raised p-button-danger p-ml-2"
-                @click="reject1(slotProps.data)"
-              />
-              <!-- <Button
-                label="Edit"
-                class="p-button-raised p-button-danger p-ml-2"
-                @click="editClient(slotProps.data)"
-              /> -->
-            </template>
-          </Column>
-        </DataTable>
-      </Panel>
-      <div class="p-d-grid">
+                <div
+                  class="p-field p-grid p-mt-2"
+                  v-if="
+                    slotProps.data.status == 11 || slotProps.data.status == 8
+                  "
+                >
+                  <label>Leave a comment</label>
+                  <div class="p-col">
+                    <BaseTextArea
+                      type="text"
+                      :name="'reason'"
+                      v-model="reason"
+                      :autoResize="true"
+                      className="width-100"
+                      rows="2"
+                      cols="20"
+                    />
+                  </div>
+                </div>
+              </template>
+            </Column>
+            <Column header="">
+              <template #body="slotProps">
+                <Button
+                  v-if="slotProps.data.status == 11"
+                  label="Accept"
+                  class="p-button-raised"
+                  @click="accept(slotProps.data)"
+                />
+                <Button
+                  v-if="slotProps.data.status == 11"
+                  label="Reject"
+                  class="p-button-raised p-button-danger p-ml-2"
+                  @click="reject(slotProps.data)"
+                />
+                <Button
+                  v-if="slotProps.data.status == 8"
+                  label="Resubmit"
+                  class="p-button-raised p-button-danger p-ml-2"
+                  @click="requestForApproval(slotProps.data)"
+                />
+              </template>
+            </Column>
+          </DataTable>
+        </Panel>
+      </Form>
+      <div class="p-grid">
         <div class="p-col-6 p-md-6 p-lg-6">
           <Panel header="New Employees">
             <DataTable :value="employees" responsiveLayout="scroll">
@@ -157,16 +160,25 @@ import ClientService from "../services/client.service";
 import Dialogss from "../views/Dialogs.vue";
 import { inject } from "vue";
 import axios from "axios";
+import { Form } from "vee-validate";
+import * as Yup from "yup";
 
 export default {
   components: {
     draggable,
     Gem,
     Dialogss,
+    Form,
   },
   inject: ["location", "geolocation"],
   data() {
+    const schema = Yup.object().shape({
+      reason1: Yup.string()
+        .min(1)
+        .required("Please Enter any reason"),
+    });
     return {
+      schema: schema,
       active: false,
       removeGemsDialog: false,
       gems: null,
@@ -179,7 +191,6 @@ export default {
       gInfos: [],
       clients: null,
       client: {},
-      accept: false,
       clientService: null,
       employees: null,
     };
@@ -209,19 +220,17 @@ export default {
           console.error(error);
         });
     },
-    acceptClient(payload, client) {
-      this.client = { ...client };
-      // client.status = 10;
-      console.log("client status", client.status);
-
+    accept(payload, slotProps) {
+      alert("accept");
+      console.log("client", slotProps);
       // this.$confirm.require({
       //   message: "Are you sure you want to Approve",
       //   header: "Confirmation",
       //   icon: "pi pi-exclamation-triangle",
       //   accept: () => {
-      //     payload.status = 12;
+      //     // payload.status = 12;
       //     axios
-      //       .post(`http://api.epicai.com/clients/accept`, payload, {
+      //       .post(`http://api.epicai.com/clients/accept` + slotProps.id, payload, {
       //         headers: {
       //           Authorization: `Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV`,
       //           "Content-Type": "application/json",
@@ -239,32 +248,33 @@ export default {
     },
     reject(payload, slotProps) {
       console.log("fdsfs", slotProps);
-      this.$confirm.require({
-        message: "Are you sure you want to Approve",
-        header: "Confirmation",
-        icon: "pi pi-exclamation-triangle",
-        accept: () => {
-          payload.status = 12;
-          axios
-            .post(
-              `http://api.epicai.com/clients/accept` + payload.user_id,
-              payload,
-              {
-                headers: {
-                  Authorization: `Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV`,
-                  "Content-Type": "application/json",
-                },
-              }
-            )
-            .then((response) => {
-              this.getclients();
-              console.log("response", response);
-            });
-        },
-        reject: () => {
-          console.log("reject");
-        },
-      });
+      console.log("payload", payload);
+      // this.$confirm.require({
+      //   message: "Are you sure you want to Approve",
+      //   header: "Confirmation",
+      //   icon: "pi pi-exclamation-triangle",
+      //   accept: () => {
+      //     payload.status = 12;
+      //     axios
+      //       .post(
+      //         `http://api.epicai.com/clients/accept` + payload.user_id,
+      //         payload,
+      //         {
+      //           headers: {
+      //             Authorization: `Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV`,
+      //             "Content-Type": "application/json",
+      //           },
+      //         }
+      //       )
+      //       .then((response) => {
+      //         this.getclients();
+      //         console.log("response", response);
+      //       });
+      //   },
+      //   reject: () => {
+      //     console.log("reject");
+      //   },
+      // });
     },
 
     getEmployees() {

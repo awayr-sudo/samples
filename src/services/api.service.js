@@ -28,7 +28,7 @@ export class ApiService {
   }
   post(payload) {
     return axios
-      .delete(`${this.endpoint}`, payload, {
+      .post(`${this.endpoint}`, payload, {
         headers: {
           Authorization: "Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV",
         },

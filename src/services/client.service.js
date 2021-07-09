@@ -28,6 +28,7 @@ export default class ClientService extends ApiService {
 
   ];
   constructor() {
-    super("clients");
+    super("clients?expand=addresses,contacts,contacts.contactItems,reason");
+    // clients?status=12&expand=addresses,contacts,contacts.contactItems,reason&id=61
   }
 }
