@@ -104,7 +104,7 @@
 </template>
 
 <script>
-import AddCalendar from './Calendar.vue'
+import AddCalendar from '../employees/Calendar.vue'
 export default {
   components: {AddCalendar},
   data() {
@@ -153,10 +153,11 @@ export default {
     toggle(event) {
       this.$refs.menu.toggle(event);
     },
-    addNewAdress() {
-      
-     this.$emit("add-new-address");
-      
+     addNewAdress() {
+      this.addresses.push({
+        test: "",
+      });
+       
     },
     collapseAll() {
       this.toggleable = false;

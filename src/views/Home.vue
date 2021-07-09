@@ -60,6 +60,22 @@
               field="notification_email"
               header="Notification Email"
             ></Column>
+             <Column>
+      <template #header>
+        <div class="t-a-c width-100">
+          <i class="pi pi-pencil"></i>
+        </div>
+      </template>
+      <template #body="slotProps">
+        <div class="t-a-c">
+          <i
+          
+            class="pi pi-pencil"
+           @click="openEditEmployee(slotProps)"
+          ></i>
+        </div>
+      </template>
+    </Column>
           </DataTable>
         </Panel>
       </div>
@@ -143,6 +159,7 @@ export default {
       gInfos: [],
       clients: null,
       employees: null,
+      emplyee: {},
     };
   },
 
@@ -176,6 +193,13 @@ export default {
         })
 
         .then((response) => (this.employees = response.data.items));
+    },
+
+    openEditEmployee(slotProps, employee) {
+console.log("emp data", slotProps)
+this.emplyee = {...employee };
+this.$refs.dialog.showModel = true;
+
     },
     gemData() {
       this.gemService = new GemsService();
