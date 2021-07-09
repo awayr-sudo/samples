@@ -66,6 +66,7 @@
      <Address v-if="clientType=='address'"/>
      <Contact v-if="clientType=='contact'"/>
      <Notepad v-if="clientType=='notes'"/>
+     <Privilege v-if="clientType=='privileges'"/>
     </SplitterPanel>
   </Splitter>
 
@@ -80,8 +81,9 @@ import LegalInfo from "./LegalInfo.vue"
 import Address from "../sheard/Address.vue"
 import Contact from "../sheard/Contact.vue"
 import Notepad from "../sheard/Notepad.vue"
+import Privilege from "./Privileges.vue"
 export default {
-components: {LegalInfo, Form, Address, Contact, Notepad},
+components: {LegalInfo, Form, Address, Contact, Notepad, Privilege},
   data() {
    const schema = Yup.object().shape({
       display_name: Yup.string()
