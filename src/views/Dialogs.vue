@@ -4,7 +4,6 @@
     :style="{ width: '70vw', height: '75vh' }"
     :showHeader="true"
     class="dormer"
-   
   >
     <template #header>
       <label class="gem-main-hiding">
@@ -54,7 +53,7 @@ export default {
         payable: "payable",
         prospects: "prospects",
         calendar: "calendar",
-        clients: "clients"
+        clients: "clients",
       },
       gemData: null,
       showModel: this.modelValue.isVisible,
@@ -65,14 +64,13 @@ export default {
   },
   computed: {
     currentTabComponent() {
-       if(this.modelValue.key == "employee.add"){
-      return   this.comps.prospects
-      }else if(this.modelValue.key == "calendar.add"){
-        return this.comps.calendar
-      }else if(this.modelValue.key == "client.add"){
-        return this.comps.clients
-      }else
-        return this.comps.payroll;
+      if (this.modelValue.key == "employee.add") {
+        return this.comps.prospects;
+      } else if (this.modelValue.key == "calendar.add") {
+        return this.comps.calendar;
+      } else if (this.modelValue.key == "client.add") {
+        return this.comps.clients;
+      } else return this.comps.payroll;
       // return this.gems[this.$route.query.dialog]
     },
   },

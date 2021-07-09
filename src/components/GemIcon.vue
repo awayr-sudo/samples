@@ -3,16 +3,13 @@
   <img src="../assets/image/imageletter.png" alt class="email-image" />
   <!-- {{ service.imageIcon }}
  <span :class="service.imageIcon"></span> -->
-  <span>{{ service.gemItems }}</span>
 </template>
 <script>
 export default {
   inject: ["service"],
   props: ["data"],
   data() {
-    return {
-     
-    };
+    return {};
   },
 };
 </script>

@@ -1,17 +1,10 @@
 <template>
-  <h1>This is {{ this.$route.query.dialog }} page</h1>
-  {{ this.$route.query.dialog }}
-  {{currentTabComponent}}
- <keep-alive>
-  <component :is="currentTabComponent">
-  </component>
- </keep-alive>
+  <keep-alive>
+    <component :is="currentTabComponent"> </component>
+  </keep-alive>
 </template>
-
 <script>
-
 // import Comp from '../views/comp2.vue'
-
 
 // import comp2Vue from './comp2.vue'
 
@@ -20,31 +13,23 @@
 // );
 
 export default {
- 
-data(){
-  
-  return{
+  data() {
+    return {
       gems: {
-  
-    payroll: 'payroll',
-    signature: 'comp2Vue',
-   
-  },  
+        payroll: "payroll",
+        signature: "comp2Vue",
+        prospects: "prospects",
+      },
       // scurrentTabComponent: gems[this.$route.query.domain]
-    
-  }
-}
-,
-    computed:{
-      currentTabComponent(){
+    };
+  },
+  computed: {
+    currentTabComponent() {
       //  return this.$route.query.dialog;
-        return this.gems[this.$route.query.dialog]
-      
-      }
-    }
-}
+      return this.gems[this.$route.query.dialog];
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
