@@ -51,16 +51,7 @@
           <div class="p-field p-grid ">
             <span class="p-col-5 f-w-b">Address</span>
             <div class="p-col-7">
-              <BaseTextArea
-                name="address_description"
-                type="text"
-                v-model="description"
-                :autoResize="true"
-                className="width-100"
-                rows="5"
-                cols="30"
-                
-              />
+              c
             </div>
           </div>
           <div class="p-field p-grid ">

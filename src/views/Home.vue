@@ -38,20 +38,19 @@
                 class="p-field p-grid p-mt-2"
                 v-if="slotProps.data.status == 11 || slotProps.data.status == 8"
               >
-                <label class="p-mb-0">Leave a comment</label>
+                <label>Leave a comment</label>
                 <div class="p-col">
-
-                  
-                <BaseInput
-                  :name="'[' + slotProps.index + ']status'"
-                  type="text"
-                  placeholder="Ex. wrong information provided..."
-                  v-model="reason"
-                />
+                  <BaseTextArea
+                    name="address_description"
+                    type="text"
+                    v-model="description"
+                    :autoResize="true"
+                    className="width-100"
+                    rows="2"
+                    cols="20"
+                  />
                 </div>
               </div>
-
-              
             </template>
           </Column>
           <Column header="">
@@ -115,27 +114,26 @@
           </DataTable>
         </Panel>
       </div>
+      <draggable
+        :list="gems"
+        item-key="id"
+        class="drag-panel p-grid"
+        ghost-class="ghost"
+        @start="dragging = true"
+        @end="dragging = false"
+      >
+        <template #item="{ element }">
+          <div class="p-col-12 p-md-6 p-lg-6">
+            <gem
+              :data="element"
+              @open-window="openWindow"
+              @hide-gems="removeGems"
+              class="drag-panel"
+            ></gem>
+          </div>
+        </template>
+      </draggable>
     </div>
-    <draggable
-      :list="gems"
-      item-key="id"
-      class="drag-panel p-grid"
-      ghost-class="ghost"
-      @start="dragging = true"
-      @end="dragging = false"
-    >
-      <template #item="{ element }">
-        <div class="p-col-12 p-md-6 p-lg-6">
-          <gem
-            :data="element"
-            @open-window="openWindow"
-            @hide-gems="removeGems"
-            class="drag-panel"
-          ></gem>
-        </div>
-      </template>
-    </draggable>
-  </div>
   </div>
   <div id="nav">
     <Panel header="All gems" :toggleable="true" v-if="dialogs.length > 0">
