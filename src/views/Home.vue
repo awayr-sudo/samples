@@ -82,37 +82,21 @@
           </Column>
         </DataTable>
       </Panel>
-    <div class="p-d-grid">
-      
-      <div class="p-col-6 p-md-6 p-lg-6">
-        <Panel header="New Employees">
-          <DataTable :value="employees" responsiveLayout="scroll">
-            <Column field="display_name" header="Employee Name"></Column>
-            <Column field="fore_name" header="First Name"></Column>
-            <Column field="middle_name" header="Middle Name"></Column>
-            <Column field="sur_name" header="Last Name"></Column>
-            <Column
-              field="notification_email"
-              header="Notification Email"
-            ></Column>
-             <Column>
-      <template #header>
-        <div class="t-a-c width-100">
-          <i class="pi pi-pencil"></i>
+      <div class="p-grid">
+        <div class="p-col-6 p-md-6 p-lg-6">
+          <Panel header="New Employees">
+            <DataTable :value="employees" responsiveLayout="scroll">
+              <Column field="display_name" header="Employee Name"></Column>
+              <Column field="fore_name" header="First Name"></Column>
+              <Column field="middle_name" header="Middle Name"></Column>
+              <Column field="sur_name" header="Last Name"></Column>
+              <Column
+                field="notification_email"
+                header="Notification Email"
+              ></Column>
+            </DataTable>
+          </Panel>
         </div>
-      </template>
-      <template #body="slotProps">
-        <div class="t-a-c">
-          <i
-          
-            class="pi pi-pencil"
-           @click="openEditEmployee(slotProps)"
-          ></i>
-        </div>
-      </template>
-    </Column>
-          </DataTable>
-        </Panel>
       </div>
       <draggable
         :list="gems"
@@ -134,7 +118,7 @@
         </template>
       </draggable>
     </div>
-  </div>
+  
   <div id="nav">
     <Panel header="All gems" :toggleable="true" v-if="dialogs.length > 0">
       <template v-for="dialog in dialogs" :key="dialog">
@@ -161,6 +145,7 @@
       ref="dialog"
     />
     {{ dialog }}
+  </div>
   </div>
   <ConfirmDialog></ConfirmDialog>
 </template>
@@ -296,10 +281,9 @@ export default {
     },
 
     openEditEmployee(slotProps, employee) {
-console.log("emp data", slotProps)
-this.emplyee = {...employee };
-this.$refs.dialog.showModel = true;
-
+      console.log("emp data", slotProps);
+      this.emplyee = { ...employee };
+      this.$refs.dialog.showModel = true;
     },
     gemData() {
       this.gemService = new GemsService();
