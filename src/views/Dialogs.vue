@@ -22,7 +22,7 @@
         @click="closeBasic"
       />
       <router-link
-        :to="{ path: '/about', query: { dialog: 'signature' } }"
+        :to="{ path: '/about', query: { dialog: currentTabComponent } }"
         target="_blank"
       >
         <Button

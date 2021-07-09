@@ -46,6 +46,7 @@
                   "
                 >
                   <label>Leave a comment</label>
+
                   <div class="p-col">
                     <BaseTextArea
                       type="text"
@@ -241,14 +242,18 @@ export default {
       //   header: "Confirmation",
       //   icon: "pi pi-exclamation-triangle",
       //   accept: () => {
-      //     // payload.status = 12;
+      //     payload.status = 12;
       //     axios
-      //       .post(`http://api.epicai.com/clients/accept` + slotProps.id, payload, {
-      //         headers: {
-      //           Authorization: `Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV`,
-      //           "Content-Type": "application/json",
-      //         },
-      //       })
+      //       .post(
+      //         `http://api.epicai.com/clients/accept` + slotProps.id,
+      //         payload,
+      //         {
+      //           headers: {
+      //             Authorization: `Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV`,
+      //             "Content-Type": "application/json",
+      //           },
+      //         }
+      //       )
       //       .then((response) => {
       //         this.getclients();
       //         console.log("response", response);
@@ -303,8 +308,8 @@ export default {
 
     openEditEmployee(slotProps, employee) {
       console.log("emp data", slotProps);
-      this.emplyee = { ...employee };
-      this.$refs.dialog.showModel = true;
+      // this.emplyee = { ...employee };
+      this.$refs.dialog.isVisible = true;
     },
     gemData() {
       this.gemService = new GemsService();
