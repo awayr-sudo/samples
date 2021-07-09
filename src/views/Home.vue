@@ -40,6 +40,8 @@
               >
                 <label class="p-mb-0">Leave a comment</label>
                 <div class="p-col">
+
+                  
                 <BaseInput
                   :name="'[' + slotProps.index + ']status'"
                   type="text"
@@ -81,8 +83,23 @@
           </Column>
         </DataTable>
       </Panel>
+    <div class="p-d-grid">
+      
+      <div class="p-col-6 p-md-6 p-lg-6">
+        <Panel header="New Employees">
+          <DataTable :value="employees" responsiveLayout="scroll">
+            <Column field="display_name" header="Employee Name"></Column>
+            <Column field="fore_name" header="First Name"></Column>
+            <Column field="middle_name" header="Middle Name"></Column>
+            <Column field="sur_name" header="Last Name"></Column>
+            <Column
+              field="notification_email"
+              header="Notification Email"
+            ></Column>
+          </DataTable>
+        </Panel>
+      </div>
     </div>
-
     <draggable
       :list="gems"
       item-key="id"
@@ -103,7 +120,7 @@
       </template>
     </draggable>
   </div>
-
+  </div>
   <div id="nav">
     <Panel header="All gems" :toggleable="true" v-if="dialogs.length > 0">
       <template v-for="dialog in dialogs" :key="dialog">
@@ -166,11 +183,13 @@ export default {
       client: {},
       accept: false,
       clientService: null,
+      employees: null,
     };
   },
 
   mounted() {
     this.getclients();
+    this.getEmployees();
     this.gemData();
 
     this.emitter.on("open-gem", (event) => {
@@ -248,6 +267,17 @@ export default {
           console.log("reject");
         },
       });
+    },
+
+    getEmployees() {
+      axios
+        .get(`http://api.adidas.epicai.com/employees`, {
+          headers: {
+            Authorization: `Bearer GaSHN9lhDmG-0-1IieVmCP-eIo-3wXLt`,
+          },
+        })
+
+        .then((response) => (this.employees = response.data.items));
     },
     gemData() {
       this.gemService = new GemsService();
