@@ -16,7 +16,8 @@
         />
       </template>
     </Toolbar>
-
+{{gemService}}
+{{gems}}
     <draggable
       :list="gems"
       item-key="id"
@@ -72,7 +73,9 @@
 <script>
 import Gem from "@/components/Gem.vue";
 import draggable from "vuedraggable";
-import GemsService from "../services/gems.service";
+import CustomerService from "../services/customers.service";
+import GemService from "../services/gems.service";
+
 import Dialogss from "../views/Dialogs.vue";
 import { inject } from 'vue'
 
@@ -109,15 +112,11 @@ export default {
 
   methods: {
     gemData() {
-      this.gemService = new GemsService();
-      this.gemService
-        .get()
-        .then((data) => {
-          this.gems = data.items;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      this.gemService = new CustomerService();
+      this.gems = new GemService();
+
+     console.log("gem data", this.gems)
+       
     },
     openWindow(data) {
       console.log("data", data);

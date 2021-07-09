@@ -1,7 +1,7 @@
-import { ApiService } from "./api.service";
+
 import { PrimeIcons } from "primevue/api";
 
-export default class CustomersService extends ApiService {
+export default class CustomersService {
   template = "one";
   template2 = "two";
   imageIcon=PrimeIcons.LIST;
@@ -45,7 +45,5 @@ export default class CustomersService extends ApiService {
   //     }
   //     ]
   //   },]
-  constructor() {
-    super();
-  }
+
 }
