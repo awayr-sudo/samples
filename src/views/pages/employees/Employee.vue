@@ -201,11 +201,11 @@ import AddNotepad from "../../../components/customComponents/dialogs/AddNotePad.
 import AddTask from "../../../components/customComponents/dialogs/AddTask.vue"
 import AddCalendar from "./Calendar.vue"
 import generalInfo from "./GeneralInfo.vue";
-import Address from "./Address.vue";
+import Address from "../sheard/Address.vue";
 import TaxInfo from "./TaxInformation.vue";
 import BillingRates from "./BillingRates.vue";
 import Security from "./Security.vue";
-import Contact from "./Contact.vue";
+import Contact from "../sheard/Contact.vue";
 import Importantdates from "./Importantdates.vue";
 import Task from "./Task.vue";
 import Attachments from "./Files.vue";

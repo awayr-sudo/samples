@@ -97,57 +97,69 @@
                 field="notification_email"
                 header="Notification Email"
               ></Column>
+              <Column>
+                <template #header>
+                  <i class="pi pi-pencil"></i>
+                </template>
+                <template #body="slotProps">
+                  <i
+                    class="pi pi-pencil"
+                    @click="openEditEmployee(slotProps.data)"
+                  ></i>
+                </template>
+              </Column>
             </DataTable>
           </Panel>
         </div>
       </div>
-      <draggable
-        :list="gems"
-        item-key="id"
-        class="drag-panel p-grid"
-        ghost-class="ghost"
-        @start="dragging = true"
-        @end="dragging = false"
-      >
-        <template #item="{ element }">
-          <div class="p-col-12 p-md-6 p-lg-6">
-            <gem
-              :data="element"
-              @open-window="openWindow"
-              @hide-gems="removeGems"
-              class="drag-panel"
-            ></gem>
-          </div>
-        </template>
-      </draggable>
     </div>
-  </div>
-  <div id="nav">
-    <Panel header="All gems" :toggleable="true" v-if="dialogs.length > 0">
-      <template v-for="dialog in dialogs" :key="dialog">
-        <Button
-          @click="toggleWindow(dialog)"
-          :label="dialog.data.label"
-          :icon="dialog.data.icon"
-        />
-        <span>
-          <Button
-            icon="pi pi-times"
-            class="p-button-rounded p-button-danger p-button-text"
-            @click="closeWindow(dialog)"
-          />
-        </span>
+    <draggable
+      :list="gems"
+      item-key="id"
+      class="drag-panel p-grid"
+      ghost-class="ghost"
+      @start="dragging = true"
+      @end="dragging = false"
+    >
+      <template #item="{ element }">
+        <div class="p-col-12 p-md-6 p-lg-6">
+          <gem
+            :data="element"
+            @open-window="openWindow"
+            @hide-gems="removeGems"
+            class="drag-panel"
+          ></gem>
+        </div>
       </template>
-    </Panel>
+    </draggable>
 
-    <router-view />
-    <Dialogss
-      v-for="dialog in dialogs"
-      :key="dialog"
-      v-model="dialog.data"
-      ref="dialog"
-    />
-    {{ dialog }}
+    <div id="nav">
+      <Panel header="All gems" :toggleable="true" v-if="dialogs.length > 0">
+        <template v-for="dialog in dialogs" :key="dialog">
+          <Button
+            @click="toggleWindow(dialog)"
+            :label="dialog.data.label"
+            :icon="dialog.data.icon"
+          />
+          <span>
+            <Button
+              icon="pi pi-times"
+              class="p-button-rounded p-button-danger p-button-text"
+              @click="closeWindow(dialog)"
+            />
+          </span>
+        </template>
+      </Panel>
+
+      <router-view />
+      <Dialogss
+        v-for="dialog in dialogs"
+        :key="dialog"
+        v-model="dialog.data"
+        ref="dialog"
+      />
+      {{ dialog }}
+    </div>
   </div>
   <ConfirmDialog></ConfirmDialog>
 </template>
@@ -193,6 +205,7 @@ export default {
       client: {},
       clientService: null,
       employees: null,
+      emplyee: {},
     };
   },
 
@@ -286,6 +299,12 @@ export default {
         })
 
         .then((response) => (this.employees = response.data.items));
+    },
+
+    openEditEmployee(slotProps, employee) {
+      console.log("emp data", slotProps);
+      this.emplyee = { ...employee };
+      this.$refs.dialog.showModel = true;
     },
     gemData() {
       this.gemService = new GemsService();

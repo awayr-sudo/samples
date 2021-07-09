@@ -266,7 +266,9 @@ const prospects = defineAsyncComponent(
   () => import("@/views/pages/employees/Employee.vue")
 );
 
-
+const clients = defineAsyncComponent(
+  () => import("@/views/pages/clients/Client.vue")
+);
 import mitt from 'mitt';
 const emitter = mitt();
 app.config.globalProperties.emitter = emitter;
@@ -277,6 +279,7 @@ app.component('payables', payables)
 app.component('dashboard', dashboard)
 app.component('payroll', payroll)
 app.component('prospects', prospects)
+app.component('clients', clients)
 
 
 

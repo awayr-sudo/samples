@@ -24,7 +24,12 @@ export default class CustomersService extends ApiService {
       label: "Add New Employee",
       icon: PrimeIcons.LIST,
     },
-
+    {
+      key: "client.add",
+      label: "Add New Client",
+      icon: PrimeIcons.LIST,
+    },
+   
   ];
   constructor() {
     super();
