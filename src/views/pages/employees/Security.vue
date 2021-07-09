@@ -29,18 +29,18 @@
       </Column>
       <Column field="type" header="Type">
         <template #body>
-          <base-input type="text" v-model="service" />
+          <base-input type="text" v-model="service" name="security_type"/>
         </template>
       </Column>
       <Column field="name" header="Name">
         <template #body>
-          <base-input type="text" v-model="service" />
+          <base-input type="text" v-model="service" name="security_name"/>
         </template>
       </Column>
 
-      <Column field="decription" header="Decription">
+      <Column field="description" header="Description">
         <template #body>
-          <base-input type="text" v-model="service" />
+          <base-input type="text" v-model="service" name="security_description"/>
         </template>
       </Column>
       <Column headerStyle="width: 3rem">

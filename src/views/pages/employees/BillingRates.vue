@@ -29,7 +29,7 @@
       </Column>
       <Column field="name" header="Service" headerStyle="width: 100%">
         <template #body>
-          <base-input type="text" v-model="service" />
+          <base-input type="text" v-model="service" name="billing"/>
         </template>
       </Column>
       <Column field="Date" header="Base" headerStyle="width: 15rem"> </Column>
@@ -79,7 +79,7 @@
       </Column>
       <Column field="name" header="Service" headerStyle="width: 100%">
         <template #body>
-          <base-input type="text" v-model="service" />
+          <base-input type="text" v-model="service" name="billing_name"/>
         </template>
       </Column>
       <Column field="Date" header="Base" headerStyle="width: 15rem"> </Column>

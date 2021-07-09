@@ -1,6 +1,5 @@
 <template>
   <div class="home-view">
-
     <Toolbar class="p-mb-3">
       <template #left>
         <span class="dashboard-text">Dashboard</span>
@@ -16,7 +15,104 @@
         />
       </template>
     </Toolbar>
+    <div class="p-col-12 p-md-6 p-lg-6">
+      <Form :validation-schema="schema">
+        <Panel header="Client In Progress">
+          <DataTable :value="clients" responsiveLayout="scroll">
+            <Column field="display_name" header="Name"></Column>
 
+            <Column header="Status">
+              <template #body="slotProps">
+                <span
+                  :class="'customer-badge status-' + slotProps.data.status"
+                  >{{ slotProps.data.status }}</span
+                >
+                <span v-if="slotProps.data.status == 11" class="p-ml-2"
+                  >Waiting For Approval</span
+                >
+                <span v-if="slotProps.data.status == 10" class="p-ml-2"
+                  >Reject</span
+                >
+                <span v-if="slotProps.data.status == 12" class="p-ml-2"
+                  >Approved</span
+                >
+                <div v-if="slotProps.data.reason != null">
+                  <!-- {{ slotProps.data.reason.reason }} -->
+                </div>
+                <div
+                  class="p-field p-grid p-mt-2"
+                  v-if="
+                    slotProps.data.status == 11 || slotProps.data.status == 8
+                  "
+                >
+                  <label>Leave a comment</label>
+                  <div class="p-col">
+                    <BaseTextArea
+                      type="text"
+                      :name="'reason'"
+                      v-model="reason"
+                      :autoResize="true"
+                      className="width-100"
+                      rows="2"
+                      cols="20"
+                    />
+                  </div>
+                </div>
+              </template>
+            </Column>
+            <Column header="">
+              <template #body="slotProps">
+                <Button
+                  v-if="slotProps.data.status == 11"
+                  label="Accept"
+                  class="p-button-raised"
+                  @click="accept(slotProps.data)"
+                />
+                <Button
+                  v-if="slotProps.data.status == 11"
+                  label="Reject"
+                  class="p-button-raised p-button-danger p-ml-2"
+                  @click="reject(slotProps.data)"
+                />
+                <Button
+                  v-if="slotProps.data.status == 8"
+                  label="Resubmit"
+                  class="p-button-raised p-button-danger p-ml-2"
+                  @click="requestForApproval(slotProps.data)"
+                />
+              </template>
+            </Column>
+          </DataTable>
+        </Panel>
+      </Form>
+      <div class="p-grid">
+        <div class="p-col-6 p-md-6 p-lg-6">
+          <Panel header="New Employees">
+            <DataTable :value="employees" responsiveLayout="scroll">
+              <Column field="display_name" header="Employee Name"></Column>
+              <Column field="fore_name" header="First Name"></Column>
+              <Column field="middle_name" header="Middle Name"></Column>
+              <Column field="sur_name" header="Last Name"></Column>
+              <Column
+                field="notification_email"
+                header="Notification Email"
+              ></Column>
+              <Column>
+                <template #header>
+                  <i class="pi pi-pencil"></i>
+                </template>
+                <template #body="slotProps">
+                  <i
+                    class="pi pi-pencil"
+                    @click="openEditEmployee(slotProps.data)"
+                  ></i>
+                </template>
+              </Column>
+            </DataTable>
+          </Panel>
+        </div>
+      </div>
+    </div>
     <draggable
       :list="gems"
       item-key="id"
@@ -36,56 +132,65 @@
         </div>
       </template>
     </draggable>
-  </div>
 
-  <div id="nav">
-    <Panel header="All gems" :toggleable="true" v-if="dialogs.length > 0">
-      <template v-for="dialog in dialogs" :key="dialog">
-        <Button
-          @click="toggleWindow(dialog)"
-          :label="dialog.data.label"
-          :icon="dialog.data.icon"
-        />
-        <span>
+    <div id="nav">
+      <Panel header="All gems" :toggleable="true" v-if="dialogs.length > 0">
+        <template v-for="dialog in dialogs" :key="dialog">
           <Button
-            icon="pi pi-times"
-            class="p-button-rounded p-button-danger p-button-text"
-            @click="closeWindow(dialog)"
+            @click="toggleWindow(dialog)"
+            :label="dialog.data.label"
+            :icon="dialog.data.icon"
           />
-        </span>
-      </template>
-    </Panel>
+          <span>
+            <Button
+              icon="pi pi-times"
+              class="p-button-rounded p-button-danger p-button-text"
+              @click="closeWindow(dialog)"
+            />
+          </span>
+        </template>
+      </Panel>
 
-    <router-view />
-    <Dialogss
-      v-for="dialog in dialogs"
-      :key="dialog"
-      v-model="dialog.data"
-      ref="dialog"
-    />
-    {{ dialog }}
+      <router-view />
+      <Dialogss
+        v-for="dialog in dialogs"
+        :key="dialog"
+        v-model="dialog.data"
+        ref="dialog"
+      />
+      {{ dialog }}
+    </div>
   </div>
-
-
+  <ConfirmDialog></ConfirmDialog>
 </template>
 
 <script>
 import Gem from "@/components/Gem.vue";
 import draggable from "vuedraggable";
 import GemsService from "../services/gems.service";
+import ClientService from "../services/client.service";
 import Dialogss from "../views/Dialogs.vue";
-import { inject } from 'vue'
+import { inject } from "vue";
+import axios from "axios";
+import { Form } from "vee-validate";
+import * as Yup from "yup";
 
 export default {
   components: {
     draggable,
     Gem,
     Dialogss,
-    
+    Form,
   },
-  inject: ['location', 'geolocation'],
+  inject: ["location", "geolocation"],
   data() {
+    const schema = Yup.object().shape({
+      reason1: Yup.string()
+        .min(1)
+        .required("Please Enter any reason"),
+    });
     return {
+      schema: schema,
       active: false,
       removeGemsDialog: false,
       gems: null,
@@ -95,12 +200,20 @@ export default {
       Service: null,
       title: null,
       dialogs: [],
-       gInfos: [],
+      gInfos: [],
+      clients: null,
+      client: {},
+      clientService: null,
+      employees: null,
+      emplyee: {},
     };
   },
 
   mounted() {
+    this.getclients();
+    this.getEmployees();
     this.gemData();
+
     this.emitter.on("open-gem", (event) => {
       console.log("my-event", event);
       this.openWindow(event.item);
@@ -108,6 +221,91 @@ export default {
   },
 
   methods: {
+    getclients() {
+      this.clientService = new ClientService();
+      this.clientService
+        .get()
+        .then((data) => {
+          this.clients = data.items;
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    accept(payload, slotProps) {
+      alert("accept");
+      console.log("client", slotProps);
+      // this.$confirm.require({
+      //   message: "Are you sure you want to Approve",
+      //   header: "Confirmation",
+      //   icon: "pi pi-exclamation-triangle",
+      //   accept: () => {
+      //     // payload.status = 12;
+      //     axios
+      //       .post(`http://api.epicai.com/clients/accept` + slotProps.id, payload, {
+      //         headers: {
+      //           Authorization: `Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV`,
+      //           "Content-Type": "application/json",
+      //         },
+      //       })
+      //       .then((response) => {
+      //         this.getclients();
+      //         console.log("response", response);
+      //       });
+      //   },
+      //   reject: () => {
+      //     console.log("reject");
+      //   },
+      // });
+    },
+    reject(payload, slotProps) {
+      console.log("fdsfs", slotProps);
+      console.log("payload", payload);
+      // this.$confirm.require({
+      //   message: "Are you sure you want to Approve",
+      //   header: "Confirmation",
+      //   icon: "pi pi-exclamation-triangle",
+      //   accept: () => {
+      //     payload.status = 12;
+      //     axios
+      //       .post(
+      //         `http://api.epicai.com/clients/accept` + payload.user_id,
+      //         payload,
+      //         {
+      //           headers: {
+      //             Authorization: `Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV`,
+      //             "Content-Type": "application/json",
+      //           },
+      //         }
+      //       )
+      //       .then((response) => {
+      //         this.getclients();
+      //         console.log("response", response);
+      //       });
+      //   },
+      //   reject: () => {
+      //     console.log("reject");
+      //   },
+      // });
+    },
+
+    getEmployees() {
+      axios
+        .get(`http://api.adidas.epicai.com/employees`, {
+          headers: {
+            Authorization: `Bearer GaSHN9lhDmG-0-1IieVmCP-eIo-3wXLt`,
+          },
+        })
+
+        .then((response) => (this.employees = response.data.items));
+    },
+
+    openEditEmployee(slotProps, employee) {
+      console.log("emp data", slotProps);
+      this.emplyee = { ...employee };
+      this.$refs.dialog.showModel = true;
+    },
     gemData() {
       this.gemService = new GemsService();
       this.gemService
@@ -118,6 +316,13 @@ export default {
         .catch((error) => {
           console.error(error);
         });
+    },
+    editClient() {
+      alert("sdfgsd");
+      this.emitter.on("open-gem", (event) => {
+        console.log("my-event", event);
+        this.openWindow(event.item);
+      });
     },
     openWindow(data) {
       console.log("data", data);
@@ -136,13 +341,6 @@ export default {
     toggleWindow(data) {
       data.data.isVisible = !data.data.isVisible;
     },
-    mouseover: function() {
-      this.active = false;
-    },
-    mouseleaves: function() {
-      this.active = false;
-    },
-
     removeGems(gem) {
       this.$confirm.require({
         message: "Are you sure you want to proceed?",
@@ -162,17 +360,13 @@ export default {
         },
       });
     },
-
-    changeColor() {
-      this.isActive = !this.isActive;
-    },
-    changeColor1() {
-      this.isActive1 = !this.isActive1;
-    },
     addGems(gem) {
-      this.$emit("open-window", {
-      
-      });
+      this.$emit("open-window", {});
+    },
+    showAccept(client) {
+      this.client = { ...client };
+      this.accept = true;
+      console.log("clients", client);
     },
   },
 };
@@ -218,5 +412,11 @@ export default {
       width: 86px !important;
     }
   }
+}
+.customer-badge.status-10 {
+  color: red;
+}
+.customer-badge.status-11 {
+  color: yellow;
 }
 </style>

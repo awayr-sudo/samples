@@ -37,7 +37,7 @@
               >Display Name</label
             >
             <div class="p-col">
-              <base-input type="text" v-model="test" />
+              <base-input type="text" v-model="test" name="contacts_display_name"/>
             </div>
           </div>
         </template>
@@ -51,13 +51,13 @@
           <div class="p-field p-grid ">
             <span class="p-col-5 p-pt-2 p-pl-5">Title</span>
             <div class="p-col-7">
-              <base-input type="text" />
+              <base-input type="text" name="contacts_title"/>
             </div>
           </div>
           <div class="p-field p-grid ">
             <span class="p-col-5 p-pt-2 p-pl-5">Full Contact Name</span>
             <div class="p-col-7">
-              <base-input type="text" />
+              <base-input type="text" name="contacts_contact_name"/>
             </div>
           </div>
           <div class="p-field p-grid ">
@@ -70,7 +70,7 @@
             </div>
 
             <div class="p-col-7">
-              <base-input type="text" />
+              <base-input type="text" name="contact_number"/>
             </div>
           </div>
           <div class="p-field p-grid ">
@@ -83,7 +83,7 @@
             </div>
 
             <div class="p-col-7">
-              <base-input type="text" />
+              <base-input type="text" name="contact_fax"/>
             </div>
           </div>
           <div class="p-field p-grid ">
@@ -96,7 +96,7 @@
             </div>
 
             <div class="p-col-7">
-              <base-input type="text" />
+              <base-input type="text" name="contact_name"/>
             </div>
           </div>
           <div class="p-field p-grid ">
@@ -109,7 +109,7 @@
             </div>
 
             <div class="p-col-7">
-              <base-input type="text" />
+              <base-input type="text" name="contact_website"/>
             </div>
           </div>
            <div class="p-field p-grid">
@@ -117,16 +117,7 @@
           >Address</label
         >
         <div class="p-col-12 p-md-7">
-          <!-- <BaseDropdown
-              v-model="description"
-              :options="descriptions"
-              optionLabel="display_name"
-              optionValue="id"
-              placeholder="Select Description"
-              name="description"
-              :icon="true"
-              :addon="true"
-            /> -->
+        
           <Dropdown
             v-model="selectedCity1"
             :options="cities"
@@ -144,7 +135,7 @@
                 <base-check-box
                   :modelValue="alert"
                   id="alert"
-                  name="alert"
+                  name="contact_isPrimary"
                   v-model="alert"
                   :value="alert"
                   checked="true"

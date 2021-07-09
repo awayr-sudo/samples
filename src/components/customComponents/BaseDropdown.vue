@@ -20,15 +20,11 @@
         :filter="filter"
         @input="handleChange"
         @change="checkChange"
-        
         :disabled="disabled"
         class="base"
       />
       <!-- {{inputValue}}---{{modelValue}} -->
-      <span
-        class="p-inputgroup-addon"
-       
-      >
+      <span class="p-inputgroup-addon" v-if="btnEdit">
         <i
           class="pi pi-pencil cursor-pointer"
           v-tooltip.bottom="'Click here to edit'"
@@ -43,7 +39,7 @@
         ></i>
       </span>
     </div>
-          
+
     <p class="help-message" v-show="errorMessage">{{ errorMessage }}</p>
   </div>
 </template>
@@ -215,8 +211,11 @@ div.has-error .help-message {
 .width-72 {
   width: 72% !important;
 }
-.base.p-inputgroup .p-inputtext, .p-fluid .p-inputgroup .p-inputtext, .p-inputgroup .p-inputwrapper, .p-fluid .p-inputgroup .p-input {
-    flex: 1 1 auto;
-    width: 0% !important;
+.base.p-inputgroup .p-inputtext,
+.p-fluid .p-inputgroup .p-inputtext,
+.p-inputgroup .p-inputwrapper,
+.p-fluid .p-inputgroup .p-input {
+  flex: 1 1 auto;
+  width: 0% !important;
 }
 </style>

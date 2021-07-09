@@ -31,7 +31,7 @@ import Dialog from 'primevue/dialog';
 import Dropdown from 'primevue/dropdown';
 import Fieldset from 'primevue/fieldset';
 import FileUpload from 'primevue/fileupload';
-
+import Timeline from 'primevue/timeline';
 import InlineMessage from 'primevue/inlinemessage';
 import Inplace from 'primevue/inplace';
 import InputMask from 'primevue/inputmask';
@@ -172,13 +172,12 @@ app.component('AutoComplete', AutoComplete);
 app.component('Avatar', Avatar);
 app.component('avatargroup', AvatarGroup);
 app.component('TreeSelect', TreeSelect);
-
 app.component('Breadcrumb', Breadcrumb);
 app.component('Button', Button);
 app.component('Calendar', Calendar);
 app.component('Card', Card);
 app.component('Carousel', Carousel);
-
+app.component('Timeline', Timeline);
 app.component('Checkbox', Checkbox);
 app.component('Chips', Chips);
 app.component('ColorPicker', ColorPicker);
@@ -267,7 +266,9 @@ const prospects = defineAsyncComponent(
   () => import("@/views/pages/employees/Employee.vue")
 );
 
-
+const clients = defineAsyncComponent(
+  () => import("@/views/pages/clients/Client.vue")
+);
 import mitt from 'mitt';
 const emitter = mitt();
 app.config.globalProperties.emitter = emitter;
@@ -278,6 +279,7 @@ app.component('payables', payables)
 app.component('dashboard', dashboard)
 app.component('payroll', payroll)
 app.component('prospects', prospects)
+app.component('clients', clients)
 
 
 

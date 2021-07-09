@@ -37,7 +37,7 @@
               >Display Name</label
             >
             <div class="p-col">
-              <base-input type="text" v-model="test" />
+              <base-input type="text" v-model="test" name="address_display_name"/>
             </div>
           </div>
         </template>
@@ -51,15 +51,7 @@
           <div class="p-field p-grid ">
             <span class="p-col-5 f-w-b">Address</span>
             <div class="p-col-7">
-              <BaseTextArea
-                name="description"
-                type="text"
-                v-model="description"
-                :autoResize="true"
-                className="width-100"
-                rows="5"
-                cols="30"
-              />
+              c
             </div>
           </div>
           <div class="p-field p-grid ">
@@ -69,7 +61,7 @@
                 <base-check-box
                   :modelValue="address"
                   id="alert"
-                  name="alert"
+                  name="address_default"
                   v-model="address"
                   :value="address"
                   checked="true"
@@ -103,7 +95,7 @@
 </template>
 
 <script>
-import AddCalendar from './Calendar.vue'
+import AddCalendar from '../employees/Calendar.vue'
 export default {
   components: {AddCalendar},
   data() {
@@ -152,10 +144,11 @@ export default {
     toggle(event) {
       this.$refs.menu.toggle(event);
     },
-    addNewAdress() {
-      
-     this.$emit("add-new-address");
-      
+     addNewAdress() {
+      this.addresses.push({
+        test: "",
+      });
+       
     },
     collapseAll() {
       this.toggleable = false;

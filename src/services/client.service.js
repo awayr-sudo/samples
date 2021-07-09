@@ -1,7 +1,8 @@
 import { ApiService } from "./api.service";
 import { PrimeIcons } from "primevue/api";
-alert(23);
+
 export default class ClientService extends ApiService {
+ 
   template = "one";
   template2 = "two";
   gemItem = [
@@ -27,6 +28,7 @@ export default class ClientService extends ApiService {
 
   ];
   constructor() {
-    super();
+    super("clients?expand=addresses,contacts,contacts.contactItems,reason");
+    // clients?status=12&expand=addresses,contacts,contacts.contactItems,reason&id=61
   }
 }

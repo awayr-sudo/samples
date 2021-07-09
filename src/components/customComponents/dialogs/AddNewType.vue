@@ -57,8 +57,8 @@ export default {
   components: {Form},
   data() {
     const schema = Yup.object().shape({
-          displayName: Yup.string().required("Please enter Name"),
-           notificationEmail: Yup.string().required("Please select Email Notification"),  
+          displayName: Yup.string(1).required("Please enter Name"),
+            
     });
     return {
       showModal: false,

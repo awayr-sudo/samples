@@ -8,10 +8,6 @@ export class ApiService {
   constructor(moduleNode) {
     this.endpoint += moduleNode;
   }
-
-  getAge() {
-    return 52;
-  }
   get() {
     return axios
       .get(`${this.endpoint}`, {
@@ -31,11 +27,17 @@ export class ApiService {
       .then((res) => res.data);
   }
   post(payload) {
-    return axios.post(`${this.endpoint}`, payload);
+    return axios
+      .post(`${this.endpoint}`, payload, {
+        headers: {
+          Authorization: "Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV",
+        },
+      })
+      .then((res) => res.data);
   }
   put(payload) {
     return axios.put(`${this.endpoint}`, payload);
   }
 
- 
+
 }

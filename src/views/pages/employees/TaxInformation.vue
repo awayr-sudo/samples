@@ -10,7 +10,7 @@
             <base-check-box
               :modelValue="alert"
               id="alert"
-              name="alert"
+              name="federal_exempt"
               v-model="alert"
               :value="alert"
               checked="true"
@@ -29,6 +29,7 @@
             :options="cities"
             optionLabel="name"
             optionValue="code"
+            name="federal_status"
             placeholder="Select a City"
           />
         </div>
@@ -38,7 +39,7 @@
           >Federal Allowances</label
         >
         <div class="p-col-12 p-md-2">
-          <base-input type="number" />
+          <base-input type="number" name="federal_allowances"/>
         </div>
       </div>
       <div class="p-field p-grid">
@@ -46,7 +47,7 @@
           >Additional Witholdings</label
         >
         <div class="p-col-12 p-md-2">
-          <base-input type="number" />
+          <base-input type="number" name="federal_additional"/>
         </div>
       </div>
       <div class="p-field p-grid">
@@ -58,7 +59,7 @@
             <base-check-box
               :modelValue="alert"
               id="alert"
-              name="alert"
+              name="tax_fedral_unemployment"
               v-model="alert"
               :value="alert"
               checked="true"
@@ -76,7 +77,7 @@
             <base-check-box
               :modelValue="alert"
               id="alert"
-              name="alert"
+              name="tax_state"
               v-model="alert"
               :value="alert"
               checked="true"
@@ -104,7 +105,7 @@
           >State Allowances</label
         >
         <div class="p-col-12 p-md-2">
-          <base-input type="number" />
+          <base-input type="number" name="tax_state_allowances"/>
         </div>
       </div>
       <div class="p-field p-grid">
@@ -112,7 +113,7 @@
           >State Additional</label
         >
         <div class="p-col-12 p-md-2">
-          <base-input type="number" />
+          <base-input type="number" name="tax_state_additional"/>
         </div>
       </div>
       <div class="p-field p-grid">
@@ -127,7 +128,7 @@
               name="alert"
               v-model="alert"
               :value="alert"
-              checked="true"
+              checked="tax_ss"
             />
             <label class="check-box-text">Apply</label>
           </div>
@@ -142,7 +143,7 @@
             <base-check-box
               :modelValue="alert"
               id="alert"
-              name="alert"
+              name="tax_medicare"
               v-model="alert"
               :value="alert"
               checked="true"
@@ -160,7 +161,7 @@
             <base-check-box
               :modelValue="alert"
               id="alert"
-              name="alert"
+              name="tax_credit"
               v-model="alert"
               :value="alert"
               checked="true"

@@ -31,18 +31,18 @@
 
       <Column field="date" header="Date">
         <template #body>
-          <base-input type="text" v-model="service" />
+          <base-input type="text" v-model="service" name="imp_date"/>
         </template>
       </Column>
       <Column field="type" header="Type">
         <template #body>
-          <base-input type="text" v-model="service" />
+          <base-input type="text" v-model="service" name="imp_type"/>
         </template>
       </Column>
 
       <Column field="decription" header="Decription">
         <template #body>
-          <base-input type="text" v-model="service" />
+          <base-input type="text" v-model="service" name="imp_description"/>
         </template>
       </Column>
     </DataTable>
@@ -102,7 +102,7 @@ export default {
       this.$refs.menu.toggle(event);
     },
     addDates() {
-      alert("open dialog of dates");
+     
       this.importantdate.push({
         service: "",
       });
