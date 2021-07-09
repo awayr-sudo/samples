@@ -1,6 +1,7 @@
 <template>
+  <!-- TextInput -->
   <div
-    class="p-field TextInput "
+    class="p-field  "
     :class="{ 'has-error': !!errorMessage, success: meta.valid }"
     :style="{ display: type != 'hidden' ? '' : 'none' }"
   >
@@ -14,13 +15,11 @@
       :id="name"
       :type="type"
       v-model="inputValue"
-     
       @blur="handleBlur"
       :placeholder="placeholder"
       :class="className"
       :disabled="disabled"
       :readonly="readOnly"
-    
       :maxlength="maxLength"
     />
     <!-- {{ inputValue }}---{{ modelValue }} --{{ type }} -->
@@ -127,15 +126,12 @@ export default {
       }
     );
 
-   
-
     return {
       handleChange,
       handleBlur,
       errorMessage,
       inputValue,
       meta,
-      
     };
   },
 };
@@ -167,7 +163,6 @@ input:focus {
 
 .TextInput.has-error input:focus {
   border-color: red;
-  
 }
 
 .TextInput.has-error .help-message {
