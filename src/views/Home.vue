@@ -15,40 +15,76 @@
         />
       </template>
     </Toolbar>
-    <div class="p-d-grid">
-      <div class="p-col-6 p-md-6 p-lg-6">
-        <Panel header="Client In Progress">
-          <!-- <Timeline :value="clients">
-                <template #opposite="slotProps">
-                    <small class="p-text-secondary">{{slotProps.item.display_name}}</small>
-                </template>
-                <template #content="slotProps">
-                    {{slotProps.item.status}}
-                </template>
-            </Timeline> -->
-          <DataTable :value="clients" responsiveLayout="scroll">
-            <Column field="display_name" header="Name"></Column>
+    <div class="p-col-12 p-md-6 p-lg-6">
+      <Panel header="Client In Progress">
+        <DataTable :value="clients" responsiveLayout="scroll">
+          <Column field="display_name" header="Name"></Column>
 
-            <Column header="Status">
-              <template #body="slotProps">
-                <span
-                  :class="'customer-badge status-' + slotProps.data.status"
-                  >{{ slotProps.data.status }}</span
-                >
-              </template>
-            </Column>
-            <Column header="">
-              <template #body="">
-                <Button label="Accept" class="p-button-raised" />
-                <Button
-                  label="Reject"
-                  class="p-button-raised p-button-danger p-ml-2"
+          <Column header="Status">
+            <template #body="slotProps">
+              <span :class="'customer-badge status-' + slotProps.data.status">{{
+                slotProps.data.status
+              }}</span>
+              <span v-if="slotProps.data.status == 11" class="p-ml-2"
+                >Waiting For Approval</span
+              >
+              <span v-if="slotProps.data.status == 10" class="p-ml-2"
+                >Reject</span
+              >
+              <span v-if="slotProps.data.status == 12" class="p-ml-2"
+                >Approved</span
+              >
+              <div
+                class="p-field p-grid p-mt-2"
+                v-if="slotProps.data.status == 11 || slotProps.data.status == 8"
+              >
+                <label class="p-mb-0">Leave a comment</label>
+                <div class="p-col">
+
+                  
+                <BaseInput
+                  :name="'[' + slotProps.index + ']status'"
+                  type="text"
+                  placeholder="Ex. wrong information provided..."
+                  v-model="reason"
                 />
-              </template>
-            </Column>
-          </DataTable>
-        </Panel>
-      </div>
+                </div>
+              </div>
+
+              
+            </template>
+          </Column>
+          <Column header="">
+            <template #body="slotProps">
+              <Button
+                v-if="slotProps.data.status == 11"
+                label="Accept"
+                class="p-button-raised"
+                @click="reject(slotProps.data)"
+              />
+              <Button
+                v-if="slotProps.data.status == 11"
+                label="Reject"
+                class="p-button-raised p-button-danger p-ml-2"
+                @click="reject1(slotProps.data)"
+              />
+              <Button
+                v-if="slotProps.data.status == 8"
+                label="Resubmit"
+                class="p-button-raised p-button-danger p-ml-2"
+                @click="reject1(slotProps.data)"
+              />
+              <!-- <Button
+                label="Edit"
+                class="p-button-raised p-button-danger p-ml-2"
+                @click="editClient(slotProps.data)"
+              /> -->
+            </template>
+          </Column>
+        </DataTable>
+      </Panel>
+    <div class="p-d-grid">
+      
       <div class="p-col-6 p-md-6 p-lg-6">
         <Panel header="New Employees">
           <DataTable :value="employees" responsiveLayout="scroll">
@@ -100,7 +136,7 @@
       </template>
     </draggable>
   </div>
-
+  </div>
   <div id="nav">
     <Panel header="All gems" :toggleable="true" v-if="dialogs.length > 0">
       <template v-for="dialog in dialogs" :key="dialog">
@@ -128,12 +164,14 @@
     />
     {{ dialog }}
   </div>
+  <ConfirmDialog></ConfirmDialog>
 </template>
 
 <script>
 import Gem from "@/components/Gem.vue";
 import draggable from "vuedraggable";
 import GemsService from "../services/gems.service";
+import ClientService from "../services/client.service";
 import Dialogss from "../views/Dialogs.vue";
 import { inject } from "vue";
 import axios from "axios";
@@ -158,6 +196,9 @@ export default {
       dialogs: [],
       gInfos: [],
       clients: null,
+      client: {},
+      accept: false,
+      clientService: null,
       employees: null,
       emplyee: {},
     };
@@ -167,6 +208,7 @@ export default {
     this.getclients();
     this.getEmployees();
     this.gemData();
+
     this.emitter.on("open-gem", (event) => {
       console.log("my-event", event);
       this.openWindow(event.item);
@@ -175,13 +217,73 @@ export default {
 
   methods: {
     getclients() {
-      axios
-        .get(`http://api.epicai.com/clients`, {
-          headers: {
-            Authorization: `Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV`,
-          },
+      this.clientService = new ClientService();
+      this.clientService
+        .get()
+        .then((data) => {
+          this.clients = data.items;
+          console.log(data);
         })
-        .then((response) => (this.clients = response.data.items));
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    acceptClient(payload, client) {
+      this.client = { ...client };
+      // client.status = 10;
+      console.log("client status", client.status);
+
+      // this.$confirm.require({
+      //   message: "Are you sure you want to Approve",
+      //   header: "Confirmation",
+      //   icon: "pi pi-exclamation-triangle",
+      //   accept: () => {
+      //     payload.status = 12;
+      //     axios
+      //       .post(`http://api.epicai.com/clients/accept`, payload, {
+      //         headers: {
+      //           Authorization: `Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV`,
+      //           "Content-Type": "application/json",
+      //         },
+      //       })
+      //       .then((response) => {
+      //         this.getclients();
+      //         console.log("response", response);
+      //       });
+      //   },
+      //   reject: () => {
+      //     console.log("reject");
+      //   },
+      // });
+    },
+    reject(payload, slotProps) {
+      console.log("fdsfs", slotProps);
+      this.$confirm.require({
+        message: "Are you sure you want to Approve",
+        header: "Confirmation",
+        icon: "pi pi-exclamation-triangle",
+        accept: () => {
+          payload.status = 12;
+          axios
+            .post(
+              `http://api.epicai.com/clients/accept` + payload.user_id,
+              payload,
+              {
+                headers: {
+                  Authorization: `Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV`,
+                  "Content-Type": "application/json",
+                },
+              }
+            )
+            .then((response) => {
+              this.getclients();
+              console.log("response", response);
+            });
+        },
+        reject: () => {
+          console.log("reject");
+        },
+      });
     },
 
     getEmployees() {
@@ -212,6 +314,13 @@ this.$refs.dialog.showModel = true;
           console.error(error);
         });
     },
+    editClient() {
+      alert("sdfgsd");
+      this.emitter.on("open-gem", (event) => {
+        console.log("my-event", event);
+        this.openWindow(event.item);
+      });
+    },
     openWindow(data) {
       console.log("data", data);
       let props = data;
@@ -229,13 +338,6 @@ this.$refs.dialog.showModel = true;
     toggleWindow(data) {
       data.data.isVisible = !data.data.isVisible;
     },
-    mouseover: function () {
-      this.active = false;
-    },
-    mouseleaves: function () {
-      this.active = false;
-    },
-
     removeGems(gem) {
       this.$confirm.require({
         message: "Are you sure you want to proceed?",
@@ -255,15 +357,13 @@ this.$refs.dialog.showModel = true;
         },
       });
     },
-
-    changeColor() {
-      this.isActive = !this.isActive;
-    },
-    changeColor1() {
-      this.isActive1 = !this.isActive1;
-    },
     addGems(gem) {
       this.$emit("open-window", {});
+    },
+    showAccept(client) {
+      this.client = { ...client };
+      this.accept = true;
+      console.log("clients", client);
     },
   },
 };

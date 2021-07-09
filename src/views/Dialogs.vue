@@ -90,7 +90,7 @@ export default {
     modelValue: {
       handler(latest, old) {
         console.log("props", latest, old);
-       
+
         this.showModel = latest.isVisible;
       },
       deep: true,

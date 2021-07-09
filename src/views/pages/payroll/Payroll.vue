@@ -48,7 +48,11 @@
 
       <div class="p-field p-col-4">
         <label for="address">Month Fiscal Year Begins</label>
-        <BaseInput name="fiscal_year" type="number" v-model.number="fiscal_year" />
+        <BaseInput
+          name="fiscal_year"
+          type="number"
+          v-model.number="fiscal_year"
+        />
       </div>
 
       <div class="p-field p-col-12 p-md-4">
@@ -57,18 +61,21 @@
       </div>
       <div class="p-field p-col-12 p-md-4">
         <label for="state">Entity Type</label>
-        <!-- <base-dropdown
-          name="entity_type"
-          label="entity_type"
-          v-model="entity_type"
-          :options="serie"
-          :filter="true"
-          optionLabel="display_name"
-          optionValue="id"
-          placeholder="Select Series"
-          :btnCreate="false"
+        <!-- <Dropdown
+          v-model="selectedCity1"
+          :options="entity"
+          optionLabel="name"
+          optionValue="code"
+          placeholder="Select a City"
         /> -->
-        
+        <base-dropdown
+          name="entity_type"
+          :modelValue="entity_type"
+          :options="entity"
+          optionLabel="name"
+          optionValue="code"
+          :btnCreate="false"
+        />
       </div>
       <div class="p-field p-col-12 p-md-4">
         <label for="zip">Is not for profit?</label>
@@ -83,46 +90,50 @@
       </div>
       <div class="p-field p-col-12 p-md-4">
         <label for="zip">Folder</label>
-        <!-- <base-dropdown
-          name="series"
-          label="Series"
-          v-model="series"
-          :options="serie"
-          :filter="true"
-          optionLabel="display_name"
-          optionValue="id"
-          placeholder="Select Series"
+        <!-- <TreeSelect v-model="selectedNode" :options="nodes" placeholder="Select Item"></TreeSelect> -->
+        <base-dropdown
+          name="disk_uom"
+          :modelValue="disk_uom"
+          :options="disk"
+          optionLabel="name"
+          optionValue="code"
           :btnCreate="false"
-        /> -->
+        />
       </div>
       <div class="p-field p-col-12 p-md-4">
         <label for="zip">File Space</label>
-        <!-- <base-dropdown
-          name="series"
-          label="Series"
-          v-model="series"
-          :options="serie"
-          :filter="true"
-          optionLabel="display_name"
-          optionValue="id"
-          placeholder="Select Series"
-          :btnCreate="false"
-        /> -->
+        <div class="p-formgroup-inline">
+          <div class="p-field  p-mr-0">
+            <BaseInput
+              name="disk_space"
+              type="number"
+              v-model="disk_space"
+              class=" p-ml-0 p-mr-1"
+            />
+          </div>
+          <div class="p-field">
+            <base-dropdown
+              name="disk_uom"
+              :modelValue="disk_uom"
+              :options="disk"
+              optionLabel="name"
+              optionValue="code"
+              :btnCreate="false"
+            />
+          </div>
+        </div>
       </div>
       <div class="p-field p-col-12 p-md-4">
-      <label for="zip">Upload Imge</label>
-     <!-- <base-dropdown
-          name="series"
-          label="Series"
-          v-model="series"
-          :options="serie"
-          :filter="true"
-          optionLabel="display_name"
-          optionValue="id"
-          placeholder="Select Series"
-          :btnCreate="false"
-        /> -->
-    </div>
+        <label for="zip">Upload Imge</label>
+        <FileUpload
+          mode="basic"
+          name="demo[]"
+          url="./upload.php"
+          accept="image/*"
+          :maxFileSize="1000000"
+          @upload="onUpload"
+        />
+      </div>
     </div>
     <Button
       type="submit"
@@ -154,14 +165,35 @@ export default {
     return {
       schema: schema,
       articleId: null,
+      entity: [
+        { name: "C-Coporation", code: "NY" },
+        { name: "S-Corporation", code: "RM" },
+        { name: "Limited liability Company(LLC)", code: "LDN" },
+        { name: "Limited liability Partnership(LLp)", code: "IST" },
+        { name: "Partnership", code: "PRS" },
+        { name: "Not for Profit Organization", code: "PRS" },
+        { name: "Sole Proprietorship", code: "PRS" },
+        { name: "Other", code: "PRS" },
+      ],
+      disk: [
+        { name: "MB", code: "mb" },
+        { name: "GB", code: "gb" },
+        { name: "TB", code: "tb" },
+      ],
     };
   },
 
   methods: {
+    onUpload() {
+      this.$toast.add({
+        severity: "info",
+        summary: "Success",
+        detail: "File Uploaded",
+        life: 3000,
+      });
+    },
     submit(payload) {
       payload["npo"] = payload.npo ? 1 : 0;
-      
-      alert("create");
       axios
         .post(`http://api.epicai.com/clients`, payload, {
           headers: {
@@ -176,4 +208,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.file-space {
+  width: 100px !important;
+}
+</style>
