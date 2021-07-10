@@ -1,6 +1,5 @@
 <template>
   <Panel class :toggleable="true" :expandedKeys="expandedKeys">
-    
     <template #header class="draggable">
       <div>
         <button class="p-panel-header-icon p-link p-mr-2" @click="toggle">
@@ -12,7 +11,7 @@
           :model="service.gemItems"
           :popup="true"
         />
-        <span class="list-panel-heading">{{ data.title }}</span>
+        <span class="list-panel-heading">{{ title }}</span>
       </div>
     </template>
     <template #icons>
@@ -20,19 +19,21 @@
         <span class="pi pi-times"></span>
       </button>
     </template>
-
-    <default-template :data="data" />
+    <template-2 v-if="service.template == 2" :data="data" />
+    <default-template :data="data" v-else />
   </Panel>
 </template>
 
 <script>
-import SERVICES from "../services";
+import GemsService from "@/services/gems.service";
+import { getMyGemService } from "../services";
 
 // import clientGemServicevice from "../services/client.service";
 import defaultTemplate from "./gems/default.vue";
+import Template2 from "./gems/template2.vue";
 export default {
   props: ["data"],
-  components: { defaultTemplate },
+  components: { defaultTemplate, Template2 },
   provide() {
     return {
       service: this.service, //import("../services/customers.service"),
@@ -41,33 +42,33 @@ export default {
 
   data() {
     return {
-       
+      title: "dddf",
     };
   },
   beforeCreate() {
-    // console.log(s, s.toString());
-    // import("../services/customers.service.js").then((module) => {
-    //   // Do something with the module.
-    //   let m = module;
-    //   console.log(m.toString());
-    //   console.log(module);
-    // });
-    this.service = SERVICES[0];
+    this.service = getMyGemService(this.data.gem_id);
     console.log("service", this.service);
+    this.service.context = this;
     this.service.gemItems.forEach((element) => {
       element.command = (event) => {
+        event.item.service = this.service;
         this.emitter.emit("open-gem", event);
         // event.originalEvent: Browser event
         // event.item: Menuitem instance
         console.log("open event", event);
       };
     });
-    this.service.context = this;
 
     console.log("items", this.service.gemItems);
-  
   },
-  // mounted() {},
+  mounted() {
+    let gemService = new GemsService();
+    let gem = gemService.getGem(this.data.gem_id);
+
+    if (gem) {
+      this.title = gem.title;
+    }
+  },
   methods: {
     hideGem() {
       this.$emit("hide-gems", this.data);

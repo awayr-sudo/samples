@@ -1,6 +1,5 @@
 <template>
   <div class="home-view">
-  {{geolocation}}
     <Toolbar class="p-mb-3">
       <template #left>
         <span class="dashboard-text">Dashboard</span>
@@ -12,12 +11,11 @@
           label="Add Gem"
           icon="pi pi-plus"
           class="p-mr-2 add-gem-btn"
-          @click="openWindow"
+          @click="openGemsWindow"
         />
       </template>
     </Toolbar>
-{{gemService}}
-{{gems}}
+    <Panel header="All gems"> {{ gems }}</Panel>
     <draggable
       :list="gems"
       item-key="id"
@@ -66,8 +64,6 @@
     />
     {{ dialog }}
   </div>
-
-
 </template>
 
 <script>
@@ -77,16 +73,17 @@ import CustomerService from "../services/customers.service";
 import GemService from "../services/gems.service";
 
 import Dialogss from "../views/Dialogs.vue";
-import { inject } from 'vue'
+import { inject } from "vue";
+import GemsService from "../services/gems.service";
+import { PrimeIcons } from "primevue/api";
 
 export default {
   components: {
     draggable,
     Gem,
     Dialogss,
-    
   },
-  inject: ['location', 'geolocation'],
+  inject: ["location", "geolocation"],
   data() {
     return {
       active: false,
@@ -98,7 +95,7 @@ export default {
       Service: null,
       title: null,
       dialogs: [],
-       gInfos: [],
+      gInfos: [],
     };
   },
 
@@ -112,11 +109,20 @@ export default {
 
   methods: {
     gemData() {
-      this.gemService = new CustomerService();
-      this.gems = new GemService();
+      this.gemService = new GemService();
+      this.gems = this.gemService.userGems;
+    },
+    openGemsWindow() {
+      let gemsService = new GemsService();
+      gemsService.context = this;
+      let props = {
+        service: gemsService,
+        key: "listing",
+        label: "Add Gems",
+        icon: PrimeIcons.PLUS_CIRCLE,
+      };
 
-     console.log("gem data", this.gems)
-       
+      this.openWindow(props);
     },
     openWindow(data) {
       console.log("data", data);
@@ -169,53 +175,10 @@ export default {
       this.isActive1 = !this.isActive1;
     },
     addGems(gem) {
-      this.$emit("open-window", {
-      
-      });
+      this.$emit("open-window", {});
     },
   },
 };
 </script>
 
-<style lang="scss">
-.active {
-  background-color: red !important;
-}
-.active1 {
-  background-color: yellow !important;
-}
-.mr-4 {
-  margin-right: 6px;
-}
-.email-image {
-  width: 116px;
-  height: 87px;
-}
-.toolbar-fixed {
-  position: sticky;
-  top: 1px;
-  background: #f8f9fa;
-}
-.home-view {
-  .p-toolbar {
-    background: transparent;
-    border: none;
-    padding: 0.857rem 1rem;
-    border-radius: 3px;
-    .dashboard-text {
-      font-family: "Poppins", sans-serif;
-      font-weight: 500;
-      font-size: 22px;
-    }
-    .btn-up-down {
-      height: 30px;
-      width: 46px;
-    }
-
-    .add-gem-btn {
-      height: 30px;
-      width: 86px !important;
-    }
-  }
-}
-</style>
+<style lang="scss"></style>

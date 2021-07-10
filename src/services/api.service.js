@@ -1,16 +1,18 @@
 import axios from "axios";
+import { BaseService } from "./base.service";
 const baseUrl = "http://api.epicai.com/";
-export class ApiService {
+export class ApiService extends BaseService {
   endpoint = baseUrl;
+  favicon = "BlueSilhouette";
+  icon = "GroupOfPeople";
   context = null;
-
+  gemItems = [];
+  columns = [];
+  listingControls = [];
   // constructor
   constructor(moduleNode) {
+    super();
     this.endpoint += moduleNode;
-  }
-
-  getAge() {
-    return 52;
   }
   get() {
     return axios
@@ -31,30 +33,15 @@ export class ApiService {
       .then((res) => res.data);
   }
   post(payload) {
-    return axios.post(`${this.endpoint}`, payload);
+    return axios
+      .post(`${this.endpoint}`, payload, {
+        headers: {
+          Authorization: "Bearer JBluEz7CEoEtX-kpumSAOgpnXhz4oryV",
+        },
+      })
+      .then((res) => res.data);
   }
   put(payload) {
     return axios.put(`${this.endpoint}`, payload);
   }
-
-  // auth services
-  // logout() {
-  //     return axios.get("/auth/logout");
-  // }
-  // register(payload) {
-  //     return axios.post("/auth/register", payload);
-  // }
-  // login(email, password) {
-  //     return axios.post("/auth/login", { email, password });
-  // }
-  // resetPassword(password, passwordConfirmation, resetToken) {
-  //     return axios.post("/auth/password/reset", {
-  //         password: password,
-  //         password_confirmation: passwordConfirmation,
-  //         token: resetToken
-  //     });
-  // }
-  // forgotPassword(email) {
-  //     return axios.post("/auth/password/forgot", { email });
-  //     }
 }

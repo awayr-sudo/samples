@@ -1,12 +1,9 @@
-
 import { PrimeIcons } from "primevue/api";
 
 export default class CustomersService {
-  template = "one";
-  template2 = "two";
-  imageIcon=PrimeIcons.LIST;
+  template = 2;
+  icon = "GroupOfPeople";
   gemItems = [
-    
     {
       key: "customer.add",
       label: "Add Customer",
@@ -16,14 +13,35 @@ export default class CustomersService {
       separator: true,
     },
     {
-      key: "customer.listing",
+      key: "listing",
       label: "View All Customers",
       icon: PrimeIcons.LIST,
     },
-    
-   
   ];
-
+  columns = [
+    {
+      header: "Display Name",
+      icon: "pencil",
+      field: "display_name",
+    },
+    {
+      header: "Status",
+      icon: "tag",
+      field: "status",
+      template: (data) => {
+        console.log("mydata", data);
+        return this.parseStatus(data["status"]);
+      },
+    },
+    {
+      header: "Updated At",
+      icon: "calendar",
+      field: "updated_at",
+      template: (data) => {
+        return this.parseDate(data["updated_at"]);
+      },
+    },
+  ];
   // gemItems = [
   //   {
   //     label: 'Options',
@@ -45,5 +63,4 @@ export default class CustomersService {
   //     }
   //     ]
   //   },]
-
 }

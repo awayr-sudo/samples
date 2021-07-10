@@ -1,201 +1,111 @@
-
-export default class GemsService  {
- userGems = [
-    
-   
-{
-"id":16,
-"tab_id":2,
-"gem_id":21,
-"user_id":1,
-"data":{
-"type":"analog",
-"time_zone1":"one",
-"time_zone2":"400"
-},
-"created_at":1594805991,
-"updated_at":1594805991,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":17,
-"tab_id":2,
-"gem_id":21,
-"user_id":1,
-"data":null,
-"created_at":1594806015,
-"updated_at":1594806015,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":18,
-"tab_id":1,
-"gem_id":17,
-"user_id":1,
-"data":null,
-"created_at":1594821347,
-"updated_at":1594821347,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":19,
-"tab_id":1,
-"gem_id":17,
-"user_id":1,
-"data":null,
-"created_at":1594821347,
-"updated_at":1594821347,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":20,
-"tab_id":1,
-"gem_id":17,
-"user_id":1,
-"data":null,
-"created_at":1594821446,
-"updated_at":1594821446,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":21,
-"tab_id":1,
-"gem_id":17,
-"user_id":1,
-"data":null,
-"created_at":1594821446,
-"updated_at":1594821446,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":22,
-"tab_id":1,
-"gem_id":17,
-"user_id":1,
-"data":null,
-"created_at":1594821607,
-"updated_at":1594821607,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":23,
-"tab_id":1,
-"gem_id":17,
-"user_id":1,
-"data":null,
-"created_at":1594821607,
-"updated_at":1594821607,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":24,
-"tab_id":1,
-"gem_id":17,
-"user_id":1,
-"data":null,
-"created_at":1594821627,
-"updated_at":1594821627,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":25,
-"tab_id":1,
-"gem_id":17,
-"user_id":1,
-"data":null,
-"created_at":1594828425,
-"updated_at":1594828425,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":26,
-"tab_id":1,
-"gem_id":17,
-"user_id":1,
-"data":null,
-"created_at":1594828425,
-"updated_at":1594828425,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":27,
-"tab_id":1,
-"gem_id":58,
-"user_id":1,
-"data":null,
-"created_at":1594829317,
-"updated_at":1594829317,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":28,
-"tab_id":1,
-"gem_id":58,
-"user_id":1,
-"data":null,
-"created_at":1594829317,
-"updated_at":1594829317,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":29,
-"tab_id":1,
-"gem_id":23,
-"user_id":1,
-"data":null,
-"created_at":1594834024,
-"updated_at":1594834024,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":30,
-"tab_id":1,
-"gem_id":23,
-"user_id":1,
-"data":null,
-"created_at":1594834024,
-"updated_at":1594834024,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":31,
-"tab_id":1,
-"gem_id":17,
-"user_id":1,
-"data":null,
-"created_at":1594923616,
-"updated_at":1594923616,
-"created_by":1,
-"updated_by":1
-},
-{
-"id":32,
-"tab_id":1,
-"gem_id":17,
-"user_id":1,
-"data":null,
-"created_at":1594923616,
-"updated_at":1594923616,
-"created_by":1,
-"updated_by":1
-}
-
-    
-   
+import { PrimeIcons } from "primevue/api";
+import { ApiService } from "./api.service";
+import { GEMS } from "./gems";
+export default class GemsService extends ApiService {
+  columns = [
+    {
+      header: "Title",
+      icon: "pencil",
+      field: "title",
+    },
+    {
+      header: "Description",
+      icon: "tag",
+      field: "description",
+    },
+    {
+      header: "Hidden?",
+      icon: "hidden",
+      field: "is_hidden",
+      template: (data) => {
+        return data.is_hidden > 0 ? "Yes" : "No";
+      },
+    },
   ];
+  listingControls = [
+    {
+      key: "employee.add",
+      label: "Add Gem",
+      icon: PrimeIcons.PLUS_CIRCLE,
+      action: () => {
+        console.log("click happened");
+      },
+    },
+    {
+      key: "gem.add",
+      label: "Details",
+      icon: PrimeIcons.PLUS_CIRCLE,
+      action: () => {
+        console.log("Details");
+      },
+    },
+  ];
+
+  userGems = [
+    {
+      id: 1,
+      tab_id: 1,
+      gem_id: 17,
+      user_id: 1,
+      data: null,
+      created_at: 1594821607,
+      updated_at: 1594821607,
+      created_by: 1,
+      updated_by: 1,
+    },
+    {
+      id: 2,
+      tab_id: 1,
+      gem_id: 17,
+      user_id: 1,
+      data: null,
+      created_at: 1594821607,
+      updated_at: 1594821607,
+      created_by: 1,
+      updated_by: 1,
+    },
+    {
+      id: 3,
+      tab_id: 1,
+      gem_id: 76,
+      user_id: 1,
+      data: null,
+      created_at: 1594821607,
+      updated_at: 1594821607,
+      created_by: 1,
+      updated_by: 1,
+    },
+    {
+      id: 4,
+      tab_id: 1,
+      gem_id: 34,
+      user_id: 1,
+      data: null,
+      created_at: 1594821607,
+      updated_at: 1594821607,
+      created_by: 1,
+      updated_by: 1,
+    },
+    {
+      id: 5,
+      tab_id: 1,
+      gem_id: 17,
+      user_id: 1,
+      data: null,
+      created_at: 1594821607,
+      updated_at: 1594821607,
+      created_by: 1,
+      updated_by: 1,
+    },
+  ];
+
+  getGem(gemId) {
+    // console.log('gemId', gemId);
+    console.log(GEMS);
+    let item = GEMS.find((item) => item.id === gemId);
+    return item;
+  }
+  constructor() {
+    super("gems");
+  }
 }

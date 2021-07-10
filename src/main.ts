@@ -235,6 +235,12 @@ app.component('Divider', Divider)
 // custom elements
 
 
+const gemIcon = defineAsyncComponent(
+  () => import("@/components/GemIcon.vue")
+);
+const listingComponent = defineAsyncComponent(
+  () => import("@/components/core/listing.vue")
+);
 const comp1Vue = defineAsyncComponent(
   () => import("@/views/comp1.vue")
 );
@@ -259,8 +265,12 @@ const prospects = defineAsyncComponent(
 )
 
 import mitt from 'mitt';
+import moment from 'moment';
 const emitter = mitt();
 app.config.globalProperties.emitter = emitter;
+
+app.component('GemIcon', gemIcon);
+app.component('listing', listingComponent);
 app.component('comp2Vue', comp2Vue)
 app.component('comp1Vue', comp1Vue)
 app.component('accounting', accounting)
@@ -269,7 +279,25 @@ app.component('dashboard', dashboard)
 app.component('payroll', payroll)
 app.component('prospects', prospects)
 
+app.config.globalProperties.$filters = {
+  fileSize(bytes: any, decimals: any) {
+    if (bytes === 0) return "0 GB";
+      if (isNaN(parseInt(bytes))) return bytes;
+      if (typeof bytes === "string") bytes = parseInt(bytes);
+      if (bytes === 0) return "0";
+      const k = 1000;
+      const dm = decimals + 1 || 3;
+      const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return `${parseFloat((bytes / k ** i).toFixed(dm))} ${sizes[i]}`;
+  },
 
+  dateFormat(date: any) {
+    return date != null ? moment.unix(date).format("MM/DD/YYYY") : ''
+  },
+
+
+}
 
 app.use(ConfirmationService);
 //custom elements

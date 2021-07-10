@@ -1,18 +1,20 @@
 <template>
-  <!-- {{data}} -->
-  <img src="../assets/image/imageletter.png" alt class="email-image" />
-  <!-- {{ service.imageIcon }}
- <span :class="service.imageIcon"></span> -->
-  <span>{{ service.gemItems }}</span>
+  <img :src="path" :alt="icon" />
 </template>
 <script>
 export default {
   inject: ["service"],
-  props: ["data"],
+  props: ["icon", "type"],
   data() {
-    return {
-     
-    };
+    return {};
+  },
+  computed: {
+    path() {
+      let pt = "../assets/images/icons/";
+      if ("large" == this.type || !this.type) pt += "128x128";
+      if ("favicon" == this.type) pt += "16x16";
+      return pt + "/" + this.icon + ".png";
+    },
   },
 };
 </script>

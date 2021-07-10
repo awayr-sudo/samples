@@ -1,11 +1,32 @@
 import { ApiService } from "./api.service";
 import { PrimeIcons } from "primevue/api";
-alert(23);
 export default class ClientService extends ApiService {
   template = "one";
-  template2 = "two";
-  gemItem = [
-
+  columns = [
+    {
+      header: "Display Name",
+      icon: "pencil",
+      field: "display_name",
+    },
+    {
+      header: "Status",
+      icon: "tag",
+      field: "status",
+      template: (data) => {
+        console.log("mydata", data);
+        return this.parseStatus(data["status"]);
+      },
+    },
+    {
+      header: "Updated At",
+      icon: "calendar",
+      field: "updated_at",
+      template: (data) => {
+        return this.parseDate(data["updated_at"]);
+      },
+    },
+  ];
+  gemItems = [
     {
       key: "customer.add",
       label: "Add Client",
@@ -15,8 +36,8 @@ export default class ClientService extends ApiService {
       separator: true,
     },
     {
-      key: "customer.listing",
-      label: "View All Client",
+      key: "listing",
+      label: "View All Clients",
       icon: PrimeIcons.LIST,
     },
     {
@@ -24,9 +45,8 @@ export default class ClientService extends ApiService {
       label: "View BookMart Client",
       icon: PrimeIcons.LIST,
     },
-
   ];
   constructor() {
-    super();
+    super("clients");
   }
 }

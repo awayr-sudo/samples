@@ -8,11 +8,14 @@
   >
     <template #header>
       <label class="gem-main-hiding">
+        <GemIcon type="favicon" :icon="modelValue.service.favicon" />
         <i class="pi pi-file p-mr-2" style="fontSize: 1rem"></i>
 
         <span class="dormer-heading " style="color:black">{{
           modelValue.label
         }}</span>
+        {{ currentTabComponent }}dddd
+
         <router-link
           :to="{ path: '/about', query: { dialog: 'signature' } }"
           target="_blank"
@@ -29,9 +32,8 @@
         @click="closeBasic"
       />
     </template>
-    {{ currentTabComponent }}dddd
 
-    <keep-alive>
+    <keep-alive v-if="currentTabComponent">
       <component :is="currentTabComponent"> </component>
     </keep-alive>
     <!-- <template #footer>
@@ -47,12 +49,13 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import modelComponent from "./comp2.vue";
-
 export default {
-  props: ["modelValue", "gems"],
-
+  props: ["modelValue"],
+  provide() {
+    return {
+      service: this.modelValue.service, //import("../services/customers.service"),
+    };
+  },
   data() {
     return {
       comps: {
@@ -60,7 +63,8 @@ export default {
         accounts: "accounting",
         payroll: "payroll",
         payable: "payable",
-        prospects: "prospects"
+        prospects: "prospects",
+        listing: "listing",
       },
       gemData: null,
       showModel: this.modelValue.isVisible,
@@ -71,11 +75,12 @@ export default {
   },
   computed: {
     currentTabComponent() {
-      return this.modelValue.key == "employee.add"
-        ? this.comps.prospects
-        : this.comps.payroll;
-      // return this.gems[this.$route.query.dialog]
-      
+      let comp = null;
+      if (this.comps[this.modelValue.key]) {
+        comp = this.comps[this.modelValue.key];
+      }
+
+      return comp;
     },
   },
   watch: {
@@ -86,7 +91,7 @@ export default {
       if (newVal != this.modelValue.isVisible) {
         this.$emit("update:modelValue", tmpValue);
         console.log("showModel updated", newVal);
-      } 
+      }
     },
 
     modelValue: {
