@@ -76,10 +76,55 @@ export default class ClientService extends ApiService {
     },
     {
       key: "customer.listing",
-      label: "View BookMart Client",
+      label: "View BookMark Client",
       icon: PrimeIcons.LIST,
     },
   ];
+  sideNav = [
+    {
+      key: "all.signatures",
+      label: "View All Signatures",
+      icon: PrimeIcons.LIST,
+      type: 1
+    },
+     {
+      key: "all.bookmarks",
+      label: "View My Bookmarks",
+      icon: PrimeIcons.BOOKMARK,
+      type: 2
+    },
+     {
+      key: "inactive.signatures",
+      label: "View Inactive Signatures",
+      icon: PrimeIcons.BAN,
+      type: 3
+    },
+  ];
+  dropItems = [
+       { name: "ASSOCIATION", value: "NY" }
+       
+
+  ];
+  // gemItem = [
+
+  //   {
+  //     key: "client.add",
+  //     label: "Add new Client ",
+  //     icon: PrimeIcons.PLUS_CIRCLE,
+  //   },
+  //   {
+  //     separator: true,
+  //   },
+  //   {
+  //     key: "client.listing",
+  //     label: "View All Client",
+  //     icon: PrimeIcons.LIST,
+  //   },
+  //   {
+  //     key: "client.bookmark",
+  //     label: "View Bookmark Client",
+  //     icon: PrimeIcons.TIMES,
+  //   },
 
   constructor() {
     super("clients");

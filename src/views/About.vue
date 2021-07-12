@@ -29,6 +29,7 @@ data(){
     accounts: 'comp2Vue',
     payroll: 'comp2Vue',
     payable: 'comp1Vue',
+    prospects: 'prospects'
   },  
       // scurrentTabComponent: gems[this.$route.query.domain]
     

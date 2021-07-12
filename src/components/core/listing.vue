@@ -2,10 +2,67 @@
   <!-- {{gemData}} -->
   <Splitter>
     <div class="p-grid">
-      <SplitterPanel :size="20" :minSize="10"> Sample Menu </SplitterPanel>
+      <SplitterPanel :size="20" :minSize="10">
+        <Panel>
+          <template #header>
+            <label for="heading" class="panel-main-heading">Navigation {{getType}}</label>
+          </template>
+          <!-- {{gemData}} -->
+          <div class="panel-sub-heading">
+            <Dropdown
+              v-model="selectedType"
+              :options="this.service.dropItems"
+              optionLabel="name"
+              optionValue="value"
+              class="dropdown-width"
+            />
+          </div>
+
+          <div class="side-panel-body">
+            <ul class="no-bullets">
+              <li
+                class="panel-list"
+                v-for="sideItems in this.service.sideNav"
+                :key="sideItems"
+                @click="showItem(sideItems.type)"
+              >
+                <span :class="sideItems.icon"></span>
+                <span class="p-ml-2"> {{ sideItems.label }}</span>
+              </li>
+            </ul>
+          </div>
+          
+        </Panel>
+      </SplitterPanel>
 
       <SplitterPanel :size="80" :minSize="20">
         <div class>
+          <DataTable :value="products" v-if="!items">
+            <Column headerStyle="width: 3rem;">
+              <template #body>
+                <Skeleton></Skeleton>
+              </template>
+            </Column>
+            <Column>
+              <template #header> </template>
+              <template #body>
+                <Skeleton></Skeleton>
+              </template>
+            </Column>
+            <Column>
+              <template #header> </template>
+              <template #body>
+                <Skeleton></Skeleton>
+              </template>
+            </Column>
+            <Column>
+              <template #header> </template>
+              <template #body>
+                <Skeleton></Skeleton>
+              </template>
+            </Column>
+          </DataTable>
+
           <DataTable
             :value="items"
             responsiveLayout="scroll"
@@ -13,9 +70,10 @@
             :paginator="true"
             :rows="10"
             class="p-datatable-sm"
+            style="height: 100%"
             data-key="id"
             paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-            :rowsPerPageOptions="[10, 15, 20]"
+            :rowsPerPageOptions="[10, 20, 30]"
             currentPageReportTemplate="Viewing Records {first}-{last} of {totalRecords} PerPage"
             v-model:filters="filters1"
             filterDisplay="menu"
@@ -50,7 +108,9 @@
                   >
                     <Button
                       icon="pi pi-clone"
-                      class="p-button-outlined p-button-sm p-button-secondary p-mr-2"
+                      class="
+                        p-button-outlined p-button-sm p-button-secondary p-mr-2
+                      "
                     />
                   </router-link>
                 </span>
@@ -59,6 +119,7 @@
             <Column headerStyle="width: 3rem;">
               <template #header></template>
               <template #body class="p-d-flex p-jc-center">
+                
                 <div class="width-100 t-a-c">
                   <i
                     class="pi pi-angle-down"
@@ -75,6 +136,7 @@
                 </div>
               </template>
             </Column>
+
             <Column
               v-for="col of this.service.columns"
               :field="col.field"
@@ -87,6 +149,7 @@
                 {{ col.template(slotProps.data) }}
               </template>
             </Column>
+
             <template #paginatorLeft>
               <i class="pi pi-globe"></i>
             </template>
@@ -135,10 +198,11 @@ export default {
       filters1: null,
       book: false,
       inactive: false,
-      selectedType: "association",
+      selectedType: null,
       displayDescription: false,
       items: null,
-      type: [{ name: "Association", value: "association" }],
+     
+      getType: null,
       products: [
         { name: "New York", code: "NY", date: "20-01-1010" },
         { name: "Rome", code: "RM", date: "20-01-1010" },
@@ -212,10 +276,19 @@ export default {
     this.service.get().then((response) => {
       console.log("data", response);
       this.items = response.items;
+      console.log("this service", this.service.listingControls);
     });
     this.initFilters1();
   },
   methods: {
+
+showItem(types){
+console.log("type",types )
+return this.getType = types
+},
+
+
+
     listingControlClicked(event, btn) {
       console.log("cl", event, btn);
       btn.action();
@@ -301,5 +374,8 @@ ul.no-bullets {
 .db-icon {
   padding-left: 12px;
   font-size: 2rem;
+}
+.cursor{
+  cursor: pointer;
 }
 </style>
