@@ -11,7 +11,7 @@
           <div class="panel-sub-heading">
             <Dropdown
               v-model="selectedType"
-              :options="type"
+              :options="this.service.dropItems"
               optionLabel="name"
               optionValue="value"
               class="dropdown-width"
@@ -198,10 +198,10 @@ export default {
       filters1: null,
       book: false,
       inactive: false,
-      selectedType: "association",
+      selectedType: null,
       displayDescription: false,
       items: null,
-      type: [{ name: "Association", value: "association" }],
+     
       getType: null,
       products: [
         { name: "New York", code: "NY", date: "20-01-1010" },

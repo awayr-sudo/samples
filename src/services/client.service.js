@@ -65,7 +65,12 @@ export default class ClientService extends ApiService {
       icon: PrimeIcons.BAN,
       type: 3
     },
-  ]
+  ];
+  dropItems = [
+       { name: "ASSOCIATION", value: "NY" }
+       
+
+  ];
   // gemItem = [
 
   //   {
