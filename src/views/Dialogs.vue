@@ -25,15 +25,6 @@
     <keep-alive v-if="currentTabComponent">
       <component :is="currentTabComponent"> </component>
     </keep-alive>
-    <!-- <template #footer>
-      <Button
-        label="No"
-        icon="pi pi-times"
-        @click="closeBasic"
-        class="p-button-text"
-      />
-      <Button label="Yes" icon="pi pi-check"   autofocus />
-    </template>-->
   </Dialog>
 </template>
 
@@ -42,7 +33,7 @@ export default {
   props: ["modelValue"],
   provide() {
     return {
-      service: this.modelValue.service, //import("../services/customers.service"),
+      service: this.modelValue.service, 
     };
   },
   data() {
@@ -50,10 +41,11 @@ export default {
       comps: {
         dashboard: true,
         accounts: "accounting",
-        payroll: "payroll",
+        clients: "clients",
         payable: "payable",
         prospects: "prospects",
         listing: "listing",
+        email: "email.employee",
       },
       gemData: null,
       showModel: this.modelValue.isVisible,

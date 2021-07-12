@@ -2,6 +2,7 @@ import { ApiService } from "./api.service";
 import { PrimeIcons } from "primevue/api";
 export default class ClientService extends ApiService {
   template = "one";
+  icon = "Alarm";
   columns = [
     {
       header: "Display Name",
@@ -26,9 +27,42 @@ export default class ClientService extends ApiService {
       },
     },
   ];
+  tabsBtn = [
+    {
+      label: "Legal Info",
+      icon: "status",
+      action:"info",
+     
+    },
+    {
+      label: "Addresses",
+      icon: "tag",
+      action: "address"
+    },
+    {
+      label: "Contacts",
+      icon: "calendar",
+     
+    },
+    {
+      label: "Notes",
+      icon: "calendar",
+   
+    },
+    {
+      label: "Privileges",
+      icon: "calendar",
+    
+    },
+    {
+      label: "Security",
+      icon: "calendar",
+     
+    },
+  ];
   gemItems = [
     {
-      key: "customer.add",
+      key: "clients",
       label: "Add Client",
       icon: PrimeIcons.PLUS_CIRCLE,
     },
@@ -94,7 +128,6 @@ export default class ClientService extends ApiService {
   //     icon: PrimeIcons.TIMES,
   //   },
 
-  // ];
   constructor() {
     super("clients");
   }

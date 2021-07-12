@@ -36,7 +36,7 @@ export default {
   components: { defaultTemplate, Template2 },
   provide() {
     return {
-      service: this.service, //import("../services/customers.service"),
+      service: this.service, 
     };
   },
 

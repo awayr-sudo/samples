@@ -12,13 +12,21 @@ export default class EmployeeService extends ApiService {
       label: "Add New Employee",
       icon: PrimeIcons.PLUS_CIRCLE,
     },
-    {
-      separator: true,
-    },
+   
     {
       key: "listing",
       label: "View All Employees",
       icon: PrimeIcons.LIST,
+    },
+    {
+      key: "email.employee",
+      label: "E-Mail Employees",
+      icon: PrimeIcons.ENVELOPE,
+    },
+    {
+      key: "report.emloyee",
+      label: "Generate Report",
+      icon: PrimeIcons.FILE_EXCEL,
     },
   ];
 

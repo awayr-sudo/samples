@@ -257,6 +257,9 @@ const payables = defineAsyncComponent(
 const dashboard = defineAsyncComponent(
   () => import("@/views/pages/dashboard/Dashboard.vue")
 );
+const clients = defineAsyncComponent(
+  () => import("@/views/pages/clients/Clients.vue")
+);
 const payroll = defineAsyncComponent(
   () => import("@/views/pages/payroll/Payroll.vue")
 );
@@ -279,18 +282,19 @@ app.component('payables', payables)
 app.component('dashboard', dashboard)
 app.component('payroll', payroll)
 app.component('prospects', prospects)
+app.component('clients', clients)
 
 app.config.globalProperties.$filters = {
   fileSize(bytes: any, decimals: any) {
     if (bytes === 0) return "0 GB";
-      if (isNaN(parseInt(bytes))) return bytes;
-      if (typeof bytes === "string") bytes = parseInt(bytes);
-      if (bytes === 0) return "0";
-      const k = 1000;
-      const dm = decimals + 1 || 3;
-      const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-      const i = Math.floor(Math.log(bytes) / Math.log(k));
-      return `${parseFloat((bytes / k ** i).toFixed(dm))} ${sizes[i]}`;
+    if (isNaN(parseInt(bytes))) return bytes;
+    if (typeof bytes === "string") bytes = parseInt(bytes);
+    if (bytes === 0) return "0";
+    const k = 1000;
+    const dm = decimals + 1 || 3;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return `${parseFloat((bytes / k ** i).toFixed(dm))} ${sizes[i]}`;
   },
 
   dateFormat(date: any) {
