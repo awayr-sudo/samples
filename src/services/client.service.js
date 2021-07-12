@@ -42,10 +42,30 @@ export default class ClientService extends ApiService {
     },
     {
       key: "customer.listing",
-      label: "View BookMart Client",
+      label: "View BookMark Client",
       icon: PrimeIcons.LIST,
     },
   ];
+  sideNav = [
+    {
+      key: "all.signatures",
+      label: "View All Signatures",
+      icon: PrimeIcons.LIST,
+      type: 1
+    },
+     {
+      key: "all.bookmarks",
+      label: "View My Bookmarks",
+      icon: PrimeIcons.BOOKMARK,
+      type: 2
+    },
+     {
+      key: "inactive.signatures",
+      label: "View Inactive Signatures",
+      icon: PrimeIcons.BAN,
+      type: 3
+    },
+  ]
   // gemItem = [
 
   //   {

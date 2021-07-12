@@ -1,7 +1,7 @@
 <template>
   <Dialog
     v-model:visible="showModel"
-    :style="{ width: '70vw', height: '23vw' }"
+    :style="{ width: '70vw', height: '46vh' }"
     :maximizable="true"
     :showHeader="true"
     class="dormer"
