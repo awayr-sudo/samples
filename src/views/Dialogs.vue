@@ -1,19 +1,17 @@
 <template>
   <Dialog
     v-model:visible="showModel"
-    :style="{ width: '70vw', }"
+    :style="{ width: '70vw' }"
     :maximizable="true"
     :showHeader="true"
     class="dormer"
+    :class="currentTabComponent"
   >
     <template #header>
       <label class="gem-main-hiding">
         <GemIcon type="favicon" :icon="modelValue.service.favicon" />
-        
 
-        <span class="dormer-heading " style="color:black">{{
-          modelValue.label
-        }}</span>
+        {{ modelValue.label }}
       </label>
       <Button
         icon="pi pi-minus"
@@ -33,7 +31,7 @@ export default {
   props: ["modelValue"],
   provide() {
     return {
-      service: this.modelValue.service, 
+      service: this.modelValue.service,
     };
   },
   data() {
@@ -84,7 +82,6 @@ export default {
     },
   },
   methods: {
-    
     closeBasic() {
       this.showModel = false;
       console.log("closing");

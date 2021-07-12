@@ -80,7 +80,7 @@ import CascadeSelect from 'primevue/cascadeselect';
 import Skeleton from 'primevue/skeleton';
 import Splitter from 'primevue/splitter';
 import SplitterPanel from 'primevue/splitterpanel';
-import 'primevue/resources/themes/saga-blue/theme.css';
+import 'primevue/resources/themes/nova/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';

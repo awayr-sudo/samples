@@ -12,7 +12,7 @@ export default class EmployeeService extends ApiService {
       label: "Add New Employee",
       icon: PrimeIcons.PLUS_CIRCLE,
     },
-   
+
     {
       key: "listing",
       label: "View All Employees",
@@ -55,6 +55,6 @@ export default class EmployeeService extends ApiService {
     },
   ];
   constructor() {
-    super("employees");
+    super("gems");
   }
 }

@@ -5,12 +5,14 @@
       <SplitterPanel :size="20" :minSize="10">
         <Panel>
           <template #header>
-            <label for="heading" class="panel-main-heading">Navigation {{getType}}</label>
+            <label for="heading" class="panel-main-heading"
+              >Navigation {{ getType }}</label
+            >
           </template>
           <!-- {{gemData}} -->
           <div class="panel-sub-heading">
             <Dropdown
-            v-if="this.service.dropItems"
+              v-if="this.service.dropItems"
               v-model="selectedType"
               :options="this.service.dropItems"
               optionLabel="name"
@@ -32,38 +34,11 @@
               </li>
             </ul>
           </div>
-          
         </Panel>
       </SplitterPanel>
 
       <SplitterPanel :size="80" :minSize="20">
         <div class>
-          <DataTable :value="products" v-if="!items">
-            <Column headerStyle="width: 3rem;">
-              <template #body>
-                <Skeleton></Skeleton>
-              </template>
-            </Column>
-            <Column>
-              <template #header> </template>
-              <template #body>
-                <Skeleton></Skeleton>
-              </template>
-            </Column>
-            <Column>
-              <template #header> </template>
-              <template #body>
-                <Skeleton></Skeleton>
-              </template>
-            </Column>
-            <Column>
-              <template #header> </template>
-              <template #body>
-                <Skeleton></Skeleton>
-              </template>
-            </Column>
-          </DataTable>
-
           <DataTable
             :value="items"
             responsiveLayout="scroll"
@@ -120,7 +95,6 @@
             <Column headerStyle="width: 3rem;">
               <template #header></template>
               <template #body class="p-d-flex p-jc-center">
-                
                 <div class="width-100 t-a-c">
                   <i
                     class="pi pi-angle-down"
@@ -202,40 +176,9 @@ export default {
       selectedType: null,
       displayDescription: false,
       items: null,
-     
+
       getType: null,
-      products: [
-        { name: "New York", code: "NY", date: "20-01-1010" },
-        { name: "Rome", code: "RM", date: "20-01-1010" },
-        { name: "London", code: "LDN", date: "20-01-1010" },
-        { name: "Istanbul", code: "IST", date: "20-01-1010" },
-        { name: "Paris", code: "PRS", date: "20-01-1010" },
-        { name: "New York", code: "NY", date: "20-01-1010" },
-        { name: "Rome", code: "RM", date: "20-01-1010" },
-        { name: "London", code: "LDN", date: "20-01-1010" },
-        { name: "Istanbul", code: "IST", date: "20-01-1010" },
-        { name: "Paris", code: "PRS", date: "20-01-1010" },
-        { name: "New York1", code: "NY", date: "20-01-1010" },
-        { name: "Rome", code: "RM", date: "20-01-1010" },
-        { name: "London", code: "LDN", date: "20-01-1010" },
-        { name: "Istanbul", code: "IST", date: "20-01-1010" },
-        { name: "Paris", code: "PRS", date: "20-01-1010" },
-        { name: "New York", code: "NY", date: "20-01-1010" },
-        { name: "Rome", code: "RM", date: "20-01-1010" },
-        { name: "London", code: "LDN", date: "20-01-1010" },
-        { name: "Istanbul", code: "IST", date: "20-01-1010" },
-        { name: "Paris", code: "PRS", date: "20-01-1010" },
-        { name: "New York11", code: "NY", date: "20-01-1010" },
-        { name: "Rome", code: "RM", date: "20-01-1010" },
-        { name: "London", code: "LDN", date: "20-01-1010" },
-        { name: "Istanbul", code: "IST", date: "20-01-1010" },
-        { name: "Paris", code: "PRS", date: "20-01-1010" },
-        { name: "New York111", code: "NY", date: "20-01-1010" },
-        { name: "Rome", code: "RM", date: "20-01-1010" },
-        { name: "London", code: "LDN", date: "20-01-1010" },
-        { name: "Istanbul", code: "IST", date: "20-01-1010" },
-        { name: "Paris", code: "PRS", date: "20-01-1010" },
-      ],
+      products: new Array(4),
       menuItems: [
         {
           items: [
@@ -282,13 +225,10 @@ export default {
     this.initFilters1();
   },
   methods: {
-
-showItem(types){
-console.log("type",types )
-return this.getType = types
-},
-
-
+    showItem(types) {
+      console.log("type", types);
+      return (this.getType = types);
+    },
 
     listingControlClicked(event, btn) {
       console.log("cl", event, btn);
@@ -376,7 +316,7 @@ ul.no-bullets {
   padding-left: 12px;
   font-size: 2rem;
 }
-.cursor{
+.cursor {
   cursor: pointer;
 }
 </style>

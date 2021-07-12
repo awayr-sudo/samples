@@ -1,0 +1,41 @@
+.p-dialog {
+  // @if $updateHeader ==true {
+  .p-datatable-header,
+  .p-panel-header {
+    // @include linear-gradient-top-left(#ece0cc, #dec9a5);
+    @include linear-gradient-top-left(var(--surface-f), var(--surface-a));
+  }
+  .p-dialog-header {
+    background: var(--surface-b);
+    color: var(--text-color);
+    padding-top: var(--inline-spacing);
+    padding-left: var(--inline-spacing);
+    padding-right: var(--inline-spacing);
+    padding-bottom: var(--inline-spacing);
+    border-bottom: 1px solid var(--surface-d);
+  }
+  // }
+
+  .p-datatable {
+    .p-datatable-header {
+      padding: 0.342845rem 0.85rem;
+    }
+    td:last-child,
+    th:last-child {
+      border-right: none;
+    }
+  }
+  .p-splitter {
+    border: none;
+  }
+
+  .p-dialog-content {
+    padding: 0px;
+  }
+}
+
+.p-dialog.listing {
+  .p-dialog-header {
+    border-bottom: none;
+  }
+}
