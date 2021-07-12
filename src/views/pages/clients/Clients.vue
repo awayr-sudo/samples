@@ -8,8 +8,7 @@
         :key="tabs"
         class="p-d-flex p-flex-column p-mx-4"
       >
-        {{ tabs.icon }}
-        {{ tabs.action }}
+       
         <Button
           :label="tabs.label"
           :icon="'pi-' + tabs.icon"
@@ -27,19 +26,24 @@
       </div>
     </SplitterPanel>
     <SplitterPanel class="" :size="80" :minSize="20">
-      <keep-alive>
+      <!-- <keep-alive>
         <component :is="userComponent" />
-      </keep-alive>
-      {{ modelValue }}
-      {{ service.tabsBtn }}
+      </keep-alive> -->
+      <!-- {{ modelValue }}
+      {{ service.tabsBtn }} -->
+      weruiyweir
+     fkdsfg <LegalInfo/>
+     <contacts/>
     </SplitterPanel>
   </Splitter>
 </template>
 
 <script>
 import GemIcon from "../../../components/GemIcon.vue";
+import LegalInfo from "./LegalInfo.vue"
+import contacts from '../sheard/Contact.vue'
 export default {
-  components: { GemIcon },
+  components: { GemIcon,LegalInfo,contacts},
   props: ["modelValue"],
   inject: ["service"],
   data() {
@@ -47,7 +51,7 @@ export default {
       user: null,
     };
   },
-  computed: {},
+
 
   methods: {
     clientTabClicked(tabs) {

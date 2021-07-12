@@ -1,8 +1,9 @@
 <template>
   <Splitter class=" full-splitter">
     <SplitterPanel :size="20" :minSize="10" class="">
-      fgudfhied
+      fgudfhiedgdfgdfgdfg
       <GemIcon :icon="service.icon" />
+      gdfgdf
       <div
         v-for="tabs in service.tabsBtn"
         :key="tabs"
@@ -27,8 +28,8 @@
     </SplitterPanel>
     <SplitterPanel class="" :size="80" :minSize="20">
       payroll page
-      {{ modelValue }}
-      {{ service.tabsBtn }}
+      <!-- {{ modelValue }}
+      {{ service.tabsBtn }} -->
     </SplitterPanel>
   </Splitter>
 </template>
