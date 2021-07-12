@@ -2,19 +2,19 @@
   <Dialog
     v-model:visible="showModel"
     :style="{ width: '70vw', height: '23vw' }"
-    :maximizable="true"
+  
     :showHeader="true"
     class="dormer"
   >
     <template #header>
       <label class="gem-main-hiding">
         <GemIcon type="favicon" :icon="modelValue.service.favicon" />
-        <i class="pi pi-file p-mr-2" style="fontSize: 1rem"></i>
+      
 
         <span class="dormer-heading " style="color:black">{{
           modelValue.label
         }}</span>
-        {{ currentTabComponent }}dddd
+        <!-- {{ currentTabComponent }}ddd -->
 
         <router-link
           :to="{ path: '/about', query: { dialog: 'signature' } }"
@@ -36,15 +36,6 @@
     <keep-alive v-if="currentTabComponent">
       <component :is="currentTabComponent"> </component>
     </keep-alive>
-    <!-- <template #footer>
-      <Button
-        label="No"
-        icon="pi pi-times"
-        @click="closeBasic"
-        class="p-button-text"
-      />
-      <Button label="Yes" icon="pi pi-check"   autofocus />
-    </template>-->
   </Dialog>
 </template>
 
@@ -53,7 +44,7 @@ export default {
   props: ["modelValue"],
   provide() {
     return {
-      service: this.modelValue.service, //import("../services/customers.service"),
+      service: this.modelValue.service, 
     };
   },
   data() {
@@ -61,10 +52,11 @@ export default {
       comps: {
         dashboard: true,
         accounts: "accounting",
-        payroll: "payroll",
+        clients: "clients",
         payable: "payable",
         prospects: "prospects",
         listing: "listing",
+        email: "email.employee",
       },
       gemData: null,
       showModel: this.modelValue.isVisible,

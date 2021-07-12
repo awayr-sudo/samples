@@ -100,54 +100,6 @@
             class="p-button-raised"
           />
         </div>
-        <!-- <DataTable
-          ref="dt"
-          :value="products"
-          v-model:selection="selectedProducts"
-          data-key="id"
-          :paginator="true"
-          :rows="10"
-          :filters="filters"
-          paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-          :rowsPerPageOptions="[5,10,25]"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
-          responsiveLayout="scroll"
-        >
-          <template #header>
-            <div class="table-header p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
-              <h5 class="p-mb-2 p-m-md-0 p-as-md-center">Manage Products</h5>
-              <span class="p-input-icon-left">
-                <i class="pi pi-search" />
-                <InputText v-model="value" placeholder="Search..." />
-              </span>
-            </div>
-          </template>
-
-          <Column selectionMode="multiple" style="width: 3rem" :exportable="false"></Column>
-          <Column selectionMode="multiple" style="width: 3rem" :exportable="false"></Column>
-          <Column style="min-width:3rem">
-            <template #body>
-              <i class="pi pi-search" />
-            </template>
-          </Column>
-
-          <Column field="category" header="Title" style="min-width:10rem">></Column>
-
-          <Column
-            field="inventoryStatus"
-            header="Description"
-            :sortable="true"
-            style="min-width:12rem"
-          >
-            >
-            <template #body></template>
-          </Column>
-          <Column header="Title" style="width: 3rem">
-            <template #body="">
-
-            </template>
-          </Column>
-        </DataTable>-->
       </SplitterPanel>
     </div>
   </Splitter>

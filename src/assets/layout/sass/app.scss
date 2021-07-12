@@ -15,130 +15,126 @@ body {
 .p-menu-list {
   width: 100%;
 }
-.dormer {
-  .p-dialog-header {
-    border-bottom: 1px solid $dialogHeaderbBorderBottom;
-    background: $dialogHeaderBg !important;
-    color: $dialogHeaderColor !important;
-    padding: 5px !important;
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
-    .gem-main-hiding {
-      color: $gemMainHeadingColor;
-      font-size: 13px;
-      font-weight: bold;
-    }
-    .hide-icon-header {
-      position: fixed !important;
-      right: 50px !important;
-    }
-    // .p-dialog-header-icon {
-    //   width: 2rem;
-    //   height: 2rem;
-    //   color: white !important;
-    //   border: 0 none;
-    //   background: #db2b2b00;
-    //   border-radius: 50%;
-    //   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
-    //   margin-right: 0.5rem;
-    // }
-  }
-
-  .p-dialog-content {
-    padding: 0px !important;
-    height: 100%;
-    .p-splitter {
-      border: 1px solid $splitterBoder;
-      @include model-body-bg();
-      height: 100%;
-      border-radius: 3px;
-      color: $splitterColor;
-    }
-    .p-splitter-gutter {
-      width: 8px !important;
-      @include sub-heading-bg();
-    }
-
-    .p-panel-header {
-      text-align: left;
-      border: 0px none;
-      @include table-header-bg();
-      .panel-main-heading {
-        font-weight: 500;
-        // font-size: 12px;
-      }
-    }
-    .p-panel-content {
-      padding: 0px !important;
-      .side-panel-body {
-        @include model-body-bg();
-        padding: 10px;
-        .side-view-list {
-          font-size: 8pt;
-          padding: 5px;
-        }
-      }
-    }
-    .panel-sub-heading {
-      @include sub-heading-bg();
-      padding: 6px;
-    }
-
-    .p-datatable.p-datatable-sm .p-datatable-header {
-      padding: 0.3rem 0.8rem !important;
-    }
-    .p-datatable {
-      .p-datatable-header {
-        @include table-header-bg();
-        border: 1px solid $tableHeaderBorder;
-        border-width: 1px 1px 0 1px;
-        padding: 0.857rem 1rem;
-        font-weight: 700;
-        .tabel-search-label {
-          font-weight: 500;
-          font-size: 12px;
-        }
-      }
-
-      .p-datatable-thead > tr > th {
-        text-align: left;
-        padding: 0.571rem 0.857rem;
-
-        border-width: 1px 1px 1px 1px;
-        color: $splitterColor;
-        @include sub-heading-bg();
-
-        transition: background-color 0.2s, box-shadow 0.2s;
-        span {
-          font-weight: 500;
-          font-size: 12px;
-        }
-      }
-      .p-datatable-tbody > tr {
-        @include model-body-bg();
-
-        font-weight: 400;
-      }
-    }
-    .p-paginator {
-      @include model-body-bg();
-      color: $splitterColor;
-      border: solid $splitterBoder;
-      border-width: 1px;
-      padding: 0;
-      border-radius: 3px;
-      .p-paginator-left-content {
-        margin-left: auto;
-        margin-right: unset;
-      }
-      .p-paginator-pages .p-paginator-page.p-highlight {
-        background: $paginatorBg !important;
-        border-color: $paginatorBorderColor;
-        color: $paginatorColor;
-      }
-    }
-  }
+.p-dialog-content {
+  padding: 0px !important;
+  height: 100%;
 }
+// .dormer {
+//   .p-dialog-header {
+//     border-bottom: 1px solid $dialogHeaderbBorderBottom;
+//     background: $dialogHeaderBg !important;
+//     color: $dialogHeaderColor !important;
+//     padding: 5px !important;
+//     border-top-right-radius: 3px;
+//     border-top-left-radius: 3px;
+//     .gem-main-hiding {
+//       color: $gemMainHeadingColor;
+//       font-size: 13px;
+//       font-weight: bold;
+//     }
+//     .hide-icon-header {
+//       position: fixed !important;
+//       right: 50px !important;
+//     }
+  
+//   }
+ 
+
+//   .p-dialog-content {
+//     padding: 0px !important;
+//     height: 100%;
+//     .p-splitter {
+//       border: 1px solid $splitterBoder;
+//       @include model-body-bg();
+//       height: 100%;
+//       border-radius: 3px;
+//       color: $splitterColor;
+//     }
+//     .p-splitter-gutter {
+//       width: 8px !important;
+//       @include sub-heading-bg();
+//     }
+
+//     .p-panel-header {
+//       text-align: left;
+//       border: 0px none;
+//       @include table-header-bg();
+//       .panel-main-heading {
+//         font-weight: 500;
+//         // font-size: 12px;
+//       }
+//     }
+//     .p-panel-content {
+//       padding: 0px !important;
+//       .side-panel-body {
+//         @include model-body-bg();
+//         padding: 10px;
+//         .side-view-list {
+//           font-size: 8pt;
+//           padding: 5px;
+//         }
+//       }
+//     }
+//     .panel-sub-heading {
+//       @include sub-heading-bg();
+//       padding: 6px;
+//     }
+
+//     .p-datatable.p-datatable-sm .p-datatable-header {
+//       padding: 0.3rem 0.8rem !important;
+//     }
+//     .p-datatable {
+//       .p-datatable-header {
+//         @include table-header-bg();
+//         border: 1px solid $tableHeaderBorder;
+//         border-width: 1px 1px 0 1px;
+//         padding: 0.857rem 1rem;
+//         font-weight: 700;
+//         .tabel-search-label {
+//           font-weight: 500;
+//           font-size: 12px;
+//         }
+//       }
+
+//       .p-datatable-thead > tr > th {
+//         text-align: left;
+//         padding: 0.571rem 0.857rem;
+
+//         border-width: 1px 1px 1px 1px;
+//         color: $splitterColor;
+//         @include sub-heading-bg();
+
+//         transition: background-color 0.2s, box-shadow 0.2s;
+//         span {
+//           font-weight: 500;
+//           font-size: 12px;
+//         }
+//       }
+//       .p-datatable-tbody > tr {
+//         @include model-body-bg();
+
+//         font-weight: 400;
+//       }
+//     }
+//     .p-paginator {
+//       @include model-body-bg();
+//       color: $splitterColor;
+//       border: solid $splitterBoder;
+//       border-width: 1px;
+//       padding: 0;
+//       border-radius: 3px;
+//       .p-paginator-left-content {
+//         margin-left: auto;
+//         margin-right: unset;
+//       }
+//       .p-paginator-pages .p-paginator-page.p-highlight {
+//         background: $paginatorBg !important;
+//         border-color: $paginatorBorderColor;
+//         color: $paginatorColor;
+//       }
+//     }
+//   }
+// }
 .drag-panel {
   .p-panel {
     padding: 15px;

@@ -141,12 +141,7 @@ export default {
     toggleWindow(data) {
       data.data.isVisible = !data.data.isVisible;
     },
-    mouseover: function() {
-      this.active = false;
-    },
-    mouseleaves: function() {
-      this.active = false;
-    },
+    
 
     removeGems(gem) {
       this.$confirm.require({
@@ -182,3 +177,4 @@ export default {
 </script>
 
 <style lang="scss"></style>
+ 

@@ -1,19 +1,20 @@
 <template>
-  <Splitter class=" full-splitter">
+  <Splitter class="full-splitter">
     <SplitterPanel :size="20" :minSize="10" class="">
-      fgudfhied
       <GemIcon :icon="service.icon" />
+
       <div
         v-for="tabs in service.tabsBtn"
         :key="tabs"
         class="p-d-flex p-flex-column p-mx-4"
       >
         {{ tabs.icon }}
+        {{ tabs.action }}
         <Button
           :label="tabs.label"
           :icon="'pi-' + tabs.icon"
           class="p-mt-2"
-          @click="clientTabClicked($event, btn)"
+          @click="clientTabClicked(tabs.action)"
         />
       </div>
       <div class="p-d-flex p-flex-column p-mx-4 p-mt-3">
@@ -26,7 +27,9 @@
       </div>
     </SplitterPanel>
     <SplitterPanel class="" :size="80" :minSize="20">
-      payroll page
+      <keep-alive>
+        <component :is="userComponent" />
+      </keep-alive>
       {{ modelValue }}
       {{ service.tabsBtn }}
     </SplitterPanel>
@@ -40,13 +43,22 @@ export default {
   props: ["modelValue"],
   inject: ["service"],
   data() {
-    return {};
+    return {
+      user: null,
+    };
   },
+  computed: {},
+
   methods: {
-    clientTabClicked(event, btn) {
-      alert("clicked");
-      console.log("cl", event, btn);
-      btn.action();
+    clientTabClicked(tabs) {
+      console.log("tabs", tabs);
+      if (tabs == "info") {
+        alert("info");
+      }
+      if (tabs == "address") {
+        alert("address");
+        this.empType = "address";
+      }
     },
   },
 };
