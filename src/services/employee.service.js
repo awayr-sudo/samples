@@ -17,7 +17,7 @@ export default class EmployeeService extends ApiService {
     },
     {
       key: "listing",
-      label: "View All Client",
+      label: "View All Employees",
       icon: PrimeIcons.LIST,
     },
   ];

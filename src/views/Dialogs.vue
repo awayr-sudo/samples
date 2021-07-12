@@ -1,7 +1,7 @@
 <template>
   <Dialog
     v-model:visible="showModel"
-    :style="{ width: '70vw', height: '46vh' }"
+    :style="{ width: '70vw', }"
     :maximizable="true"
     :showHeader="true"
     class="dormer"
@@ -9,22 +9,11 @@
     <template #header>
       <label class="gem-main-hiding">
         <GemIcon type="favicon" :icon="modelValue.service.favicon" />
-        <i class="pi pi-file p-mr-2" style="fontSize: 1rem"></i>
+        
 
         <span class="dormer-heading " style="color:black">{{
           modelValue.label
         }}</span>
-        {{ currentTabComponent }}dddd
-
-        <router-link
-          :to="{ path: '/about', query: { dialog: 'signature' } }"
-          target="_blank"
-        >
-          <Button
-            icon="pi pi-clone"
-            class="p-button-outlined p-button-sm p-button-secondary p-mr-2"
-          />
-        </router-link>
       </label>
       <Button
         icon="pi pi-minus"
@@ -103,11 +92,7 @@ export default {
     },
   },
   methods: {
-    //     newTab() {
-    //       alert("new tab");
-    //       let routeData = this.$router.resolve({ path: '/about', query: { dialog: 'signature' } });
-    // window.open(routeData.href, '_blank');
-    //     },
+    
     closeBasic() {
       this.showModel = false;
       console.log("closing");

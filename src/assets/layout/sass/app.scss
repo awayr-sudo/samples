@@ -15,8 +15,26 @@ body {
 .p-menu-list {
   width: 100%;
 }
+.dormer {
+  .p-dialog-header {
+  
+   padding: 5px !important;
+   border-top-right-radius: 3px;
+   border-top-left-radius: 3px;
+   .gem-main-hiding {
+    
+     font-size: 13px;
+     font-weight: bold;
+   }
+   .hide-icon-header {
+     position: fixed !important;
+     right: 50px !important;
+   }
+  
+ }
+}
 // .dormer {
-//   .p-dialog-header {
+//    .p-dialog-header {
 //     border-bottom: 1px solid $dialogHeaderbBorderBottom;
 //     background: $dialogHeaderBg !important;
 //     color: $dialogHeaderColor !important;

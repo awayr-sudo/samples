@@ -2,6 +2,7 @@
   <img :src="path" :alt="icon" />
 </template>
 <script>
+
 export default {
   inject: ["service"],
   props: ["icon", "type"],
