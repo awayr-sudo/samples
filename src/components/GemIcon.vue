@@ -2,7 +2,7 @@
   <img :src="path" :alt="icon" />
 </template>
 <script>
-import images from "../assets/images/icons/128x128/Alarm.png"
+
 export default {
   inject: ["service"],
   props: ["icon", "type"],

@@ -105,10 +105,12 @@ export default class ClientService extends ApiService {
     },
   ];
   dropItems = [
-    { name: "ASSOCIATION", value: "NY" }
-
-
+       { name: "Associations", value: "association" },
+      
   ];
+  selectedTypes = [
+      "association"
+  ]
   // gemItem = [
 
   //   {

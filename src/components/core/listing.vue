@@ -10,6 +10,7 @@
           <!-- {{gemData}} -->
           <div class="panel-sub-heading">
             <Dropdown
+            v-if="this.service.dropItems"
               v-model="selectedType"
               :options="this.service.dropItems"
               optionLabel="name"
