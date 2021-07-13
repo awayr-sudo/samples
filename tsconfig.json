@@ -32,7 +32,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/services/api.service.js", "src/services/gems.service.js", "src/services/api.service.js"  ],
+, "src/services/api.service.js", "src/services/gems.service.js", "src/services/api.service.js", "src/views/pages/clients/ArrayFile.js"  ],
   "exclude": [
     "node_modules"
   ]

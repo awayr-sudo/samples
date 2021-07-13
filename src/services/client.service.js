@@ -30,7 +30,7 @@ export default class ClientService extends ApiService {
   tabsBtn = [
     {
       label: "Legal Info",
-      icon: "status",
+      icon: "exclamation-circle",
       section: "LegalInfo",
 
     },
@@ -47,19 +47,19 @@ export default class ClientService extends ApiService {
     },
     {
       label: "Notes",
-      icon: "calendar",
+      icon: "file",
       section: "Notes"
 
     },
     {
       label: "Privileges",
-      icon: "calendar",
+      icon: "wallet",
       section: "pre"
 
     },
     {
       label: "Security",
-      icon: "calendar",
+      icon: "key",
       section: "security"
 
     },

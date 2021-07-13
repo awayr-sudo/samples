@@ -8,10 +8,9 @@
           :key="tabs"
           class="p-d-flex p-flex-column p-mx-4"
         >
-          {{ tabs.section }}
           <Button
             :label="tabs.label"
-            :icon="'pi-' + tabs.icon"
+            :icon="'pi pi-' + tabs.icon"
             class="p-mt-2"
             @click="currentTab = tabs.section"
           />

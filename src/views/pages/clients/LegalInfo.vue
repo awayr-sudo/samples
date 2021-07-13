@@ -1,9 +1,9 @@
 <template>
   <div class="p-fluid p-mt-3 p-p-2">
     <div class="p-field p-grid">
-      <div class="p-field p-col-12 p-md-6">
+      <div class="p-field p-col-12 p-md-6 ">
         <i class="pi pi-user "></i>
-        <label for="firstname6 " class="p-ml-2">Unique Display Name</label>
+        <label for="firstname6 " class="p-ml-2 ">Unique Display Name</label>
       </div>
       <div class="p-field p-col-12 p-md-4">
         <BaseInput name="display_name" type="text" v-model="display_name" />
@@ -29,6 +29,21 @@
       <div class="p-field p-col-3">
         <BaseInput name="check_number" type="text" v-model="check_number" />
       </div>
+      <!-- <div class="p-field p-col-6">
+        <i class="pi pi-tag "></i>
+        <label for="address" class="p-ml-2">Doing Business As...</label>
+      </div>
+      <div class="p-field p-col-3">
+        <BaseInput
+          v-for="(_DBA, index) in inputs"
+          :key="_DBA"
+          :name="'DBA[' + index + ']DBA'"
+          type="text"
+          v-model="_DBA.add_DBA"
+          class="p-mb-1"
+        />
+        <Button @click="addDBA" label="Add Another DBA" class="p-button-link" />
+      </div> -->
 
       <div class="p-field p-col-6">
         <i class="pi pi-id-card "></i>
@@ -64,10 +79,15 @@
         <label for="address" class="p-ml-2">State of Legal Filling</label>
       </div>
       <div class="p-field p-col-4">
-        <BaseInput
+        <base-dropdown
           name="state_of_legal_filling"
-          type="text"
           v-model="state_of_legal_filling"
+          :options="fiscalyear"
+          optionLabel="name"
+          optionValue="value"
+          placeholder="Select "
+          :icon="false"
+          :addon="false"
         />
       </div>
 
@@ -77,10 +97,15 @@
       </div>
 
       <div class="p-field p-col-3">
-        <BaseInput
+        <base-dropdown
           name="fiscal_year"
-          type="number"
-          v-model.number="fiscal_year"
+          v-model="fiscal_year"
+          :options="fiscalyear"
+          optionLabel="name"
+          optionValue="value"
+          placeholder="Select "
+          :icon="false"
+          :addon="false"
         />
       </div>
 
@@ -98,12 +123,10 @@
       <div class="p-field p-col-12 p-md-5">
         <base-dropdown
           name="entity_type"
-          label="entity_type"
           v-model="entity_type"
-          :options="serie"
-          :filter="true"
-          optionLabel="display_name"
-          optionValue="id"
+          :options="entity"
+          optionLabel="name"
+          optionValue="value"
           placeholder="Select Entity"
           :icon="false"
           :addon="false"
@@ -114,71 +137,127 @@
         <label for="zip" class="p-ml-2">Is not for profit?</label>
       </div>
       <div class="p-field p-col-12 p-md-6">
-        <base-check-box
-          :modelValue="npo"
-          id="npo"
-          name="npo"
-          v-model="npo"
-          :value="npo"
-          checked="true"
-        />
+        <div class="p-field-checkbox">
+          <base-check-box
+            :modelValue="npo"
+            id="npo"
+            name="npo"
+            v-model="npo"
+            :value="npo"
+            checked="true"
+          />
+          <label for="checkbox">Check for yes</label>
+        </div>
       </div>
       <div class="p-field p-col-12 p-md-6">
         <i class="pi pi-folder "></i>
         <label for="zip" class="p-ml-2">Folder</label>
       </div>
       <div class="p-field p-col-12 p-md-3">
-        <base-dropdown
-          name="series"
-          label="Series"
-          v-model="series"
-          :options="serie"
-          :filter="true"
-          optionLabel="display_name"
-          optionValue="id"
-          placeholder="Select Series"
-          :icon="false"
-          :addon="false"
-        />
+        <TreeSelect
+          v-model="selectedNode"
+          :options="nodes"
+          placeholder="Select Item"
+        ></TreeSelect>
       </div>
       <div class="p-field p-col-12 p-md-6">
         <i class="pi pi-file "></i>
         <label for="zip" class="p-ml-2">File Space</label>
       </div>
-      <div class="p-field p-col-12 p-md-3">
-        <base-dropdown
-          name="series"
-          label="Series"
-          v-model="series"
-          :options="serie"
-          :filter="true"
-          optionLabel="display_name"
-          optionValue="id"
-          placeholder="Select file space"
-          :icon="false"
-          :addon="false"
-        />
+      <div class="p-field p-col-12 p-md-6">
+        <div class="p-formgroup-inline">
+          <div class="p-field">
+            <BaseInput name="disk_space" type="text" v-model="disk_space" />
+          </div>
+          <div class="p-field">
+            <base-dropdown
+              name="disk_uom"
+              v-model="disk_uom"
+              :options="disk"
+              optionLabel="name"
+              optionValue="value"
+              placeholder="Select file space"
+              :icon="false"
+              :addon="false"
+            />
+          </div>
+        </div>
       </div>
       <div class="p-field p-col-12 p-md-6">
         <i class="pi pi-image "></i>
-        <label for="zip" class="p-ml-2">Upload Imge</label>
+        <label for="zip" class="p-ml-2">Logo Image</label>
       </div>
       <div class="p-field p-col-12 p-md-6">
-        <FileUpload
-          mode="basic"
-          name="demo[]"
-          url="./upload.php"
-          accept="image/*"
-          :maxFileSize="1000000"
-          @upload="onUpload"
-        />
+        <div class="p-formgroup-inline ">
+          <div class="p-field p-mr-0">
+            <FileUpload
+              mode="basic"
+              name="demo[]"
+              url="./upload.php"
+              accept="image/*"
+              :maxFileSize="1000000"
+              @upload="onUpload"
+            />
+          </div>
+          <div class="p-field">
+            <Button icon="pi pi-pencil" class=" p-button-outlined" />
+            <Button icon="pi pi-times" class=" p-button-outlined" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import fiscalyear from "./ArrayFile.js";
 export default {
+  data() {
+    return {
+      // fiscalyear: fiscalyear,
+      inputs: [
+        {
+          add_DBA: "",
+        },
+      ],
+      entity: [
+        { name: "C-Coporation", value: "C" },
+        { name: "S-Corporation", value: "S" },
+        { name: "Limited liability Company(LLC)", value: "LLC" },
+        { name: "Limited liability Partnership(LLp)", value: "LLP" },
+        { name: "Partnership", value: "P" },
+        { name: "Not for Profit Organization", value: "NPO" },
+        { name: "Sole Proprietorship", value: "SP" },
+        { name: "Other", value: "O" },
+      ],
+      fiscalyear: [
+        { name: "January", value: "0" },
+        { name: "February", value: "1" },
+        { name: "March", value: "2" },
+        { name: "April", value: "3" },
+        { name: "May", value: "4" },
+        { name: "June", value: "5" },
+        { name: "July", value: "6" },
+
+        { name: "Agust", value: "7" },
+        { name: "September", value: "8" },
+        { name: "October", value: "9" },
+        { name: "November", value: "10" },
+
+        { name: "December", value: "11" },
+      ],
+      disk: [
+        { name: "MB", value: "M" },
+        { name: "GB", value: "G" },
+        { name: "TB", value: "T" },
+      ],
+    };
+  },
   methods: {
+    addDBA() {
+      this.inputs.push({
+        add_DBA: "",
+      });
+    },
     onUpload() {
       this.$toast.add({
         severity: "info",
@@ -190,3 +269,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.p-field-checkbox {
+  margin-bottom: 0px;
+}
+</style>
