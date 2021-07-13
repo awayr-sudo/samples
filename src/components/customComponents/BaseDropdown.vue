@@ -20,14 +20,13 @@
         :filter="filter"
         @input="handleChange"
         @change="checkChange"
-        
         :disabled="disabled"
         class="base"
       />
       <!-- {{inputValue}}---{{modelValue}} -->
       <span
         class="p-inputgroup-addon"
-       
+       v-if="addon"
       >
         <i
           class="pi pi-pencil cursor-pointer"
@@ -153,6 +152,7 @@ export default {
     }
     function onBtnClick() {
       emit("btn-clicked", { id: inputValue.value });
+      alert("okkk")
     }
     function onBtnCreate() {
       emit("btn-create");

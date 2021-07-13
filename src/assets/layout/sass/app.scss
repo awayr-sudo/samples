@@ -149,26 +149,7 @@ body {
 //     }
 //   }
 // }
-.drag-panel {
-  .p-panel {
-    padding: 15px;
-    .p-panel-header {
-      cursor: move; /* fallback: no `url()` support or images disabled */
-
-      .list-panel-heading {
-        font-family: Century Gothic, Arial;
-        font-size: 13pt;
-        line-height: 1.3em;
-        text-align: center;
-      }
-    }
-    .p-panel-content {
-      // @include model-body-bg();
-      min-height: 250px;
-      max-height: 300px;
-    }
-  }
-}
+//    
 .f-w-b {
   font-weight: bold;
 }

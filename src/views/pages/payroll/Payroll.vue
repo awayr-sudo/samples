@@ -1,9 +1,7 @@
 <template>
   <Splitter class=" full-splitter">
     <SplitterPanel :size="20" :minSize="10" class="">
-      fgudfhiedgdfgdfgdfg
       <GemIcon :icon="service.icon" />
-      gdfgdf
       <div
         v-for="tabs in service.tabsBtn"
         :key="tabs"

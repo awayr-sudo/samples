@@ -31,33 +31,37 @@ export default class ClientService extends ApiService {
     {
       label: "Legal Info",
       icon: "status",
-      action:"info",
-     
+      section: "LegalInfo",
+
     },
     {
       label: "Addresses",
       icon: "tag",
-      action: "address"
+      section: "Contacts"
     },
     {
       label: "Contacts",
       icon: "calendar",
-     
+      section: "Contacts"
+
     },
     {
       label: "Notes",
       icon: "calendar",
-   
+      section: "Notes"
+
     },
     {
       label: "Privileges",
       icon: "calendar",
-    
+      section: "pre"
+
     },
     {
       label: "Security",
       icon: "calendar",
-     
+      section: "security"
+
     },
   ];
   gemItems = [
@@ -87,13 +91,13 @@ export default class ClientService extends ApiService {
       icon: PrimeIcons.LIST,
       type: 1
     },
-     {
+    {
       key: "all.bookmarks",
       label: "View My Bookmarks",
       icon: PrimeIcons.BOOKMARK,
       type: 2
     },
-     {
+    {
       key: "inactive.signatures",
       label: "View Inactive Signatures",
       icon: PrimeIcons.BAN,
@@ -101,11 +105,11 @@ export default class ClientService extends ApiService {
     },
   ];
   dropItems = [
-       { name: "Associations", value: "association" },
-      
+    { name: "Associations", value: "association" },
+
   ];
   selectedTypes = [
-      "association"
+    "association"
   ]
   // gemItem = [
 

@@ -37,7 +37,7 @@
               >Display Name</label
             >
             <div class="p-col">
-              <base-input type="text" v-model="test" name="contacts_display_name"/>
+              <base-input type="text" v-model="display_name" name="display_name"/>
             </div>
           </div>
         </template>

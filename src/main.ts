@@ -86,6 +86,13 @@ import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import Divider from 'primevue/divider';
 import BaseInput from './components/customComponents/BaseInput.vue'
+import BaseDropdown from '@/components/customComponents/BaseDropdown.vue';
+import BaseCheckBox from '@/components/customComponents/BaseCheckBox.vue';
+import BaseRadioBtn from '@/components/customComponents/BaseRadioBtn.vue';
+
+import BaseTextArea from '@/components/customComponents/BaseTextArea.vue';
+
+
 import './assets/layout/layout.scss';
 import './assets/layout/flags/flags.css';
 
@@ -232,6 +239,10 @@ app.component('TriStateCheckbox', TriStateCheckbox)
 app.component('Splitter', Splitter)
 app.component('SplitterPanel', SplitterPanel)
 app.component('Divider', Divider)
+app.component('BaseDropdown', BaseDropdown);
+app.component('BaseCheckBox', BaseCheckBox);
+app.component('BaseRadioBtn', BaseRadioBtn);
+app.component('BaseTextArea', BaseTextArea);
 // custom elements
 
 
@@ -265,6 +276,12 @@ const payroll = defineAsyncComponent(
 );
 const prospects = defineAsyncComponent(
   () => import("@/views/pages/employees/Employee.vue")
+);
+const LegalInfo = defineAsyncComponent(
+  () => import("@/views/pages/clients/LegalInfo.vue")
+)
+const Contacts = defineAsyncComponent(
+  () => import("@/views//pages/sheard/Contacts.vue")
 )
 
 
@@ -283,6 +300,9 @@ app.component('dashboard', dashboard)
 app.component('payroll', payroll)
 app.component('prospects', prospects)
 app.component('clients', clients)
+app.component('LegalInfo', LegalInfo)
+app.component('Contacts', Contacts)
+
 
 app.config.globalProperties.$filters = {
   fileSize(bytes: any, decimals: any) {

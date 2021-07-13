@@ -1,22 +1,27 @@
 <template>
   <div class="employee-adress">
     <div class="p-fluid">
-      <div class="p-field p-grid">
-        <div class="p-col-12 p-mb-2 p-md-9 p-mb-md-0 ">
+      <div class=" p-grid">
+        <div class="p-col-12 p-mb-2 p-md-8 p-p-0 p-p-sm-1 p-p-md-2 p-p-lg-3">
           <i class="pi pi-user p-mr-2"></i>
-          <label for="firstname4" class="">Employee Contacts:</label>
+          <label for="firstname4" class="">Clients Contacts:</label>
         </div>
 
-        <div class="p-col-12 p-md-3">
-          <div class="collapse">
-            <label for="" class="pi pi-arrow-up p-mr-5 " @click="collapseAll"
-              >Collapse All</label
-            >
-
-            <label for="" class="pi pi-arrow-down" @click="expandAll"
-              >Expand All</label
-            >
-          </div>
+        <div class=" p-col-12 p-md-4 arrow-btn">
+          <Button
+            label="Collapse All"
+            icon="pi pi-arrow-up"
+            iconPos="left"
+            class="collapse-btn p-mr-2"
+            @click="collapseAll"
+          />
+          <Button
+            label="Expand All"
+            icon="pi pi-arrow-down"
+            iconPos="left"
+            class="expand-btn"
+            @click="expandAll"
+          />
         </div>
       </div>
     </div>
@@ -37,7 +42,11 @@
               >Display Name</label
             >
             <div class="p-col">
-              <base-input type="text" v-model="test" name="contacts_display_name"/>
+              <base-input
+                type="text"
+                v-model="test"
+                name="contacts_display_name"
+              />
             </div>
           </div>
         </template>
@@ -51,13 +60,13 @@
           <div class="p-field p-grid ">
             <span class="p-col-5 p-pt-2 p-pl-5">Title</span>
             <div class="p-col-7">
-              <base-input type="text" name="contacts_title"/>
+              <base-input type="text" name="contacts_title" />
             </div>
           </div>
           <div class="p-field p-grid ">
             <span class="p-col-5 p-pt-2 p-pl-5">Full Contact Name</span>
             <div class="p-col-7">
-              <base-input type="text" name="contacts_contact_name"/>
+              <base-input type="text" name="contacts_contact_name" />
             </div>
           </div>
           <div class="p-field p-grid ">
@@ -70,7 +79,7 @@
             </div>
 
             <div class="p-col-7">
-              <base-input type="text" name="contact_number"/>
+              <base-input type="text" name="contact_number" />
             </div>
           </div>
           <div class="p-field p-grid ">
@@ -83,7 +92,7 @@
             </div>
 
             <div class="p-col-7">
-              <base-input type="text" name="contact_fax"/>
+              <base-input type="text" name="contact_fax" />
             </div>
           </div>
           <div class="p-field p-grid ">
@@ -96,7 +105,7 @@
             </div>
 
             <div class="p-col-7">
-              <base-input type="text" name="contact_name"/>
+              <base-input type="text" name="contact_name" />
             </div>
           </div>
           <div class="p-field p-grid ">
@@ -109,27 +118,28 @@
             </div>
 
             <div class="p-col-7">
-              <base-input type="text" name="contact_website"/>
+              <base-input type="text" name="contact_website" />
             </div>
           </div>
-           <div class="p-field p-grid">
-        <label for="firstname4" class="p-col-12 p-mb-2 p-md-5 p-mb-md-0 p-pl-5"
-          >Address</label
-        >
-        <div class="p-col-12 p-md-7">
-        
-          <Dropdown
-            v-model="selectedCity1"
-            :options="cities"
-            optionLabel="name"
-            optionValue="code"
-            placeholder=""
-            class="p-col-2"
-          />
-        </div>
-      </div>
+          <div class="p-field p-grid">
+            <label
+              for="firstname4"
+              class="p-col-12 p-mb-2 p-md-5 p-mb-md-0 p-pl-5"
+              >Address</label
+            >
+            <div class="p-col-12 p-md-7">
+              <Dropdown
+                v-model="selectedCity1"
+                :options="cities"
+                optionLabel="name"
+                optionValue="code"
+                placeholder=""
+                class="p-col-2"
+              />
+            </div>
+          </div>
           <div class="p-field p-grid ">
-            <span class="p-col-5 f-w-b p-pl-5">Is Primary Contact?</span>
+            <span class="p-col-5  p-pl-5">Is Primary Contact?</span>
             <div class="p-col-1">
               <div class="check-box">
                 <base-check-box
@@ -243,5 +253,14 @@ export default {
 }
 .collapse {
   float: right;
+}
+.collapse-btn {
+  width: auto;
+}
+.expand-btn {
+  width: auto;
+}
+.arrow-btn {
+  text-align: end;
 }
 </style>
