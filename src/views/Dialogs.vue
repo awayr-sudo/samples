@@ -1,10 +1,12 @@
 <template>
+
   <Dialog
     v-model:visible="showModel"
     :style="{ width: '70vw', }"
     :maximizable="true"
     :showHeader="true"
     class="dormer"
+    @click="showFront"
   >
     <template #header>
       <label class="gem-main-hiding">
@@ -52,6 +54,7 @@ export default {
       type: null,
 
       selectedCity: null,
+      
     };
   },
   computed: {
@@ -64,6 +67,7 @@ export default {
       return comp;
     },
   },
+ 
   watch: {
     showModel(newVal) {
       console.log("newVal", newVal);
@@ -92,7 +96,11 @@ export default {
     newWindow() {
       window.open("./comp2.vue");
     },
+    
   },
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+
+
+</style>

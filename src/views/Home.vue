@@ -36,7 +36,7 @@
       </template>
     </draggable>
   </div>
-
+{{dialogs.length}}
   <div id="nav">
     <Panel header="All gems" :toggleable="true" v-if="dialogs.length > 0">
       <template v-for="dialog in dialogs" :key="dialog">
@@ -61,8 +61,9 @@
       :key="dialog"
       v-model="dialog.data"
       ref="dialog"
+      @click="getIndex(dialogs)"
     />
-    {{ dialog }}
+  
   </div>
 </template>
 
@@ -107,7 +108,15 @@ export default {
     });
   },
 
+
   methods: {
+
+getIndex(el) {
+  
+  console.log("event",el)
+},
+
+
     gemData() {
       this.gemService = new GemService();
       this.gems = this.gemService.userGems;
@@ -133,6 +142,7 @@ export default {
       };
 
       this.dialogs.push(window);
+      
     },
     closeWindow(dialog) {
       const windowIndex = this.dialogs.findIndex((p) => p.id === dialog.type);
@@ -170,7 +180,7 @@ export default {
       this.isActive1 = !this.isActive1;
     },
     addGems(gem) {
-      this.$emit("open-window", {});
+      this.$emit("open-window", {gem});
     },
   },
 };
