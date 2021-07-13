@@ -8,12 +8,11 @@
         :key="tabs"
         class="p-d-flex p-flex-column p-mx-4"
       >
-       
         <Button
           :label="tabs.label"
           :icon="'pi-' + tabs.icon"
           class="p-mt-2"
-          @click="clientTabClicked(tabs.action)"
+          @click="currentTab = tabs.action"
         />
       </div>
       <div class="p-d-flex p-flex-column p-mx-4 p-mt-3">
@@ -26,43 +25,39 @@
       </div>
     </SplitterPanel>
     <SplitterPanel class="" :size="80" :minSize="20">
-      <!-- <keep-alive>
-        <component :is="userComponent" />
-      </keep-alive> -->
-      <!-- {{ modelValue }}
-      {{ service.tabsBtn }} -->
-      weruiyweir
-     fkdsfg <LegalInfo/>
-     <contacts/>
+      <keep-alive>
+        <component :is="currentComponent" />
+      </keep-alive>
+      {{ currentTab }}
     </SplitterPanel>
   </Splitter>
 </template>
 
 <script>
 import GemIcon from "../../../components/GemIcon.vue";
-import LegalInfo from "./LegalInfo.vue"
-import contacts from '../sheard/Contact.vue'
+
 export default {
-  components: { GemIcon,LegalInfo,contacts},
+  components: { GemIcon },
   props: ["modelValue"],
   inject: ["service"],
   data() {
     return {
-      user: null,
+      currentTab: "LegalInfo",
+      clients: {
+        LegalInfo: "LegalInfo",
+        Contacts: "Contacts",
+      },
     };
   },
-
+  computed: {
+    currentComponent() {
+      return this.currentTab;
+    },
+  },
 
   methods: {
     clientTabClicked(tabs) {
       console.log("tabs", tabs);
-      if (tabs == "info") {
-        alert("info");
-      }
-      if (tabs == "address") {
-        alert("address");
-        this.empType = "address";
-      }
     },
   },
 };

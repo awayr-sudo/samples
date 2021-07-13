@@ -265,6 +265,12 @@ const payroll = defineAsyncComponent(
 );
 const prospects = defineAsyncComponent(
   () => import("@/views/pages/employees/Employee.vue")
+);
+const LegalInfo = defineAsyncComponent(
+  () => import("@/views/pages/clients/LegalInfo.vue")
+)
+const Contacts = defineAsyncComponent(
+  () => import("@/views//pages/sheard/Contacts.vue")
 )
 
 import mitt from 'mitt';
@@ -282,6 +288,9 @@ app.component('dashboard', dashboard)
 app.component('payroll', payroll)
 app.component('prospects', prospects)
 app.component('clients', clients)
+app.component('LegalInfo', LegalInfo)
+app.component('Contacts', Contacts)
+
 
 app.config.globalProperties.$filters = {
   fileSize(bytes: any, decimals: any) {

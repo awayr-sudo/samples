@@ -1,7 +1,7 @@
 <template>
   <Dialog
     v-model:visible="showModel"
-    :style="{ width: '70vw', height: '46vh' }"
+    :style="{ width: '70vw', height: '76vh' }"
     :maximizable="true"
     :showHeader="true"
     class="dormer"
@@ -67,11 +67,11 @@ export default {
   },
   computed: {
     currentTabComponent() {
+      console.log("rkegjlt",this.modelValue)
       let comp = null;
       if (this.comps[this.modelValue.key]) {
         comp = this.comps[this.modelValue.key];
       }
-
       return comp;
     },
   },
