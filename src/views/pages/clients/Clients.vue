@@ -3,7 +3,6 @@
     <Splitter class="full-splitter">
       <SplitterPanel :size="20" :minSize="10" class="">
         <GemIcon :icon="service.icon" />
-
         <div
           v-for="tabs in service.tabsBtn"
           :key="tabs"
@@ -24,15 +23,14 @@
             type="submit"
             class="p-mb-2 p-button-success"
           />
-          <Button label="Cancel" icon="pi pi-check" class="p-button-warning" @click="showModel=false"/>
+          <Button label="Cancel" icon="pi pi-check" class="p-button-warning" />
+          {{ currentTab }}
         </div>
       </SplitterPanel>
-
       <SplitterPanel class="" :size="80" :minSize="20">
         <keep-alive>
           <component :is="currentComponent" />
         </keep-alive>
-        {{ currentTab }}
       </SplitterPanel>
     </Splitter>
   </Form>
@@ -43,7 +41,6 @@ import GemIcon from "../../../components/GemIcon.vue";
 import { Form } from "vee-validate";
 import * as Yup from "yup";
 import axios from "axios";
-
 export default {
   components: { GemIcon, Form },
   props: ["modelValue"],
@@ -78,6 +75,7 @@ export default {
     },
     submit(payload) {
       payload["npo"] = payload.npo ? 1 : 0;
+      console.log("payload", payload);
 
       alert("create");
       axios
