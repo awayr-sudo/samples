@@ -1,5 +1,5 @@
 <template>
-  <!-- {{gemData}} -->
+  
   <Splitter>
     <div class="p-grid">
       <SplitterPanel :size="20" :minSize="10">
@@ -7,7 +7,7 @@
           <template #header>
             <label for="heading" class="panel-main-heading">Navigation {{getType}}</label>
           </template>
-          <!-- {{gemData}} -->
+         
           <div class="panel-sub-heading">
             <Dropdown
             v-if="this.service.dropItems"
@@ -38,31 +38,7 @@
 
       <SplitterPanel :size="80" :minSize="20">
         <div class>
-          <DataTable :value="products" v-if="!items">
-            <Column headerStyle="width: 3rem;">
-              <template #body>
-                <Skeleton></Skeleton>
-              </template>
-            </Column>
-            <Column>
-              <template #header> </template>
-              <template #body>
-                <Skeleton></Skeleton>
-              </template>
-            </Column>
-            <Column>
-              <template #header> </template>
-              <template #body>
-                <Skeleton></Skeleton>
-              </template>
-            </Column>
-            <Column>
-              <template #header> </template>
-              <template #body>
-                <Skeleton></Skeleton>
-              </template>
-            </Column>
-          </DataTable>
+         
 
           <DataTable
             :value="items"
@@ -78,8 +54,9 @@
             currentPageReportTemplate="Viewing Records {first}-{last} of {totalRecords} PerPage"
             v-model:filters="filters1"
             filterDisplay="menu"
-            :loading="loading1"
+            
             :globalFilterFields="['name']"
+           
           >
             <template #header>
               <div class="p-d-flex p-jc-between">
@@ -137,7 +114,7 @@
                 </div>
               </template>
             </Column>
-
+ 
             <Column
               v-for="col of this.service.columns"
               :field="col.field"
@@ -146,8 +123,9 @@
                 <span class="pi p-mr-2" :class="'pi-' + col.icon"></span>
                 <span>{{ col.header }}</span>
               </template>
-              <template v-if="col.template" #body="slotProps">
-                {{ col.template(slotProps.data) }}
+              <Skeleton v-if="loading"></Skeleton>
+              <template v-if="col.template" #body="slotProps">                 
+                {{  col.template(slotProps.data) }}
               </template>
             </Column>
 
@@ -202,40 +180,9 @@ export default {
       selectedType: null,
       displayDescription: false,
       items: null,
-     
+     loading: false,
       getType: null,
-      products: [
-        { name: "New York", code: "NY", date: "20-01-1010" },
-        { name: "Rome", code: "RM", date: "20-01-1010" },
-        { name: "London", code: "LDN", date: "20-01-1010" },
-        { name: "Istanbul", code: "IST", date: "20-01-1010" },
-        { name: "Paris", code: "PRS", date: "20-01-1010" },
-        { name: "New York", code: "NY", date: "20-01-1010" },
-        { name: "Rome", code: "RM", date: "20-01-1010" },
-        { name: "London", code: "LDN", date: "20-01-1010" },
-        { name: "Istanbul", code: "IST", date: "20-01-1010" },
-        { name: "Paris", code: "PRS", date: "20-01-1010" },
-        { name: "New York1", code: "NY", date: "20-01-1010" },
-        { name: "Rome", code: "RM", date: "20-01-1010" },
-        { name: "London", code: "LDN", date: "20-01-1010" },
-        { name: "Istanbul", code: "IST", date: "20-01-1010" },
-        { name: "Paris", code: "PRS", date: "20-01-1010" },
-        { name: "New York", code: "NY", date: "20-01-1010" },
-        { name: "Rome", code: "RM", date: "20-01-1010" },
-        { name: "London", code: "LDN", date: "20-01-1010" },
-        { name: "Istanbul", code: "IST", date: "20-01-1010" },
-        { name: "Paris", code: "PRS", date: "20-01-1010" },
-        { name: "New York11", code: "NY", date: "20-01-1010" },
-        { name: "Rome", code: "RM", date: "20-01-1010" },
-        { name: "London", code: "LDN", date: "20-01-1010" },
-        { name: "Istanbul", code: "IST", date: "20-01-1010" },
-        { name: "Paris", code: "PRS", date: "20-01-1010" },
-        { name: "New York111", code: "NY", date: "20-01-1010" },
-        { name: "Rome", code: "RM", date: "20-01-1010" },
-        { name: "London", code: "LDN", date: "20-01-1010" },
-        { name: "Istanbul", code: "IST", date: "20-01-1010" },
-        { name: "Paris", code: "PRS", date: "20-01-1010" },
-      ],
+     
       menuItems: [
         {
           items: [
@@ -274,12 +221,17 @@ export default {
     },
   },
   created() {
+    this.loading = true;
+    console.log("a", this.loading)
     this.service.get().then((response) => {
+      
       console.log("data", response);
       this.items = response.items;
       console.log("this service", this.service.listingControls);
+      this.loading = false;
     });
     this.initFilters1();
+   
   },
   methods: {
 
