@@ -283,7 +283,9 @@ const LegalInfo = defineAsyncComponent(
 const Contacts = defineAsyncComponent(
   () => import("@/views//pages/sheard/Contacts.vue")
 )
-
+const Addresses = defineAsyncComponent(
+  () => import("@/views//pages/sheard/Addresses.vue")
+)
 
 import mitt from 'mitt';
 import moment from 'moment';
@@ -302,6 +304,8 @@ app.component('prospects', prospects)
 app.component('clients', clients)
 app.component('LegalInfo', LegalInfo)
 app.component('Contacts', Contacts)
+app.component('Addresses', Addresses)
+
 
 
 app.config.globalProperties.$filters = {

@@ -37,7 +37,7 @@ export default class ClientService extends ApiService {
     {
       label: "Addresses",
       icon: "tag",
-      section: "Contacts"
+      section: "Addresses"
     },
     {
       label: "Contacts",

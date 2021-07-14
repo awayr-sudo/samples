@@ -55,7 +55,16 @@
           <div class="p-field p-grid ">
             <span class="p-col-5 f-w-b">Address</span>
             <div class="p-col-7">
-              c
+                <BaseTextArea
+          name="description"
+          type="text"
+          label="Part Description"
+          icon="pi-clone"
+          v-model="description"
+          placeholder="Description"
+          :autoResize="true"
+          class="m-t-7"
+        />
             </div>
           </div>
           <div class="p-field p-grid ">
@@ -95,13 +104,11 @@
     v-for="address in newAddress"
     :key="address"
   />
-  <AddCalendar ref="calendar" />
+  <!-- <AddCalendar ref="calendar" /> -->
 </template>
 
 <script>
-import AddCalendar from "../employees/Calendar.vue";
 export default {
-  components: { AddCalendar },
   data() {
     return {
       newAddress: null,
