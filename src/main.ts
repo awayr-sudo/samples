@@ -286,6 +286,9 @@ const Contacts = defineAsyncComponent(
 const Addresses = defineAsyncComponent(
   () => import("@/views//pages/sheard/Addresses.vue")
 )
+const Notes = defineAsyncComponent(
+  () => import("@/views//pages/sheard/Notes.vue")
+)
 
 import mitt from 'mitt';
 import moment from 'moment';
@@ -305,6 +308,8 @@ app.component('clients', clients)
 app.component('LegalInfo', LegalInfo)
 app.component('Contacts', Contacts)
 app.component('Addresses', Addresses)
+app.component('Notes', Notes)
+
 
 
 

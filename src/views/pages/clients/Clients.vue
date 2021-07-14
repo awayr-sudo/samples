@@ -1,13 +1,8 @@
 <template>
-  <Form @submit="submit" :validation-schema="schema" v-slot="{ meta }">
+  <Form @submit="submit" :validation-schema="schema">
     <Splitter class="full-splitter">
       <SplitterPanel :size="20" :minSize="10" class="">
         <GemIcon :icon="service.icon" />
-
-        <ErrorMessage name="display_name" />
-        <ErrorMessage name="legal_name" />
-        <ErrorMessage name="address" />
-        {{ meta }}
 
         <div
           v-for="tabs in service.tabsBtn"
@@ -84,12 +79,12 @@ export default {
 
   methods: {
     closed() {
-      console.log("dmvfs", this.service);
       this.service.gemItems.forEach((element) => {
-        console.log("gemitms", element);
+        console.log("element", element);
+        element.command = (event) => {
+          console.log("openevent", event);
+        };
       });
-      // this.emitter.emit("closed-gem",event);
-      // console.log("eventsssssss",event)
     },
     clientTabClicked(tabs) {
       console.log("tabs", tabs);
@@ -97,8 +92,11 @@ export default {
 
     submit(payload) {
       payload["npo"] = payload.npo ? 1 : 0;
-      console.log("payload", payload);
 
+      console.log("npo", payload.npo);
+      console.log("is_default_address", payload["addresses"].is_default_address);
+
+      console.log("payload", payload);
       alert("create");
       axios
         .post(`http://api.epicai.com/clients`, payload, {

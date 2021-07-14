@@ -14,7 +14,9 @@
       :class="className"
       :disabled="disabled"
       :readonly="readOnly"
-       :maxlength="maxLength"
+      :maxlength="maxLength"
+      :rows="rows"
+      :cols="cols"
     />
     <p class="help-message" v-show="errorMessage || meta.valid">
       {{ errorMessage || successMessage }}
@@ -36,6 +38,14 @@ export default {
       default: "",
     },
     modelValue: {
+      type: [String, Number],
+      default: "",
+    },
+    rows: {
+      type: [String, Number],
+      default: "",
+    },
+    cols: {
       type: [String, Number],
       default: "",
     },
@@ -71,7 +81,7 @@ export default {
       type: Boolean,
       default: false,
     },
-     maxLength: {
+    maxLength: {
       type: Number,
       default: 1000,
     },

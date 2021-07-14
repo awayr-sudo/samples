@@ -36,7 +36,7 @@ export default {
   components: { defaultTemplate, Template2 },
   provide() {
     return {
-      service: this.service, 
+      service: this.service,
     };
   },
 
@@ -47,16 +47,14 @@ export default {
   },
   beforeCreate() {
     this.service = getMyGemService(this.data.gem_id);
-    console.log("service", this.service);
+    console.log("servicess", this.data.gem_id);
     this.service.context = this;
     this.service.gemItems.forEach((element) => {
       console.log("element", element);
       element.command = (event) => {
         event.item.service = this.service;
         this.emitter.emit("open-gem", event);
-        // event.originalEvent: Browser event
-        // event.item: Menuitem instance
-        console.log("open event",   event.item.service);
+        console.log("open event", event);
       };
     });
 
