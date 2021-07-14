@@ -1,8 +1,14 @@
 <template>
-  <Form @submit="submit" :validation-schema="schema">
+  <Form @submit="submit" :validation-schema="schema" v-slot="{ meta }">
     <Splitter class="full-splitter">
       <SplitterPanel :size="20" :minSize="10" class="">
         <GemIcon :icon="service.icon" />
+
+        <ErrorMessage name="display_name" />
+        <ErrorMessage name="legal_name" />
+        <ErrorMessage name="address" />
+        {{ meta }}
+
         <div
           v-for="tabs in service.tabsBtn"
           :key="tabs"
@@ -22,7 +28,12 @@
             type="submit"
             class="p-mb-2 p-button-success"
           />
-          <Button label="Cancel" icon="pi pi-check" class="p-button-warning" />
+          <Button
+            label="Cancel"
+            icon="pi pi-check"
+            class="p-button-warning"
+            @click="closed"
+          />
           {{ currentTab }}
         </div>
       </SplitterPanel>
@@ -37,11 +48,11 @@
 
 <script>
 import GemIcon from "../../../components/GemIcon.vue";
-import { Form } from "vee-validate";
+import { Form, ErrorMessage } from "vee-validate";
 import * as Yup from "yup";
 import axios from "axios";
 export default {
-  components: { GemIcon, Form },
+  components: { GemIcon, Form, ErrorMessage },
   props: ["modelValue"],
   inject: ["service"],
   data() {
@@ -52,6 +63,9 @@ export default {
       legal_name: Yup.string()
         .min(1)
         .required("Please Enter Unique Legal Name."),
+      // address: Yup.string()
+      //   .min(1)
+      //   .required("Please Enter Unique Legal Name."),
     });
     return {
       schema: schema,
@@ -69,9 +83,18 @@ export default {
   },
 
   methods: {
+    closed() {
+      console.log("dmvfs", this.service);
+      this.service.gemItems.forEach((element) => {
+        console.log("gemitms", element);
+      });
+      // this.emitter.emit("closed-gem",event);
+      // console.log("eventsssssss",event)
+    },
     clientTabClicked(tabs) {
       console.log("tabs", tabs);
     },
+
     submit(payload) {
       payload["npo"] = payload.npo ? 1 : 0;
       console.log("payload", payload);

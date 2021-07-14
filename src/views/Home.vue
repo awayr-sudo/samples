@@ -36,7 +36,7 @@
       </template>
     </draggable>
   </div>
-{{dialogs.length}}
+  {{ dialogs.length }}
   <div id="nav">
     <Panel header="All gems" :toggleable="true" v-if="dialogs.length > 0">
       <template v-for="dialog in dialogs" :key="dialog">
@@ -63,7 +63,6 @@
       ref="dialog"
       @click="getIndex(dialogs)"
     />
-  
   </div>
 </template>
 
@@ -106,16 +105,16 @@ export default {
       console.log("my-event", event);
       this.openWindow(event.item);
     });
+    this.emitter.on("closed-gem", (event) => {
+      console.log("my-event", event);
+      this.closeWindow();
+    });
   },
 
-
   methods: {
-
-getIndex(el) {
-  
-  console.log("event",el)
-},
-
+    getIndex(el) {
+      console.log("event", el);
+    },
 
     gemData() {
       this.gemService = new GemService();
@@ -142,16 +141,18 @@ getIndex(el) {
       };
 
       this.dialogs.push(window);
-      
+    },
+    closed() {
+      this.$refs.dialog.showModel = false;
     },
     closeWindow(dialog) {
+      console.log("dialog", dialog);
       const windowIndex = this.dialogs.findIndex((p) => p.id === dialog.type);
       this.dialogs.splice(windowIndex, 1);
     },
     toggleWindow(data) {
       data.data.isVisible = !data.data.isVisible;
     },
-    
 
     removeGems(gem) {
       this.$confirm.require({
@@ -180,11 +181,10 @@ getIndex(el) {
       this.isActive1 = !this.isActive1;
     },
     addGems(gem) {
-      this.$emit("open-window", {gem});
+      this.$emit("open-window", { gem });
     },
   },
 };
 </script>
 
 <style lang="scss"></style>
- 

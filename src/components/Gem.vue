@@ -50,12 +50,13 @@ export default {
     console.log("service", this.service);
     this.service.context = this;
     this.service.gemItems.forEach((element) => {
+      console.log("element", element);
       element.command = (event) => {
         event.item.service = this.service;
         this.emitter.emit("open-gem", event);
         // event.originalEvent: Browser event
         // event.item: Menuitem instance
-        console.log("open event", event);
+        console.log("open event",   event.item.service);
       };
     });
 

@@ -29,7 +29,7 @@
       <div class="p-field p-col-3">
         <BaseInput name="check_number" type="text" v-model="check_number" />
       </div>
-      <!-- <div class="p-field p-col-6">
+      <div class="p-field p-col-6">
         <i class="pi pi-tag "></i>
         <label for="address" class="p-ml-2">Doing Business As...</label>
       </div>
@@ -37,20 +37,21 @@
         <BaseInput
           v-for="(_DBA, index) in inputs"
           :key="_DBA"
-          :name="'DBA[' + index + ']DBA'"
+          :name="'DBA[' + index + ']add_DBA'"
           type="text"
           v-model="_DBA.add_DBA"
           class="p-mb-1"
         />
+
         <Button @click="addDBA" label="Add Another DBA" class="p-button-link" />
-      </div> -->
+      </div>
 
       <div class="p-field p-col-6">
         <i class="pi pi-id-card "></i>
         <label for="address" class="p-ml-2">Fedral EIN</label>
       </div>
       <div class="p-field p-col-3">
-        <BaseInput name="fedral_ein" type="text" v-model="fedral_ein" />
+        <BaseInput name="legal_fein" type="text" v-model="legal_fein" />
       </div>
 
       <div class="p-field p-col-6">
@@ -59,7 +60,7 @@
       </div>
 
       <div class="p-field p-col-3">
-        <BaseInput name="state_id" type="text" v-model="state_id" />
+        <BaseInput name="legal_state_id" type="text" v-model="legal_state_id" />
       </div>
 
       <div class="p-field p-col-6">
@@ -68,9 +69,9 @@
       </div>
       <div class="p-field p-col-3">
         <BaseInput
-          name="date_of_legal_filling"
+          name="legal_filing_date"
           type="date"
-          v-model="date_of_legal_filling"
+          v-model="legal_filing_date"
         />
       </div>
 
@@ -80,8 +81,8 @@
       </div>
       <div class="p-field p-col-4">
         <base-dropdown
-          name="state_of_legal_filling"
-          v-model="state_of_legal_filling"
+          name="legal_filing_state"
+          v-model="legal_filing_state"
           :options="fiscalyear"
           optionLabel="name"
           optionValue="value"
@@ -216,7 +217,7 @@ export default {
       // fiscalyear: fiscalyear,
       inputs: [
         {
-          add_DBA: "",
+          add_DBA: null,
         },
       ],
       entity: [
@@ -255,7 +256,7 @@ export default {
   methods: {
     addDBA() {
       this.inputs.push({
-        add_DBA: "",
+        add_DBA: null,
       });
     },
     onUpload() {
