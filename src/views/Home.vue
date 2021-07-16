@@ -62,6 +62,8 @@
       v-model="dialog.data"
       ref="dialog"
       @click="getIndex(dialogs)"
+      class="index"
+     
     />
   </div>
 </template>
@@ -96,6 +98,7 @@ export default {
       title: null,
       dialogs: [],
       gInfos: [],
+      index: 2
     };
   },
 
