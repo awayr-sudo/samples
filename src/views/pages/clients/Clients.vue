@@ -80,12 +80,11 @@ export default {
 
   methods: {
     closed() {
-      alert("closed")
+      alert("closed");
       this.service.gemItems.forEach((element) => {
         console.log("element", element);
         element.command = (event) => {
           this.emitter.emit("closed-gem", event);
-         
         };
       });
     },
@@ -95,13 +94,7 @@ export default {
 
     submit(payload) {
       payload["npo"] = payload.npo ? 1 : 0;
-      
-
       console.log("npo", payload.npo);
-      console.log(
-        "is_default_address",
-        payload["addresses"].is_default_address
-      );
 
       console.log("payload", payload);
       alert("create");
