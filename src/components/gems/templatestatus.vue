@@ -1,11 +1,7 @@
 <template>
   <div class="p-fluid">
     <div class="p-field p-grid">
-      <div class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">
-        <GemIcon :icon="service.icon" />
-      </div>
-
-      <div class="p-col-12 p-md-9">
+      <div class="p-col-12 p-md-12">
         <Form :validation-schema="schema">
           <Panel header="Client statuses">
             <!-- showGridlines -->
@@ -30,7 +26,7 @@
                   <div v-if="slotProps.data.reason != null">
                     <!-- {{ slotProps.data.reason.reason }} -->
                   </div>
-                  <!-- <div
+                  <div
                     class="p-field p-grid p-mt-2"
                     v-if="
                       slotProps.data.status == 11 || slotProps.data.status == 8
@@ -49,7 +45,7 @@
                         cols="20"
                       />
                     </div>
-                  </div> -->
+                  </div>
                 </template>
               </Column>
               <Column header="">
@@ -82,9 +78,7 @@
   </div>
 </template>
 <script>
-import GemIcon from "../GemIcon.vue";
 export default {
-  components: { GemIcon },
   inject: ["service"],
   data() {
     return {

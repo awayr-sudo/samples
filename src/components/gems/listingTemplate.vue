@@ -6,11 +6,9 @@
   </div>
   <div class="p-fluid">
     <div class="p-field p-grid">
-      <div class="p-col-12 p-mb-2 p-md-4 p-mb-md-0">
-        <GemIcon :icon="service.icon" />
-      </div>
+     
 
-      <div class="p-col-12 p-md-8">
+      <div class="p-col-12 p-md-12">
         <DataTable :value="items" responsiveLayout="scroll">
           <Column field="Display_name" header="" headerStyle="width:10rem">
             <template #body="slotProps">
@@ -59,9 +57,7 @@
   </div>
 </template>
 <script>
-import GemIcon from "../GemIcon.vue";
 export default {
-  components: { GemIcon },
   inject: ["service"],
   data() {
     return {

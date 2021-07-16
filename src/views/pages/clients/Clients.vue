@@ -95,6 +95,7 @@ export default {
 
     submit(payload) {
       payload["npo"] = payload.npo ? 1 : 0;
+      
 
       console.log("npo", payload.npo);
       console.log(
