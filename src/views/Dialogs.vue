@@ -1,8 +1,7 @@
 <template>
-
   <Dialog
     v-model:visible="showModel"
-    :style="{ width: '70vw', }"
+    :style="{ width: '70vw' }"
     :maximizable="true"
     :showHeader="true"
     class="dormer"
@@ -11,7 +10,7 @@
     <template #header>
       <label class="gem-main-hiding">
         <GemIcon type="favicon" :icon="modelValue.service.favicon" />
-        
+        {{modelValues}}
 
         <span class="dormer-heading " style="color:black">{{
           modelValue.label
@@ -23,7 +22,6 @@
         @click="closeBasic"
       />
     </template>
-
     <keep-alive v-if="currentTabComponent">
       <component :is="currentTabComponent"> </component>
     </keep-alive>
@@ -35,7 +33,7 @@ export default {
   props: ["modelValue"],
   provide() {
     return {
-      service: this.modelValue.service, 
+      service: this.modelValue.service,
     };
   },
   data() {
@@ -54,20 +52,22 @@ export default {
       type: null,
 
       selectedCity: null,
-      
     };
   },
   computed: {
     currentTabComponent() {
-      console.log("rkegjlt",this.modelValue)
+      console.log("rkegjlt", this.modelValue.item);
       let comp = null;
       if (this.comps[this.modelValue.key]) {
         comp = this.comps[this.modelValue.key];
       }
+      //  if (this.comps[this.modelValue.clientEdit]) {
+      //   comp = this.comps[this.modelValue.clientEdit];
+      // }
       return comp;
     },
   },
- 
+
   watch: {
     showModel(newVal) {
       console.log("newVal", newVal);
@@ -88,7 +88,6 @@ export default {
     },
   },
   methods: {
-    
     closeBasic() {
       this.showModel = false;
       console.log("closing");
@@ -96,11 +95,7 @@ export default {
     newWindow() {
       window.open("./comp2.vue");
     },
-    
   },
 };
 </script>
-<style lang="scss">
-
-
-</style>
+<style lang="scss"></style>

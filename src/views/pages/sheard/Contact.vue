@@ -6,6 +6,7 @@
           <i class="pi pi-user p-mr-2"></i>
           <label for="firstname4" class="">Employee Contacts:</label>
         </div>
+             <base-input type="text" v-model="addresses" name="addresses"/>
 
         <div class="p-col-12 p-md-3">
           <div class="collapse">
@@ -37,7 +38,7 @@
               >Display Name</label
             >
             <div class="p-col">
-              <base-input type="text" v-model="display_name" name="display_name"/>
+              <base-input type="text" v-model="address" name="address"/>
             </div>
           </div>
         </template>

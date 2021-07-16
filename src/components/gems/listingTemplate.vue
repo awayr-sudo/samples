@@ -1,0 +1,104 @@
+<template>
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-col-12 p-md-6 p-lg-3">
+      <!-- <img src="../assets/images/imageletter.png" alt class="email-image" /> -->
+    </div>
+  </div>
+  <div class="p-fluid">
+    <div class="p-field p-grid">
+      <div class="p-col-12 p-mb-2 p-md-4 p-mb-md-0">
+        <GemIcon :icon="service.icon" />
+      </div>
+
+      <div class="p-col-12 p-md-8">
+        <DataTable :value="items" responsiveLayout="scroll">
+          <Column field="Display_name" header="" headerStyle="width:10rem">
+            <template #body="slotProps">
+              <span>{{ slotProps.data.display_name }}</span>
+            </template>
+          </Column>
+          <Column field="name" header="">
+            <template #body="slotProps">
+              <ProgressBar
+                :value="slotProps.data.status"
+                @click="product(slotProps.data)"
+              />
+              <DataTable
+                :value="entries"
+                responsiveLayout="scroll"
+                showGridlines
+              >
+                <Column field="name" header="">
+                  <template #body="slotProps">
+                    {{ slotProps.data.client }}
+                  </template>
+                </Column>
+                <Column field="category" header="">
+                  <template #body=""> yes</template>
+                </Column>
+                <Column field="quantity" header="" headerStyle="width:5rem">
+                  <template #body="">
+                    <i class="pi pi-pencil"></i>
+                  </template>
+                </Column>
+              </DataTable>
+            </template>
+          </Column>
+          <Column :exportable="false" headerStyle="width:5rem">
+            <template #body="slotProps">
+              <Button
+                icon="pi pi-pencil"
+                class="p-button-rounded p-button-success p-mr-2"
+                @click="editproduct(slotProps.data)"
+              />
+            </template>
+          </Column>
+        </DataTable>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import GemIcon from "../GemIcon.vue";
+export default {
+  components: { GemIcon },
+  inject: ["service"],
+  data() {
+    return {
+      items: null,
+      item: {},
+      seen: false,
+      table: false,
+      entries: [
+        { client: "legal info" },
+        { client: "Addresses" },
+        { client: "Contacts" },
+      ],
+      productsss: null,
+    };
+  },
+  created() {
+    console.log("servicesss", this.service);
+    this.service.get().then((response) => {
+      console.log("data", response);
+      this.items = response.items;
+    });
+  },
+  methods: {
+    editproduct(item) {
+      this.item = { ...item };
+      console.log("servicesss", this.service);
+      this.emitter.emit("open-client", {
+        item: item,
+        key: "clients",
+        service: this.service,
+      });
+    },
+    // product(item) {
+    //   this.productsss = { ...item };
+    //   this.table = true;
+    //   console.log("servicesss", this.productsss);
+    // },
+  },
+};
+</script>

@@ -19,24 +19,24 @@
         <span class="pi pi-times"></span>
       </button>
     </template>
-    <template-2 v-if="service.template == 2" :data="data" />
-    <default-template :data="data" v-else />
+    <keep-alive>
+      <component :is="currentTemplate" />
+    </keep-alive>
   </Panel>
 </template>
 
 <script>
 import GemsService from "@/services/gems.service";
+
 import { getMyGemService } from "../services";
 
 // import clientGemServicevice from "../services/client.service";
-import defaultTemplate from "./gems/default.vue";
-import Template2 from "./gems/template2.vue";
+
 export default {
   props: ["data"],
-  components: { defaultTemplate, Template2 },
   provide() {
     return {
-      service: this.service, 
+      service: this.service,
     };
   },
 
@@ -45,16 +45,22 @@ export default {
       title: "dddf",
     };
   },
+  computed: {
+    currentTemplate() {
+      let currentTab = "";
+      currentTab = this.service.template;
+      return currentTab;
+    },
+  },
   beforeCreate() {
     this.service = getMyGemService(this.data.gem_id);
-    console.log("service", this.service);
+    console.log("servicess", this.data.gem_id);
     this.service.context = this;
     this.service.gemItems.forEach((element) => {
+      console.log("element", element);
       element.command = (event) => {
         event.item.service = this.service;
         this.emitter.emit("open-gem", event);
-        // event.originalEvent: Browser event
-        // event.item: Menuitem instance
         console.log("open event", event);
       };
     });
@@ -63,6 +69,7 @@ export default {
   },
   mounted() {
     let gemService = new GemsService();
+
     let gem = gemService.getGem(this.data.gem_id);
 
     if (gem) {

@@ -29,7 +29,7 @@
     <div>
       <Panel
         :toggleable="true"
-        v-for="(stop, index) in contacts"
+        v-for="(contacts, index) in contactses"
         :key="index"
         class="adress-panel"
       >
@@ -44,8 +44,8 @@
             <div class="p-col">
               <base-input
                 type="text"
-                v-model="test"
-                name="contacts_display_name"
+                v-model="contacts.display_name"
+                :name="'contacts[' + index + ']display_name'"
               />
             </div>
           </div>
@@ -60,13 +60,21 @@
           <div class="p-field p-grid ">
             <span class="p-col-5 p-pt-2 p-pl-5">Title</span>
             <div class="p-col-7">
-              <base-input type="text" name="contacts_title" />
+              <base-input
+                type="text"
+                :name="'contacts[' + index + ']title'"
+                v-model="contacts.title"
+              />
             </div>
           </div>
           <div class="p-field p-grid ">
             <span class="p-col-5 p-pt-2 p-pl-5">Full Contact Name</span>
             <div class="p-col-7">
-              <base-input type="text" name="contacts_contact_name" />
+              <base-input
+                type="text"
+                :name="'contacts[' + index + ']contact_name'"
+                v-model="contacts.contact_name"
+              />
             </div>
           </div>
           <div class="p-field p-grid ">
@@ -75,11 +83,15 @@
                 <span class="pi pi-chevron-down"></span>
               </button>
               <i class="pi pi-mobile p-pr-1"></i>
-              <span class="">Phone Number</span>
+              <span class="">{{ contact_number }}</span>
             </div>
 
             <div class="p-col-7">
-              <base-input type="text" name="contact_number" />
+              <base-input
+                type="text"
+                name="contact_number"
+                v-model="contact_number"
+              />
             </div>
           </div>
           <div class="p-field p-grid ">
@@ -185,35 +197,26 @@ export default {
   components: { BaseInput },
   data() {
     return {
+      contact_number: "phone number",
       newAddress: null,
       toggleable: true,
-      contacts: [{ test: "" }],
+      contactses: [{ display_name: "", contact_name: "", title: "" }],
       items: [
         {
           label: "Options",
           items: [
             {
-              label: "Update",
+              label: "Mobile",
               icon: "pi pi-refresh",
               command: () => {
-                this.$toast.add({
-                  severity: "success",
-                  summary: "Updated",
-                  detail: "Data Updated",
-                  life: 3000,
-                });
+                this.contact_number = "Mobile";
               },
             },
             {
-              label: "Delete",
+              label: "PTCL",
               icon: "pi pi-times",
               command: () => {
-                this.$toast.add({
-                  severity: "warn",
-                  summary: "Delete",
-                  detail: "Data Deleted",
-                  life: 3000,
-                });
+               this.contact_number = "PTCL";
               },
             },
           ],
@@ -230,9 +233,7 @@ export default {
       this.$refs.menu.toggle(event);
     },
     addNewContact() {
-      this.contacts.push({
-        test: "",
-      });
+      this.contactses.push({});
     },
     collapseAll() {
       this.toggleable = false;
