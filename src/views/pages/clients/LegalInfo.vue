@@ -82,8 +82,8 @@
       <div class="p-field p-col-4">
         <base-dropdown
           name="legal_filing_state"
-          v-model="legal_filing_state"
-          :options="fiscalyear"
+          modelValue="legal_filing_state"
+          :options="states"
           optionLabel="name"
           optionValue="value"
           placeholder="Select "
@@ -210,11 +210,12 @@
   </div>
 </template>
 <script>
-import fiscalyear from "./ArrayFile.js";
+import { states } from "../../../../src/components/core/params";
 export default {
   data() {
     return {
-      // fiscalyear: fiscalyear,
+      states: states,
+
       inputs: [
         {
           add_DBA: null,
