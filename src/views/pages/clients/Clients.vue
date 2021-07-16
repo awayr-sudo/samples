@@ -5,7 +5,7 @@
         <GemIcon :icon="service.icon" />
 
         <div
-          v-for="tabs in service.tabsBtn"
+          v-for="tabs in service.tabs"
           :key="tabs"
           class="p-d-flex p-flex-column p-mx-4"
         >

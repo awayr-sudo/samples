@@ -300,12 +300,13 @@ const Template2 = defineAsyncComponent(
 const ListingTemplate = defineAsyncComponent(
   () => import("@/components/gems/listingTemplate.vue")
 )
-
+const templatestatus = defineAsyncComponent(
+  () => import("@/components/gems/templatestatus.vue")
+)
 import mitt from 'mitt';
 import moment from 'moment';
 const emitter = mitt();
 app.config.globalProperties.emitter = emitter;
-
 app.component('GemIcon', gemIcon);
 app.component('listing', listingComponent);
 app.component('comp2Vue', comp2Vue)
@@ -322,12 +323,8 @@ app.component('Addresses', Addresses)
 app.component('Notes', Notes)
 app.component('defaultTemplate', defaultTemplate)
 app.component('Template2', Template2)
-
+app.component('templatestatus', templatestatus)
 app.component('ListingTemplate', ListingTemplate)
-
-
-
-
 
 
 app.config.globalProperties.$filters = {
@@ -342,14 +339,10 @@ app.config.globalProperties.$filters = {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return `${parseFloat((bytes / k ** i).toFixed(dm))} ${sizes[i]}`;
   },
-
   dateFormat(date: any) {
     return date != null ? moment.unix(date).format("MM/DD/YYYY") : ''
   },
-
-
 }
-
 app.use(ConfirmationService);
 //custom elements
 app.component('BaseInput', BaseInput)

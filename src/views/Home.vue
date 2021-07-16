@@ -123,6 +123,7 @@ export default {
 
     gemData() {
       this.gemService = new GemService();
+      console.log("gem_data",this.gemService)
       this.gems = this.gemService.userGems;
     },
     openGemsWindow() {
