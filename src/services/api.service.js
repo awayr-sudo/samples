@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BaseService } from "./base.service";
-const baseUrl = "http://api.epicai.com/";
+const baseUrl = "http://api.epicai.local/index.php/";
 export class ApiService extends BaseService {
   endpoint = baseUrl;
   favicon = "BlueSilhouette";
