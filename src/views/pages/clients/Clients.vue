@@ -34,8 +34,8 @@
       </SplitterPanel>
       <SplitterPanel class="" :size="80" :minSize="20">
         <div>
-{{modelValue}}
-         
+          {{ modelValue }}
+
           <keep-alive>
             <component :is="currentComponent" />
           </keep-alive>
@@ -73,17 +73,19 @@ export default {
   },
   computed: {
     currentComponent() {
-      console.log("consolweshdas",this.modelValue)
+      console.log("consolweshdas", this.modelValue);
       return this.currentTab;
     },
   },
 
   methods: {
     closed() {
+      alert("closed")
       this.service.gemItems.forEach((element) => {
         console.log("element", element);
         element.command = (event) => {
-          console.log("openevent", event);
+          this.emitter.emit("closed-gem", event);
+         
         };
       });
     },

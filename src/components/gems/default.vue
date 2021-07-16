@@ -4,13 +4,10 @@
       <!-- <img src="../assets/images/imageletter.png" alt class="email-image" /> -->
       <GemIcon :icon="service.icon" />
     </div>
-    
-    
+  
     <div v-if="service" class="p-col-12 p-md-6 p-lg-9">
       <Menu :model="service.gemItems" class="p-menu-list" />
-      <!-- <ul v-for="list in service.gemItems" :key="list">
-        <li>{{ list.label }}</li>
-      </ul> -->
+    
     </div>
   </div>
 </template>

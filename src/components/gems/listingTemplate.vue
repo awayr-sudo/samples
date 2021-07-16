@@ -49,7 +49,7 @@
               <Button
                 icon="pi pi-pencil"
                 class="p-button-rounded p-button-success p-mr-2"
-                @click="editproduct(slotProps.data)"
+                @click="editClients(slotProps.data)"
               />
             </template>
           </Column>
@@ -85,9 +85,9 @@ export default {
     });
   },
   methods: {
-    editproduct(item) {
+    editClients(item) {
       this.item = { ...item };
-      console.log("servicesss", this.service);
+      console.log("client list service ", this.service);
       this.emitter.emit("open-client", {
         item: item,
         key: "clients",

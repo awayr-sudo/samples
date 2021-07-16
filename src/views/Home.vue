@@ -38,7 +38,7 @@
   </div>
   {{ dialogs.length }}
   <div id="nav">
-    <Panel header="All gems" :toggleable="true" v-if="dialogs.length > 0">
+    <!-- <Panel header="All gems" :toggleable="true" v-if="dialogs.length > 0">
       <template v-for="dialog in dialogs" :key="dialog">
         <Button
           @click="toggleWindow(dialog)"
@@ -53,9 +53,8 @@
           />
         </span>
       </template>
-    </Panel>
+    </Panel> -->
 
-    <router-view />
     <Dialogss
       v-for="dialog in dialogs"
       :key="dialog"
@@ -63,7 +62,6 @@
       ref="dialog"
       @click="getIndex(dialogs)"
       class="index"
-     
     />
   </div>
 </template>
@@ -98,7 +96,7 @@ export default {
       title: null,
       dialogs: [],
       gInfos: [],
-      index: 2
+      index: 2,
     };
   },
 
@@ -126,7 +124,7 @@ export default {
 
     gemData() {
       this.gemService = new GemService();
-      console.log("gem_data",this.gemService)
+      console.log("gem_data", this.gemService);
       this.gems = this.gemService.userGems;
     },
     openGemsWindow() {
@@ -196,4 +194,9 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.drag-panel {
+  max-height: 140px;
+  min-height: 157px;
+}
+</style>
