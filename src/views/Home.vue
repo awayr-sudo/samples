@@ -109,6 +109,11 @@ export default {
       console.log("my-event", event);
       this.closeWindow();
     });
+    this.emitter.on("open-client", (data) => {
+      console.log("my-event", data);
+      this.openWindow(data);
+      alert("alert");
+    });
   },
 
   methods: {

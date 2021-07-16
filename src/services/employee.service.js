@@ -2,7 +2,7 @@ import { ApiService } from "./api.service";
 import { PrimeIcons } from "primevue/api";
 const baseUrl = "http://api.adidas.epicai.com/";
 export default class EmployeeService extends ApiService {
-  template = "one";
+  template = "defaultTemplate";
 
   icon = "ThreeUserx";
 
@@ -12,7 +12,7 @@ export default class EmployeeService extends ApiService {
       label: "Add New Employee",
       icon: PrimeIcons.PLUS_CIRCLE,
     },
-   
+
     {
       key: "listing",
       label: "View All Employees",

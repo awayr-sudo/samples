@@ -1,7 +1,7 @@
 import { ApiService } from "./api.service";
 import { PrimeIcons } from "primevue/api";
 export default class ClientService extends ApiService {
-  template = "one";
+  template = "defaultTemplate";
   icon = "Alarm";
   columns = [
     {

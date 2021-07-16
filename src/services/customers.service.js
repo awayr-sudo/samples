@@ -1,7 +1,7 @@
 import { PrimeIcons } from "primevue/api";
 
 export default class CustomersService {
-  template = 2;
+  template = "Template2";
   icon = "GroupOfPeople";
   gemItems = [
     {

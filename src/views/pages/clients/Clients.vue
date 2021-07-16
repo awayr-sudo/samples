@@ -33,9 +33,13 @@
         </div>
       </SplitterPanel>
       <SplitterPanel class="" :size="80" :minSize="20">
-        <keep-alive>
-          <component :is="currentComponent" />
-        </keep-alive>
+        <div>
+{{modelValue}}
+         
+          <keep-alive>
+            <component :is="currentComponent" />
+          </keep-alive>
+        </div>
       </SplitterPanel>
     </Splitter>
   </Form>
@@ -65,14 +69,11 @@ export default {
     return {
       schema: schema,
       currentTab: "LegalInfo",
-      clients: {
-        LegalInfo: "LegalInfo",
-        Contacts: "Contacts",
-      },
     };
   },
   computed: {
     currentComponent() {
+      console.log("consolweshdas",this.modelValue)
       return this.currentTab;
     },
   },
@@ -94,7 +95,10 @@ export default {
       payload["npo"] = payload.npo ? 1 : 0;
 
       console.log("npo", payload.npo);
-      console.log("is_default_address", payload["addresses"].is_default_address);
+      console.log(
+        "is_default_address",
+        payload["addresses"].is_default_address
+      );
 
       console.log("payload", payload);
       alert("create");

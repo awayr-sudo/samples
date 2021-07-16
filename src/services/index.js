@@ -2,6 +2,8 @@ import CustomersService from "./customers.service";
 import ClientService from "./client.service";
 import EmployeeService from "./employee.service";
 import GemsService from "./gems.service";
+import MyClientService from "./myclient.service";
+
 import { ApiService } from "./api.service";
 
 const SERVICES = [];
@@ -12,9 +14,11 @@ SERVICES[17] = EmployeeService;
 SERVICES[76] = ClientService;
 
 SERVICES[34] = CustomersService;
+SERVICES[209] = MyClientService;
+
 
 {
-  CustomersService, ClientService, EmployeeService;
+  CustomersService, ClientService, EmployeeService, MyClientService;
 }
 export function getMyGemService(gemId) {
   if (SERVICES[gemId]) return new SERVICES[gemId]();

@@ -279,6 +279,7 @@ const prospects = defineAsyncComponent(
 );
 const LegalInfo = defineAsyncComponent(
   () => import("@/views/pages/clients/LegalInfo.vue")
+
 )
 const Contacts = defineAsyncComponent(
   () => import("@/views//pages/sheard/Contacts.vue")
@@ -288,6 +289,16 @@ const Addresses = defineAsyncComponent(
 )
 const Notes = defineAsyncComponent(
   () => import("@/views//pages/sheard/Notes.vue")
+)
+const defaultTemplate = defineAsyncComponent(
+  () => import("@/components/gems/default.vue")
+)
+
+const Template2 = defineAsyncComponent(
+  () => import("@/components/gems/template2.vue")
+)
+const ListingTemplate = defineAsyncComponent(
+  () => import("@/components/gems/listingTemplate.vue")
 )
 
 import mitt from 'mitt';
@@ -309,6 +320,12 @@ app.component('LegalInfo', LegalInfo)
 app.component('Contacts', Contacts)
 app.component('Addresses', Addresses)
 app.component('Notes', Notes)
+app.component('defaultTemplate', defaultTemplate)
+app.component('Template2', Template2)
+
+app.component('ListingTemplate', ListingTemplate)
+
+
 
 
 
