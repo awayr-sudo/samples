@@ -29,13 +29,10 @@
             class="p-button-warning"
             @click="closed"
           />
-          {{ currentTab }}
         </div>
       </SplitterPanel>
       <SplitterPanel class="" :size="80" :minSize="20">
         <div>
-          {{ modelValue }}
-
           <keep-alive>
             <component :is="currentComponent" />
           </keep-alive>
