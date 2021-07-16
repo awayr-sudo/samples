@@ -21,12 +21,13 @@
             <template #body="slotProps">
               <ProgressBar
                 :value="slotProps.data.status"
-                @click="product(slotProps.data)"
+                @click="toggle(slotProps.data)"
               />
               <DataTable
                 :value="entries"
                 responsiveLayout="scroll"
                 showGridlines
+                v-if="slotProps.data.id"
               >
                 <Column field="name" header="">
                   <template #body="slotProps">
@@ -75,6 +76,8 @@ export default {
         { client: "Contacts" },
       ],
       productsss: null,
+      isToggle: false,
+      status: null
     };
   },
   created() {
@@ -82,8 +85,13 @@ export default {
     this.service.get().then((response) => {
       console.log("data", response);
       this.items = response.items;
+      console.log("items", this.items)
+      this.status = this.items[0].legal_name
+      console.log("status", this.status)
+     
     });
   },
+
   methods: {
     editproduct(item) {
       this.item = { ...item };
@@ -94,11 +102,11 @@ export default {
         service: this.service,
       });
     },
-    // product(item) {
-    //   this.productsss = { ...item };
-    //   this.table = true;
-    //   console.log("servicesss", this.productsss);
-    // },
+    toggle(slotProps) {
+      slotProps.id = !slotProps.id;
+    },
   },
 };
 </script>
+<style>
+</style>
