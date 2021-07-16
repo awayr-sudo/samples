@@ -62,6 +62,8 @@
       v-model="dialog.data"
       ref="dialog"
       @click="getIndex(dialogs)"
+      class="index"
+     
     />
   
   </div>
@@ -97,6 +99,7 @@ export default {
       title: null,
       dialogs: [],
       gInfos: [],
+      index: 2
     };
   },
 
@@ -186,5 +189,8 @@ getIndex(el) {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+
+
+</style>
  
