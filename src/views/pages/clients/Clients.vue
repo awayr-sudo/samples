@@ -5,7 +5,7 @@
         <GemIcon :icon="service.icon" />
 
         <div
-          v-for="tabs in service.tabsBtn"
+          v-for="tabs in service.tabs"
           :key="tabs"
           class="p-d-flex p-flex-column p-mx-4"
         >
@@ -29,13 +29,10 @@
             class="p-button-warning"
             @click="closed"
           />
-          {{ currentTab }}
         </div>
       </SplitterPanel>
       <SplitterPanel class="" :size="80" :minSize="20">
         <div>
-{{modelValue}}
-         
           <keep-alive>
             <component :is="currentComponent" />
           </keep-alive>
@@ -73,17 +70,18 @@ export default {
   },
   computed: {
     currentComponent() {
-      console.log("consolweshdas",this.modelValue)
+      console.log("consolweshdas", this.modelValue);
       return this.currentTab;
     },
   },
 
   methods: {
     closed() {
+      alert("closed");
       this.service.gemItems.forEach((element) => {
         console.log("element", element);
         element.command = (event) => {
-          console.log("openevent", event);
+          this.emitter.emit("closed-gem", event);
         };
       });
     },
@@ -93,12 +91,7 @@ export default {
 
     submit(payload) {
       payload["npo"] = payload.npo ? 1 : 0;
-
       console.log("npo", payload.npo);
-      console.log(
-        "is_default_address",
-        payload["addresses"].is_default_address
-      );
 
       console.log("payload", payload);
       alert("create");

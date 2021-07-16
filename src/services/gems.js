@@ -403,4 +403,9 @@ export const GEMS = [
     title: "Clients In-Progress",
     icon: "icon-client-resources",
   },
+  {
+    id: 210,
+    title: "Client Statuses",
+    icon: "icon-client-resources",
+  },
 ];

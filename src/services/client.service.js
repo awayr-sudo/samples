@@ -27,7 +27,7 @@ export default class ClientService extends ApiService {
       },
     },
   ];
-  tabsBtn = [
+  tabs = [
     {
       label: "Legal Info",
       icon: "exclamation-circle",

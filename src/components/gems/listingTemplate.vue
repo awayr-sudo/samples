@@ -6,11 +6,9 @@
   </div>
   <div class="p-fluid">
     <div class="p-field p-grid">
-      <div class="p-col-12 p-mb-2 p-md-4 p-mb-md-0">
-        <GemIcon :icon="service.icon" />
-      </div>
+     
 
-      <div class="p-col-12 p-md-8">
+      <div class="p-col-12 p-md-12">
         <DataTable :value="items" responsiveLayout="scroll">
           <Column field="Display_name" header="" headerStyle="width:10rem">
             <template #body="slotProps">
@@ -50,7 +48,7 @@
               <Button
                 icon="pi pi-pencil"
                 class="p-button-rounded p-button-success p-mr-2"
-                @click="editproduct(slotProps.data)"
+                @click="editClients(slotProps.data)"
               />
             </template>
           </Column>
@@ -60,9 +58,7 @@
   </div>
 </template>
 <script>
-import GemIcon from "../GemIcon.vue";
 export default {
-  components: { GemIcon },
   inject: ["service"],
   data() {
     return {
@@ -93,9 +89,9 @@ export default {
   },
 
   methods: {
-    editproduct(item) {
+    editClients(item) {
       this.item = { ...item };
-      console.log("servicesss", this.service);
+      console.log("client list service ", this.service);
       this.emitter.emit("open-client", {
         item: item,
         key: "clients",
